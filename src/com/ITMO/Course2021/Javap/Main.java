@@ -1,11 +1,5 @@
 package com.ITMO.Course2021.Javap;
 
-<<<<<<< HEAD
-public class Main {
-
-    public static void main(String[] args) {
-	// write your code here
-=======
 import java.util.Scanner;
 
 public class Main {
@@ -51,7 +45,5 @@ public class Main {
         System.out.println("Result: " + a + "+"+ b +"=" + (a+b));
         System.out.println("Result: " + a + "-"+ b +"=" + (a-b));
         System.out.println("Result: " + a + "*"+ b +"=" + (a*b));
-
->>>>>>> 5bb4b6e (Initial commit)
     }
 }
