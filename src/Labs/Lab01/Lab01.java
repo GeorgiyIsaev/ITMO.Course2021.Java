@@ -3,7 +3,16 @@ import java.util.Scanner;
 
 public class Lab01
 {
-    public void InOut()
+    public static void main(String[] args) {
+        //Задание 01: Ввод и вывод
+        InOut();
+
+        //Задание 02: Арифмитические операции
+        ResExpression();
+
+    }
+
+    public static void InOut()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter 1: ");
@@ -17,13 +26,13 @@ public class Lab01
         System.out.println("Итоговая строка: " + str1 + " " + str2 + " " +str3 + " " +str4);
     }
 
-    public void ResaltExpression()
+    public static void ResExpression()
     {
-        int resalt1 = ( 46 + 10 ) * ( 10 / 3 );
-        int resalt2 = ( 29 ) * ( 4 ) * (- 15 );
+        int res1 = ( 46 + 10 ) * ( 10 / 3 );
+        int res2 = ( 29 ) * ( 4 ) * (- 15 );
 
-        System.out.println("( 46 + 10 ) * ( 10 / 3 )" + resalt1);
-        System.out.println("( 29 ) * ( 4 ) * (- 15 )" + resalt2);
+        System.out.println("( 46 + 10 ) * ( 10 / 3 )" + res1);
+        System.out.println("( 29 ) * ( 4 ) * (- 15 )" + res2);
     }
 }
 
