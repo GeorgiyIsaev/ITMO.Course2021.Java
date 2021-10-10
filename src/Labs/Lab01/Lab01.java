@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Lab01 {
     public static void main(String[] args) {
         //Задание 01: Ввод и вывод текста
-        // InOut();
+        InOut();
 
         //Задание 02: Арифмитические операции
         ResExpression();
@@ -16,7 +16,7 @@ public class Lab01 {
         Multiplication();
 
         //Задание 05: Ввод и вывод чисел
-        //InOutInt();
+        InOutInt();
 
         //Задание 06: Четное и не четное
         EvenAndOdd();
