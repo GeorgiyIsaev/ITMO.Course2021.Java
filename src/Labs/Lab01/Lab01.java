@@ -10,6 +10,14 @@ public class Lab01
         //Задание 02: Арифмитические операции
         ResExpression();
 
+        //Задание 03: Вывод переменных
+        NumberIntOut();
+
+        //Задание 04: Перемножение трех чисел
+        Multiplication();
+
+        //Задание 05: Ввод и вывод чисел
+        InOutInt();
     }
 
     public static void InOut()
@@ -31,8 +39,42 @@ public class Lab01
         int res1 = ( 46 + 10 ) * ( 10 / 3 );
         int res2 = ( 29 ) * ( 4 ) * (- 15 );
 
-        System.out.println("( 46 + 10 ) * ( 10 / 3 )" + res1);
-        System.out.println("( 29 ) * ( 4 ) * (- 15 )" + res2);
+        System.out.println("( 46 + 10 ) * ( 10 / 3 ) = " + res1);
+        System.out.println("( 29 ) * ( 4 ) * (- 15 ) = " + res2);
+    }
+
+    public static void NumberIntOut()
+    {
+        int number = 10500;
+        int result = (number / 10) / 10;
+
+        System.out.println("(number / 10) / 10 = " + result);
+    }
+
+    public static void Multiplication()
+    {
+        double number1 = 3.6;
+        double number2 = 4.1;
+        double number3 = 5.9;
+        double result = number1 * number2 * number3;
+
+        System.out.println(number1 + " * " + number2 +" * "  + number3 + " = " + result);
+    }
+
+    public static void InOutInt()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(("Enter number 1: ");
+        int val1 = scanner.nextInt();
+        System.out.print("Enter number 2: ");
+        int val2= scanner.nextInt();
+        System.out.print("Enter number 3: ");
+        int val3 = scanner.nextInt();
+
+        System.out.println("Введены следующие числа:");
+        System.out.println(val1);
+        System.out.println(val2);
+        System.out.println(val3);
     }
 }
 
