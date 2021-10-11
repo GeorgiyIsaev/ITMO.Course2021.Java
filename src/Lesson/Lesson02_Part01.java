@@ -3,29 +3,37 @@ package Lesson;
 public class Lesson02_Part01 {
     public static void main(String[] args) {
         //ТЕМА: Циклы, Массивы и Методы
-        System.out.println("Lesson02");
         // Название методов в Java пишется с маленькой буквы в отличии от C#
+        System.out.println("Lesson02");
 
-        //Циклы
+        /*Циклы*/
         roundFor();
         roundWhile();
 
-        //Операторы ветвелнеия
+        /*Операторы ветвелнеия*/
         branchingIf();
         branchingSwitch();
 
-        //Встроенные методы
+        /*Встроенные методы*/
         builtInMethods();
 
-
-
-        //Пользовательские методы
+        /*Пользовательские методы*/
         int valFood = countFoodRet(12, 8);
         System.out.println("Food = " + valFood + "g");
-
         countFood(3, 10);
+        addFood(32);
+
+        /*Перегрузка метода*/
+        printVal(2);
+        printVal((short) 2);
+        printVal( 2.2);
+        printVal( 2.2f);
+
+        /*Использование строк и их сравнение*/
+        stringWorker();
 
     }
+    /*Цикл for*/
     public static void roundFor()
     {
         //Цикл Фор
@@ -57,6 +65,7 @@ public class Lesson02_Part01 {
             }
         }
     }
+    /*Цикл while*/
     public static void roundWhile()
     {
        //Цикл передвигающийся по символам
@@ -78,7 +87,7 @@ public class Lesson02_Part01 {
         System.out.println();
     }
 
-    // Операторы ветвления
+    // Операторы ветвления if
     public static void branchingIf()
     {
         //Остановка цикла с помощью брейк
@@ -114,7 +123,7 @@ public class Lesson02_Part01 {
             System.out.println(l);
         }
     }
-    // Операторы ветвления
+    // Операторы ветвления switch
     public static void branchingSwitch()
     {
         int val = 2;
@@ -144,20 +153,15 @@ public class Lesson02_Part01 {
         }
     }
 
+    // Встроенные вызваемые методы
     public static void builtInMethods()
     {
         System.out.println(Math.round(79.3432)); //округляет число
         System.out.println(Character.isLetter(121)); //Являет ли символом? Возвращает false
         String name = "Hak";
         System.out.println(name.toLowerCase()); // все нижним регистром
-
-
-        String str1 = new String("ola");
-        String str2 = str1;
-        System.out.println(str2);
-        str1 = new String("gege");
-        System.out.println(str2);
     }
+
     /*Пользовательские методы*/
     public static int countFoodRet(int weight, int age){
         return weight/2+age;
@@ -165,7 +169,56 @@ public class Lesson02_Part01 {
     public static void countFood(int weight, int age){
         System.out.println("Give cate "+(weight/2+age)+"g of food");
     }
+    public static void addFood(int portion)
+    {
+        portion+=10;
+        System.out.println("portion = " + portion);
+    }
 
+    /*Перегрузка метода*/
+    public static void printVal(int a)
+    {
+        System.out.println("Int = " + a);
+    }
+    public static void printVal(short a)
+    {
+        System.out.println("short = " + a);
+    }
+    public static void printVal(double a)
+    {
+        System.out.println("double = " + a);
+    }
+    public static void printVal(float a)
+    {
+        System.out.println("float = " + a);
+    }
+
+    /*Работа со стрингом*/
+    public static void stringWorker()
+    {
+        //Стринг это ссылочный тип
+        String str1 = new String("java");
+        String string = "La la java";
+        String str2 = str1;
+        System.out.println(str2 + " " +  string);
+
+        //Сравнение строк
+        String str3 = new String("java");
+        String str4 = new String("java");
+        String str5 = str4;
+
+        System.out.println(str3 == str4); //false
+        System.out.println(str4 == str5); //true
+
+        System.out.println(str3.equals(str4)); //true
+        System.out.println(str4.equals(str5)); //true
+
+        //Можно присвоить null
+        String str = null;
+        System.out.println(str); // отобразит null
+        str = "La la java";
+        System.out.println(str);
+    }
 
 
 }
