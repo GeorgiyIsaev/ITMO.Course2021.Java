@@ -13,18 +13,25 @@ public class Lab02
         counter3And5();
 
         //Задание 03: Введите три числа. Если сумма перевого и второго числа равно третьему вывести true
-        //sumTwoInt();
+        sumTwoInt();
 
         //Задание 04: Сравнить три числа. True если второе больше первого, а третье меньше второго
-       // comparisonThreeNumbers();
+        comparisonThreeNumbers();
 
         //Задание 05: Проверка значений массива
-        checkMassive();
-        checkMassive();
-        checkMassive();
-        checkMassive();
-        checkMassive();
+        checkMassiveEdge();
+        checkMassiveEdge();
+        checkMassiveEdge();
+        checkMassiveEdge();
+        checkMassiveEdge();
+        System.out.println();
 
+        //Задание 06: Проверка наличия в массиве 1 или 3;
+        checkMassiveValue();
+        checkMassiveValue();
+        checkMassiveValue();
+        checkMassiveValue();
+        checkMassiveValue();
     }
 
     public static void counterOdd()
@@ -96,7 +103,7 @@ public class Lab02
 
     }
 
-    public static void checkMassive()
+    public static void checkMassiveEdge()
     {
         System.out.print("Задание 05 - Имеется массив:  ");
         int size = 5;
@@ -106,13 +113,29 @@ public class Lab02
             System.out.print(myArray[i] + " ");
         }
         System.out.println();
-        System.out.println(" Проверка сответсвия равенства крайних чисел трем: " +
+        System.out.println("\tПроверка сответсвия равенства крайних чисел трем: " +
                 ((myArray[0] == 3) && ((myArray[myArray.length-1]) == 3))
         );
     }
 
+    public static void checkMassiveValue()
+    {
+        System.out.print("Задание 06 - Имеется массив:  ");
+        int size = 5;
+        int[] myArray = new int[size];
+        for (int i = 0; i < myArray.length; i++) {
+            myArray[i] = ((int)(Math.random() * 20)+1);
+            System.out.print(myArray[i] + " ");
+        }
+        System.out.println();
 
-
-
-
+        boolean ifIsNumbers = false;
+        for (int i = 0; i < myArray.length; i++) {
+            if(myArray[i] == 1 || myArray[i]  == 3){
+                ifIsNumbers = true;
+                break;
+            }
+        }
+        System.out.println("\tПроверка наличия 1 или 3: " + ifIsNumbers);
+    }
 }
