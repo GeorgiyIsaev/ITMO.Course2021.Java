@@ -9,15 +9,21 @@ public class Lab02
         //Задание 01: Вывести нечные числа от 1 до 99. Каждое число с новой строки
         counterOdd();
 
-        //Заданние 02: Отобразить числа которые деляться на 3, на 5 и на 3 и 5.
+        //Задание 02: Отобразить числа которые деляться на 3, на 5 и на 3 и 5.
         counter3And5();
 
-        //Задние 03: Введите три числа. Если сумма перевого и второго числа равно третьему вывести true
-        sumTwoInt();
+        //Задание 03: Введите три числа. Если сумма перевого и второго числа равно третьему вывести true
+        //sumTwoInt();
 
         //Задание 04: Сравнить три числа. True если второе больше первого, а третье меньше второго
-        comparisonThreeNumbers();
+       // comparisonThreeNumbers();
 
+        //Задание 05: Проверка значений массива
+        checkMassive();
+        checkMassive();
+        checkMassive();
+        checkMassive();
+        checkMassive();
 
     }
 
@@ -71,7 +77,7 @@ public class Lab02
         int b = scanner.nextInt();
         System.out.print("Введите сумму чисел а и b: ");
         int c = scanner.nextInt();
-        System.out.print("Ответ: " + ((a+b) == c));
+        System.out.println("Ответ: " + ((a+b) == c));
     }
     public static void comparisonThreeNumbers()
     {
@@ -81,13 +87,30 @@ public class Lab02
         int a = scanner.nextInt();
         System.out.print("Введите число b: ");
         int b = scanner.nextInt();
-        System.out.print("Введите число с:");
+        System.out.print("Введите число с: ");
         int c = scanner.nextInt();
 
-        System.out.print("Резултат срвнения c>b>a: " + (b>a && c>b));
+        String str = c + ">" + b + ">" +a + ":";
+        System.out.println("Резултат срвнения " + str + (b>a && c>b));
 
 
     }
+
+    public static void checkMassive()
+    {
+        System.out.print("Задание 05 - Имеется массив:  ");
+        int size = 5;
+        int[] myArray = new int[size];
+        for (int i = 0; i < myArray.length; i++) {
+            myArray[i] = ((int)(Math.random() * 2)+2);
+            System.out.print(myArray[i] + " ");
+        }
+        System.out.println();
+        System.out.println(" Проверка сответсвия равенства крайних чисел трем: " +
+                ((myArray[0] == 3) && ((myArray[myArray.length-1]) == 3))
+        );
+    }
+
 
 
 
