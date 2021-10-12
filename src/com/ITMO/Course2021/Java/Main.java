@@ -1,6 +1,4 @@
-package com.ITMO.Course2021.Javap;
-
-import java.util.Scanner;
+package com.ITMO.Course2021.Java;
 
 public class Main {
 
