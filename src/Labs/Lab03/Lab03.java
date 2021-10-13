@@ -3,19 +3,24 @@ package Labs.Lab03;
 import java.util.Scanner;
 
 public class Lab03 {
+    private static int n;
+
     public static void main(String[] args) {
         // Задание 01: Проверить является ли массив осортированным!
-        trySortMassive(createMassive(3, 1, 2));
+       // trySortMassive(createMassive(3, 1, 2));
 
         //Задание 02: Метод для ручного заполнения массива
         //System.out.print("Задание 02: Создние массива через ручной ввод");
-        printMassive(createMassive());
+        //printMassive(createMassive());
 
         //Задание 03: Поменять местами крайние значения массива
-        reversEgeValueMassive();
+       // reversEgeValueMassive();
 
         //Задание 04: Найти первое уникальное число в массиве
-        findUniqueValue();
+       // findUniqueValue();
+
+        //Задача 05: Число Фибаначчи
+        fibonacciNumber(9);
     }
 
     public static int[] createMassive() {
@@ -132,7 +137,19 @@ public class Lab03 {
             System.out.println("Уникальныйх значений нет");
         }
     }
-
+    public static void fibonacciNumber(int value) {
+        //Задача 05:  Вычислить число фибаначи (использовать только цикл)
+        long resalt;
+        long temp1 = 1, temp2= 1;
+        String str = "1";
+        for (int i = 1; i <=value; i++) {
+            resalt = temp1 + temp2;
+            temp1 = temp2;
+            temp2 = resalt;
+            str += ", " + resalt;
+        }
+        System.out.println("Число Фибаначи в " + value + " последовательности равно: "+ str);
+    }
 
 
 }
