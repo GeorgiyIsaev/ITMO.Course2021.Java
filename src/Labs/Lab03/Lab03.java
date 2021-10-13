@@ -3,8 +3,6 @@ package Labs.Lab03;
 import java.util.Scanner;
 
 public class Lab03 {
-    private static int n;
-
     public static void main(String[] args) {
         // Задание 01: Проверить является ли массив отсортированным!
        // trySortMassive(createMassive(3, 1, 2));
@@ -102,7 +100,7 @@ public class Lab03 {
 
     public static void reversEgeValueMassive() {
         // Задание 03: Реверс крайних значений
-        System.out.print("Зажание 03 - ");
+        System.out.print("Задание 03 - ");
         int[] myArray = createMassive(4, 1, 9);
         printMassive(myArray);
 
@@ -116,11 +114,11 @@ public class Lab03 {
 
     public static void findUniqueValue() {
         // Задача 04: Поиск уникальных значений
-        System.out.print("Зажание 04 - ");
+        System.out.print("Задание 04 - ");
         int[] myArray = createMassive(8, 1, 5);
         printMassive(myArray);
 
-        //Проверка ункиальности
+        //Проверка уникальности
         boolean ifNotUnique = false;
         int valueUnique = 0;
         for (int i = 0; i < myArray.length; i++) {
@@ -142,11 +140,11 @@ public class Lab03 {
         if (!ifNotUnique) {
             System.out.println("Первое уникальное число:  " + valueUnique);
         } else {
-            System.out.println("Уникальныйх значений нет");
+            System.out.println("Уникальный х значений нет");
         }
     }
     public static void fibonacciNumber(int value) {
-        //Задача 05:  Вычислить число фибаначи (использовать только цикл)
+        //Задача 05: Вычислить число фибоначчи (использовать только цикл)
         long resalt;
         long temp1 = 1, temp2= 1;
         String str = "1";
