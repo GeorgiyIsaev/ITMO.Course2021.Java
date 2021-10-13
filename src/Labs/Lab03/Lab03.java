@@ -33,7 +33,7 @@ public class Lab03 {
     }
 
     public static int[] createMassive(int size, int Begin, int End) {
-        //Автоматическое созданеи массива
+        //Метод для авто-герации массива
         int[] myArray = new int[size];
         for (int i = 0; i < myArray.length; i++) {
             myArray[i] = ((int) (Math.random() * End) + Begin);
@@ -52,6 +52,7 @@ public class Lab03 {
     }
 
     public static void trySortMassive(int[] myArray) {
+        //Задание 01: Проверка отсортированности массива
         System.out.print("Задание 01 - ");
         printMassive(myArray);
 
@@ -71,7 +72,7 @@ public class Lab03 {
     }
 
     public static int[] sortMyMassive(int[] myArray) {
-        //Отсортируем
+        // Сортировка массива
         int temp;
         for (int i = 0; i < myArray.length; i++) {
             for (int j = 0; j < myArray.length; j++) {
@@ -87,6 +88,7 @@ public class Lab03 {
 
 
     public static void reversEgeValueMassive() {
+        // Задание 03: Реверс крайних значений
         System.out.print("Зажание 03 - ");
         int[] myArray = createMassive(4, 1, 9);
         printMassive(myArray);
@@ -100,6 +102,7 @@ public class Lab03 {
     }
 
     public static void findUniqueValue() {
+        // Задача 04: Поиск уникальных значений
         System.out.print("Зажание 04 - ");
         int[] myArray = createMassive(8, 1, 5);
         printMassive(myArray);
@@ -129,4 +132,7 @@ public class Lab03 {
             System.out.println("Уникальныйх значений нет");
         }
     }
+
+
+
 }
