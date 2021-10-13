@@ -44,9 +44,6 @@ public class Lab02
             }
         }
         System.out.println();
-
-
-
     }
 
     public static void counter3And5()
