@@ -8,10 +8,20 @@ public class Lesson03 {
         //Книга - Грокаем Алгоритмы!
 
         //Создание и инциализация массивов
-        declarationArray();
+        //declarationArray();
 
-        //Cпециальный цикол для массива
-        forArray();
+        //Специальный цикл для массива
+        //forArray();
+
+        //Алгоритмы
+       // lectureAlgorithm();
+
+        //Метод удаления из массива
+        removeElemMassive();
+
+        //Задача на занятии (сумма всех положительных чисел)
+        taskLesson();
+
 
     }
 
@@ -66,7 +76,7 @@ public class Lesson03 {
         Arrays.fill(charArray, size/2,size,'B');
         System.out.println("Заполнение: " + Arrays.toString(charArray));
 
-        //Заполнение через циклд
+        //Заполнение через цикл
         int[] squares = new int [10];
         for (int i = 0; i < squares.length; i++) {
             squares[i] = i*i;
@@ -81,7 +91,6 @@ public class Lesson03 {
         //for (type var : array)
         //{ // to do }
 
-
         char[] symbols = {'a','b','c' ,'a' ,'e' ,'b' ,'g'};
         int counter = 0;
         for (char symbol : symbols)
@@ -94,7 +103,70 @@ public class Lesson03 {
         System.out.println("Колличество символов 'a': " + counter);
     }
 
+    public static void lectureAlgorithm()
+    {
+        //Линение поиск - прямой проход по массивы до искомого эл-та
+        //Поиски в отсортированом массиве:
+        //  - бинарный (от среднего эл-та) - потом к следующей середние
+        //      * итеративная (через циклы)
+        //      * рекурсивная (вызов функции саму себя)
 
+        // Сортировка выбором (помещает меньший элемент в начало массива)
+        // Сортирвка слияниме (Делить на под массивы и соедняет отсортированные массиывы)
+
+        // Быстрый массив (Исползует метод свап для обмена местами)
+
+
+    }
+
+    public static int[] removeElement(int[] array,  int val)
+    {
+        int offset = 0;
+        for(int i=0; i< array.length; i++)
+        {
+            if(array[i] == val)
+            {
+                offset++;
+            }
+            else
+            {
+                array[i - offset] = array[i];
+            }
+        }
+
+        int[] newArray = new int[array.length - offset];
+        System.arraycopy(array, 0, newArray, 0, newArray.length);
+        return newArray;
+    }
+    public static void removeElemMassive()
+    {
+        int[] test = {0,71,24,23,4,5,5};
+        System.out.println(Arrays.toString(removeElement(test,2)));
+    }
+
+    public static void taskLesson()
+    {
+       /*ЗАДАЧА: написать метод, который будет считать сумму положительных элементов
+        из массива размерностью 10. Массив получен рандомно из целых чисел.*/
+
+        int[] myArray = new int[10];
+        for (int i = 0; i < myArray.length; i++)
+        {
+            myArray[i] = ((int)(Math.random() * 19)-10);
+        }
+
+        int result = 0;
+        for (int val : myArray)
+        {
+            if(val>0)
+            {
+                result+=val;
+            }
+
+        }
+        System.out.println("Имеется массив: " +  Arrays.toString(myArray));
+        System.out.println("Сумма всех положительный чисел = " + result);
+    }
 
 
 }
