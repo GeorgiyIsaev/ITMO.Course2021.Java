@@ -6,11 +6,11 @@ public class Lab03 {
     private static int n;
 
     public static void main(String[] args) {
-        // Задание 01: Проверить является ли массив осортированным!
+        // Задание 01: Проверить является ли массив отсортированным!
        // trySortMassive(createMassive(3, 1, 2));
 
         //Задание 02: Метод для ручного заполнения массива
-        //System.out.print("Задание 02: Создние массива через ручной ввод");
+        //System.out.print("Задание 02: Создание массива через ручной ввод");
         //printMassive(createMassive());
 
         //Задание 03: Поменять местами крайние значения массива
@@ -20,13 +20,21 @@ public class Lab03 {
        // findUniqueValue();
 
         //Задача 05: Число Фибаначчи
-        fibonacciNumber(9);
+        //fibonacciNumber(9);
+
+        //Задача 06: Сортировка слиянием
+        //sortMerge();
+
+        //Задача 07: Найдите первые самое встречающееся число.
+        firstMeetsManyNumber();
+
+
     }
 
     public static int[] createMassive() {
-        //Метод для создания массива ручнным вводом
+        //Метод для создания массива ручным вводом
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите размер масиива: ");
+        System.out.print("Введите размер массива: ");
         int size = scanner.nextInt();
 
         System.out.print("Введите значения масиива: ");
@@ -144,12 +152,46 @@ public class Lab03 {
         String str = "1";
         for (int i = 1; i <=value; i++) {
             resalt = temp1 + temp2;
+            str += ", " + resalt;
+
             temp1 = temp2;
             temp2 = resalt;
-            str += ", " + resalt;
         }
         System.out.println("Число Фибаначи в " + value + " последовательности равно: "+ str);
     }
 
+    public static void sortMerge() {
+        //Задача 06: Сортировка слиянием
+        int[] array = createMassive(20,1,100);
+        printMassive(array);
 
+
+    }
+
+    public static void firstMeetsManyNumber() {
+        //Задача 07: Первое часто встречающееся число
+        int[] array = createMassive(20,1,10);
+        printMassive(array);
+
+        int findNumber =-1;
+        int countTempFindNumber;
+        int countFindNumber =0;
+
+        for (int i = 0; i < array.length; i++) {
+            countTempFindNumber = 0;
+            for (int j = 0; j < array.length; j++) {
+                if(array[i] ==  array[j]){
+                    countTempFindNumber++;
+                }
+            }
+            if(countFindNumber <countTempFindNumber){
+                findNumber = array[i];
+                countFindNumber = countTempFindNumber;
+                System.out.println("    Первое самое встречающееся число "+ findNumber +
+                        " встречает " + countFindNumber + " раз.");
+            }
+        }
+        System.out.println("Первое самое встречающееся число "+ findNumber +
+                " встречает " + countFindNumber + " раз.");
+    }
 }
