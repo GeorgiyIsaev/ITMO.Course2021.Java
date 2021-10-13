@@ -163,6 +163,8 @@ public class Lab03 {
         int[] array = createMassive(20,1,100);
         printMassive(array);
 
+        //В папке с алгоритмами!
+
 
     }
 
