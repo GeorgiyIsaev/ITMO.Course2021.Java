@@ -16,8 +16,10 @@ public class Lesson04 {
         //stringArray();
 
         //Классы StringBuffer и StringBuilder
-        otherStrings();
+        //otherStrings();
 
+        //ЗАДАЧА: Отсортировать массив строк через bubble sort
+        taskString();
     }
 
     public static void stringWorker(){
@@ -49,7 +51,6 @@ public class Lesson04 {
         char last = s.charAt(s.length()-1);
         System.out.println("Последний Символ: " + last);
         //Мы можем получить символ, но не изменить его!
-
     }
 
     public static void stringMethods(){
@@ -158,6 +159,46 @@ public class Lesson04 {
         empty.append(" ");
         empty.append(100 + (8 + 4)); //арифметические операции
         System.out.println(empty);
+        empty.append(" 9").append(" 8").append(" 9");
+        System.out.println(empty);
+
+        //Добавление через вставку
+        StringBuilder stringBuilder = new StringBuilder("java!");
+        stringBuilder.insert(4, " programmer");
+        System.out.println(stringBuilder);
+
+        //Замена части строки
+        stringBuilder.replace(0,4,"CSharp");
+        System.out.println(stringBuilder);
+        stringBuilder.delete(0,7); // удаление
+        System.out.println(stringBuilder);
+        stringBuilder.reverse();// обратный порядок
+        System.out.println(stringBuilder);
+
+        //Вместимость capacity() динамически изменяется, не равна length()
+        System.out.println("capacity " + stringBuilder.capacity());
+        System.out.println("length " + stringBuilder.length());
+
+        //Сравнение строк
+        System.out.println("compareTo " + stringBuilder.compareTo(empty));
     }
 
+    public static void taskString(){
+        //Отсортировать массив строк через bubble sort
+        String[] text =
+                {"I", "still", "learning", "java", "language"};
+        //System.out.println(Arrays.toString(text));
+
+        //Отсортирован в алфавитном порядке
+        for (int i = 0; i < text.length; i++) {
+            for (int j = i + 1; j < text.length; j++) {
+                if (text[j].compareTo(text[i]) < 0) {
+                    String temp = text[i];
+                    text[i] = text[j];
+                    text[j] = temp;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(text));
+    }
 }
