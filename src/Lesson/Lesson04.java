@@ -18,7 +18,6 @@ public class Lesson04 {
         //Классы StringBuffer и StringBuilder
         otherStrings();
 
-
     }
 
     public static void stringWorker(){
@@ -150,15 +149,15 @@ public class Lesson04 {
         System.out.println(empty.length());
         System.out.println(empty.charAt(4));
         //System.out.println(empty.setCharAt(0, 'j')); // нельзя отобразить при изменении
-        empty.setCharAt(0, 'j');
+        empty.setCharAt(0, 'j'); //изменяем
         System.out.println(empty); // так можно!
 
-        //Добавление
-        empty.append("123134" + (8 + 4));
+        //Добавление к StringBuilder
+        empty.append("100" + (8 + 4));
         System.out.println(empty);
-        empty.append(123 + (8 + 4));
+        empty.append(" ");
+        empty.append(100 + (8 + 4)); //арифметические операции
         System.out.println(empty);
-
     }
 
 }
