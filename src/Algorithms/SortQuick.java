@@ -57,5 +57,4 @@ public class SortQuick {
         array[i] = array[j];
         array[j] = temp;
     }
-
 }
