@@ -6,6 +6,7 @@ public class FindBinary {
     /**Бинарный поиск - это быстрый алгоритм для поиска позиции элемента
      *  в отсортированном массиве. Для массива размера n время работы
      *  алгоритма в худшем случае составляет O(logn)
+     *  -- только для отсортированного массива!
      */
     public static void main(String[] args) {
         int val;
@@ -23,7 +24,6 @@ public class FindBinary {
 
         //Бинарный поиск в отсортированном массиве (Рекурсивный)
         binaryUseRec();
-
     }
 
     public static int lineFind(int[] array, int findValue) {
