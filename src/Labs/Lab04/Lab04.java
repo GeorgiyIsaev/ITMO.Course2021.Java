@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class Lab04 {
     public static void main(String[] args) {
         // Задача 1.	Написать метод для поиска самой длинной строки.
-        System.out.println("ЗАДАЧА 1");
         String str1 = "Ложка", str2 ="Нож";
         System.out.println("Есть два слова: " +str1 +", " + str2);
         System.out.println("Самое длинное из них: " +longString(str1, str2));
@@ -25,10 +24,13 @@ public class Lab04 {
                 "Шла она уже полдня, Очень торопилась.\n" +
                 "бяку есть было нельзя, Саша очень злилась.\n" +
                 "Сушка бякою была, Чуть солоновата.\n";
-        System.out.println(bakaCensorship(myText));
+        String newText = bakaCensorship(myText);
+        System.out.println(newText);
 
         // Задача 4.	Имеются две строки. Найти количество вхождений
         // одной (являющейся подстрокой) в другую.
+        String censorStr = "[вырезано цензурой]";
+        System.out.println("Строка \"" +censorStr+ "\" встречается в тексте " +counterStr(newText, censorStr) + " раз!");
 
         // Задача 5.	Напишите метод, который инвертирует слова в строке.
         // Предполагается, что в строке нет знаков препинания,
@@ -82,5 +84,15 @@ public class Lab04 {
                 return true;
         }
         return false;
+    }
+    public static int counterStr(String fullText, String underString){
+        //Задача 4: Сколько раз входит подстрока
+        int count = 0;
+        int indexCur = 0;
+        while (indexCur < fullText.indexOf(underString, indexCur)){
+            indexCur = fullText.indexOf(underString, indexCur) +1;
+            count++;
+        }
+        return count;
     }
 }
