@@ -35,6 +35,12 @@ public class Lab04 {
         // Задача 5.	Напишите метод, который инвертирует слова в строке.
         // Предполагается, что в строке нет знаков препинания,
         // и слова разделены пробелами.
+        String myTextEng = "Sample Output: \n" +
+                "The given string is: This is a test string \n" +
+                "The string reversed word by word is: \n" +
+                "sihT si a tset gnirts";
+        System.out.println(reversStr(myTextEng));
+
     }
     public static String longString(String str1, String str2) {
         //Задача1: Возвращает самую длинную строку из двух
@@ -94,5 +100,13 @@ public class Lab04 {
             count++;
         }
         return count;
+    }
+    public static String reversStr(String Text){
+        String[] textArray = Text.split(" ");
+        String newText = "";
+        for (int i = textArray.length-1; i > -1; i--) {
+            newText += textArray[i] + " ";
+        }
+        return newText;
     }
 }
