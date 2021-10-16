@@ -20,6 +20,12 @@ public class Lab04 {
         System.out.println("Палиндром? (ротатор): " + ifPalindrome("ротатор"));
         // Задача 3.	Напишите метод, заменяющий в тексте все
         // вхождения слова «бяка» на «[вырезано цензурой]».
+        String myText = "Шла Саша по шоссе И сосала бяку.\n" +
+                "Дело было в сентябре, Было ей бяка.\n" +
+                "Шла она уже полдня, Очень торопилась.\n" +
+                "бяку есть было нельзя, Саша очень злилась.\n" +
+                "Сушка бякою была, Чуть солоновата.\n";
+        System.out.println(bakaCensorship(myText));
 
         // Задача 4.	Имеются две строки. Найти количество вхождений
         // одной (являющейся подстрокой) в другую.
@@ -47,6 +53,7 @@ public class Lab04 {
     }
 
     public static boolean ifPalindrome(String stringArr) {
+        //Задача 2: Палиндром
         boolean ifPal = true;
         for (int i = 0; i < stringArr.length()/2; i++) {
             if(stringArr.charAt(i) != stringArr.charAt(stringArr.length()-1 -i)){
@@ -55,5 +62,25 @@ public class Lab04 {
             }
         }
         return ifPal;
+    }
+    public static String bakaCensorship(String myText){
+        //Задача 3: Цензура
+        String newText = myText;
+        String[] strCensor = {"бяка", "бяки", "бяке", "бяку", "бяку", "бякой","бякою", "бяке"};
+        while (ifCensorship(strCensor,newText)){
+            for (int i = 0; i < strCensor.length ; i++) {
+                newText = newText.replace(strCensor[i], "[вырезано цензурой]");
+            }
+        }
+        return newText;
+    }
+
+    public static boolean ifCensorship(String[] strCensor,String myText){
+        //Метод для задачи 3, проверят нужна ли еще цензура!
+        for (int i = 0; i < strCensor.length ; i++) {
+            if(myText.contains(strCensor[i]))
+                return true;
+        }
+        return false;
     }
 }
