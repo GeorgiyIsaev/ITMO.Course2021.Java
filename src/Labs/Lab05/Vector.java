@@ -12,8 +12,17 @@ public class Vector {
 
     }
     public double lengthVector(int countDecimal) {
-        // Метод для подсчета длины вектора
+        // Задание 02: Метод для подсчета длины вектора
         double value = Math.sqrt(x * x + y * y + z * z);
+        double scale = Math.pow(10, countDecimal); //countDecimal - знаков после запятой
+        value = Math.ceil(value * scale) / scale;
+        return value;
+    }
+
+    public double scalarProduct(Vector vector, int countDecimal){
+        // Задание 03: Метода для расчета скалярного произведения
+
+        double value = Math.sqrt(x * vector.x + y * vector.y + z * vector.z);
         double scale = Math.pow(10, countDecimal); //countDecimal - знаков после запятой
         value = Math.ceil(value * scale) / scale;
         return value;
