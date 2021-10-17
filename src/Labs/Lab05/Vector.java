@@ -11,6 +11,11 @@ public class Vector {
         this.z = z;
 
     }
+    public String  strVector(){
+        return "{" + x + ", " + y + ", " + z + "}";
+    }
+
+
     public double lengthVector(int countDecimal) {
         // Задание 02: Метод для подсчета длины вектора
         double value = Math.sqrt(x * x + y * y + z * z);
@@ -27,6 +32,12 @@ public class Vector {
         value = Math.ceil(value * scale) / scale;
         return value;
     }
-
+    public Vector vectorProduct(Vector vector){
+        // Задание 04: Вычислить векторное произведение
+        int newX = y * vector.z - z * vector.y;
+        int newY = z * vector.x - x * vector.z;
+        int newZ = x * vector.y - y * vector.x;
+        return new Vector(newX,newY, newZ);
+    }
 
 }
