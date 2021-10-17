@@ -50,4 +50,20 @@ public class Vector {
         return value;
     }
 
+    public Vector vectorSubtract(Vector vector){
+        //subtract and addition
+        // Задание 05: Вычитание векторов
+        return new Vector(
+                x - vector.x,
+                y - vector.y,
+                z - vector.z);
+    }
+    public Vector vectorAddition(Vector vector){
+        // Задание 05: Сложение векторов
+        return new Vector(
+                x + vector.x,
+                y + vector.y,
+                z + vector.z);
+    }
+
 }
