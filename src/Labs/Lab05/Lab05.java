@@ -18,6 +18,11 @@ public class Lab05 {
         System.out.println("Векторное произведение векторов "+ vector.strVector()
                 +" и "+ vector2.strVector()+": "
                 + vector.vectorProduct(vector2).strVector());
+
+        // Задание 05: Угол между векторами
+        System.out.println("Угол между векторами "+ vector.strVector()
+                +" и "+ vector2.strVector()+": "
+                + vector.cornerVectors(vector2, 3));
     }
 
 

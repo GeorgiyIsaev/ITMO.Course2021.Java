@@ -39,5 +39,15 @@ public class Vector {
         int newZ = x * vector.y - y * vector.x;
         return new Vector(newX,newY, newZ);
     }
+    public double cornerVectors(Vector vector, int countDecimal){
+        // Задание 05: Вычислить угол между векторами
+        double value = scalarProduct(vector, 3) /
+                (this.lengthVector(3)
+                        * vector.lengthVector(3));
+
+        double scale = Math.pow(10, countDecimal); //countDecimal - знаков после запятой
+        value = Math.ceil(value * scale) / scale;
+        return value;
+    }
 
 }
