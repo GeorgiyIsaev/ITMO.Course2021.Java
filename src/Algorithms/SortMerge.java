@@ -7,7 +7,7 @@ public class SortMerge {
      public static void main(String[] args) {
 
 
-         int[] result1 = new int[]{2, 3, 1, 4};
+         int[] result1 = new int[]{2, 3, 1, 4,0,5,7,6};
          System.out.println("Arr Do: " + Arrays.toString(result1));
          int[] result = sortArray(result1);
          System.out.println("Arr Post: " + Arrays.toString(result));
@@ -44,33 +44,28 @@ public class SortMerge {
     }
 
     public static int [] mergeArray(int [] arrayА, int [] arrayB) {
-
-
         int[] arrayC = new int[arrayА.length + arrayB.length];
         int positionA = 0, positionB = 0;
 
         for (int i = 0; i < arrayC.length; i++) {
-//            if (positionA == arrayА.length) {
-//                arrayC[i] = arrayB[i - positionB];
-//                positionB++;
-//            } else if (positionB == arrayB.length) {
-//                arrayC[i] = arrayА[i - positionA];
-//                positionA++;
-//           }
-           // else
-//                if (arrayА[i - positionA] < arrayB[i - positionB]) {
-//                //arrayC[i] = arrayА[i - positionA];
-//                positionB++;
-//            }
-//            else {
-//                //arrayC[i] = arrayB[i - positionB];
-//                positionA++;
-//            }
+            if (positionA == arrayА.length) {
+                arrayC[i] = arrayB[positionB];
+                positionB++;
+            } else if (positionB == arrayB.length) {
+                arrayC[i] = arrayА[positionA];
+                positionA++;
+           }
+            else
+                if (arrayА[positionA] < arrayB[positionB]) {
+                arrayC[i] = arrayА[positionA];
+                positionA++;
+            }
+            else {
+                arrayC[i] = arrayB[positionB];
+                positionB++;
+            }
         }
         System.out.println("Arr mergeArray: " + Arrays.toString(arrayC));
         return arrayC;
     }
-
-
-
 }
