@@ -10,6 +10,19 @@ public class Lesson05 {
 
         //Конструктор класса
         designerClass();
+        classMachina();
+
+        //Статический блок
+        StaticInit staticInit =new StaticInit();
+        System.out.println(StaticInit.dateField + " " + StaticInit.str);
+
+        //Блок инициализации класса
+        // (идет перед конструктором, но перед супер классом)
+        InitExample initExample = new InitExample();
+        initExample.print();
+
+
+
 
     }
 
@@ -42,7 +55,13 @@ public class Lesson05 {
 
         Machina aide = new Machina("Ауди","Б-5");
         System.out.println(aide);
+
+        Machina lexus = new Machina("Lexus","Lx570", 2016, "Black");
+        System.out.println(lexus);
+
     }
+
+
 
 }
 
@@ -61,6 +80,8 @@ class Student{
         this.mark = 0;
         this.subject = "No subject";
     }
+
+
     public Student(String name, int age, float mark, String subject){
         this.name = name;
         this.age = age;
