@@ -21,7 +21,14 @@ public class Lesson05 {
         InitExample initExample = new InitExample();
         initExample.print();
 
+        //Cтатические переменные и методы
+        SomeClass.staticInt = 10;
+        System.out.println(SomeClass.staticInt);
 
+        //Ссылки на объект
+        refClass();
+
+        //Геттеры и Сеттеры
 
 
     }
@@ -61,6 +68,23 @@ public class Lesson05 {
 
     }
 
+    public static void refClass(){
+        Patient patient = new Patient();
+        patient.name = "Anna";
+        patient.age = 22;
+        System.out.print(patient.name + " " + patient.age);
+
+        Patient patient1 = patient;
+        System.out.print(patient1.name + " " + patient1.age);
+
+        patient.age =25;
+        System.out.print(patient.name + " " + patient.age);
+        System.out.print(patient1.name + " " + patient1.age); //тоже изменится
+
+        Project p = null; //можно присвоить нулл
+
+
+    }
 
 
 }
