@@ -11,10 +11,11 @@ public class Vector {
         this.z = z;
 
     }
-    public String  strVector(){
+
+    @Override
+    public String toString() {
         return "{" + x + ", " + y + ", " + z + "}";
     }
-
 
     public double lengthVector(int countDecimal) {
         // Задание 02: Метод для подсчета длины вектора

@@ -1,6 +1,8 @@
 package lesson.lesson05;
 
 public class Lesson05 {
+    private static Account account;
+
     public static void main(String[] args) {
         //Лекция 05: Классы
 
@@ -29,9 +31,12 @@ public class Lesson05 {
         refClass();
 
         //Геттеры и Сеттеры
+        classGetSet();
 
 
     }
+
+
 
     public static void createClass(){
         Student student = new Student();
@@ -66,6 +71,10 @@ public class Lesson05 {
         Machina lexus = new Machina("Lexus","Lx570", 2016, "Black");
         System.out.println(lexus);
 
+        MyClass object = new MyClass();
+        object.field = 10;
+        object.print();
+        MyClass.printStatic();
     }
 
     public static void refClass(){
@@ -83,6 +92,17 @@ public class Lesson05 {
 
         Project p = null; //можно присвоить нулл
 
+
+    }
+
+    private static void classGetSet() {
+        Account account = new Account();
+        account.setId(1000_000_000);
+        account.setCode("2132414124124");
+        account.setOpen(true);
+        System.out.print(account.getId() +
+                " " + account.getCode() +
+                " "+ account.isOpen());
 
     }
 

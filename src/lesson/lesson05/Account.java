@@ -1,6 +1,8 @@
 package lesson.lesson05;
 
 //Геттеры и Сеттеры
+//приписываем get и set
+//для бул типов is и set
 public class Account {
     private long id;
     private String code;
@@ -23,4 +25,5 @@ public class Account {
     public void setOpen(boolean open) {
         this.open = open;
     }
+
 }

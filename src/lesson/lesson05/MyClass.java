@@ -9,13 +9,3 @@ public class MyClass {
         System.out.print("static member");
     }
 }
-
-class  MyClassStatic{
-    public static void main(String[] args){
-        MyClass object = new MyClass();
-        object.field = 10;
-        object.print();
-
-        MyClass.printStatic();
-    }
-}

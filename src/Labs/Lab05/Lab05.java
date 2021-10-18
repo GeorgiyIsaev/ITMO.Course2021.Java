@@ -6,37 +6,37 @@ public class Lab05 {
 
         // Задание 01: Конструктор принимает координаты в качестве параметров
         Vector vector = new Vector(6,3,5);
-        System.out.println("Вектор " + vector.strVector());
+        System.out.println("Вектор " + vector);
         // Задание 02: Метод для расчета длины вектора
-        System.out.println("Длина вектора " +vector.strVector() +" = "
+        System.out.println("Длина вектора " +vector +" = "
                 + vector.lengthVector(3));
         // Задание 03: Метода для расчета скалярного произведения
         Vector vector2 = new Vector(4,9,1 );
-        System.out.println("Скалярное произведение векторов "+ vector.strVector()
-                +" и "+ vector2.strVector()+" = "
+        System.out.println("Скалярное произведение векторов "+ vector
+                +" и "+ vector2+" = "
                 + vector.scalarProduct(vector2,3));
         // Задание 04: Вычислить векторное произведение
-        System.out.println("Векторное произведение векторов "+ vector.strVector()
-                +" и "+ vector2.strVector()+" = "
-                + vector.vectorProduct(vector2).strVector());
+        System.out.println("Векторное произведение векторов "+ vector
+                +" и "+ vector2+" = "
+                + vector.vectorProduct(vector2));
 
         // Задание 05: Угол между векторами
-        System.out.println("Угол между векторами "+ vector.strVector()
-                +" и "+ vector2.strVector()+": "
+        System.out.println("Угол между векторами "+ vector
+                +" и "+ vector2+": "
                 + vector.cornerVectors(vector2, 3));
         // Задание 06: Сложение и вычитание векторов
-        System.out.println("Сложение векторов "+ vector.strVector()
-                +" и "+ vector2.strVector()+" = "
-                + vector.vectorAddition(vector2).strVector());
-        System.out.println("Вычитание векторов "+ vector.strVector()
-                +" и "+ vector2.strVector()+" = "
-                + vector.vectorSubtract(vector2).strVector());
+        System.out.println("Сложение векторов "+ vector
+                +" и "+ vector2+" = "
+                + vector.vectorAddition(vector2));
+        System.out.println("Вычитание векторов "+ vector
+                +" и "+ vector2+" = "
+                + vector.vectorSubtract(vector2));
 
         //Задание 07: Генерация массива векторов из статического метода
         Vector[] vectors = generateArrayVectors(6,0,10);
         System.out.println("\nМассив векторов: ");
         for (Vector value : vectors) {
-            System.out.println("Вектор: " + value.strVector());
+            System.out.println("Вектор: " + value);
         }
 
     }
@@ -54,6 +54,4 @@ public class Lab05 {
         }
         return vectors;
     }
-
-
 }
