@@ -36,8 +36,8 @@ public class SortMerge {
         arrayB = sortArray(arrayB); // левая часть возврат из рекурсии строкой return arrayA;
         arrayC = sortArray(arrayC); // правая часть возврат из рекурсии строкой return arrayA;
 
-        System.out.println("Arr arrayB: " + Arrays.toString(arrayB));
-        System.out.println("Arr arrayC: " + Arrays.toString(arrayC));
+        //System.out.println("Arr arrayB: " + Arrays.toString(arrayB));
+        //System.out.println("Arr arrayC: " + Arrays.toString(arrayC));
         // далее опять рекурсия возврата слияния двух отсортированных массивов
         //return arrayB;
         return mergeArray(arrayB, arrayC);
@@ -65,7 +65,7 @@ public class SortMerge {
                 positionB++;
             }
         }
-        System.out.println("Arr mergeArray: " + Arrays.toString(arrayC));
+        //System.out.println("Arr mergeArray: " + Arrays.toString(arrayC));
         return arrayC;
     }
 }
