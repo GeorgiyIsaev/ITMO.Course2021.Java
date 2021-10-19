@@ -9,7 +9,6 @@ public class Vector {
         this.x = x;
         this.y = y;
         this.z = z;
-
     }
 
     @Override
@@ -66,5 +65,4 @@ public class Vector {
                 y + vector.y,
                 z + vector.z);
     }
-
 }

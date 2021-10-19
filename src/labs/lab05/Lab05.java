@@ -38,7 +38,6 @@ public class Lab05 {
         for (Vector value : vectors) {
             System.out.println("Вектор: " + value);
         }
-
     }
 
     public static Vector[] generateArrayVectors(int valueSize, int Begin, int End){
