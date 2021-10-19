@@ -75,7 +75,7 @@ public class Lab04 {
         //Задача 3: Цензура
         String newText = myText;
         String[] strCensor = {"бяка", "бяки", "бяке", "бяку", "бяку", "бякой","бякою", "бяке"};
-        while (ifCensorship(strCensor,newText)){
+        while (isCensorship(strCensor,newText)){
             for (int i = 0; i < strCensor.length ; i++) {
                 newText = newText.replace(strCensor[i], "[вырезано цензурой]");
             }
@@ -83,7 +83,7 @@ public class Lab04 {
         return newText;
     }
 
-    public static boolean ifCensorship(String[] strCensor,String myText){
+    public static boolean isCensorship(String[] strCensor, String myText){
         //Метод для задачи 3, проверят нужна ли еще цензура!
         for (int i = 0; i < strCensor.length ; i++) {
             if(myText.contains(strCensor[i]))
@@ -102,6 +102,7 @@ public class Lab04 {
         return count;
     }
     public static String reversStr(String Text){
+        //Задача 5: Реверс слов в тексте
         String[] textArray = Text.split(" ");
         String newText = "";
         for (int i = textArray.length-1; i > -1; i--) {
