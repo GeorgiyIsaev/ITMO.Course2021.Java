@@ -1,4 +1,4 @@
-package Labs.Lab05;
+package labs.lab05;
 
 public class Vector {
     public int x;

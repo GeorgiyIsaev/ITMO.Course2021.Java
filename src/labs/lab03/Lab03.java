@@ -1,11 +1,11 @@
-package Labs.Lab03;
+package labs.lab03;
 
 import java.util.Scanner;
 
 public class Lab03 {
     public static void main(String[] args) {
         // Задание 01: Проверить является ли массив отсортированным!
-       // trySortMassive(createMassive(3, 1, 2));
+        //trySortMassive(createMassive(3, 1, 2));
 
         //Задание 02: Метод для ручного заполнения массива
         //System.out.print("Задание 02: Создание массива через ручной ввод");
