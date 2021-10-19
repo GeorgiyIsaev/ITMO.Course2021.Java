@@ -6,7 +6,7 @@ public class Lab01 {
         //Задание 01: Ввод и вывод текста
         InOut();
 
-        //Задание 02: Арифмитические операции
+        //Задание 02: Арифметические операции
         ResExpression();
 
         //Задание 03: Вывод переменных
@@ -78,7 +78,7 @@ public class Lab01 {
 
     public static void EvenAndOdd() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите число для обрабоки: ");
+        System.out.print("Введите число для обработки: ");
         int b = scanner.nextInt();
 
         if (b % 2 == 0 && b > 100) {
