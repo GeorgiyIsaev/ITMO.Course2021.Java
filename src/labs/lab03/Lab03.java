@@ -12,9 +12,9 @@ public class Lab03 {
         trySortMassive(new int[] {1,2,2,4,5});
 
         //Задание 02: Метод для ручного заполнения массива
-        //System.out.print("Задание 02: Создание массива через ручной ввод");
-        //int[] array = createMassive();
-       // System.out.println("Ex 02 - (Введен массив: " + Arrays.toString(array) + ")");
+        System.out.println("Задание 02: Создание массива через ручной ввод");
+        int[] array = createMassive();
+        System.out.println("Ex 02 - (Введен массив: " + Arrays.toString(array) + ")");
 
         //Задание 03: Поменять местами крайние значения массива
         reversEgeValueMassive(createMassive(4, 1, 9));
@@ -59,15 +59,15 @@ public class Lab03 {
     }
     public static void trySortMassive(int[] myArray) {
         //Задание 01: Проверка отсортирован ли массива
-        System.out.println("Ex 01 - (Массив: " + Arrays.toString(myArray) + ")");
+        System.out.print("Ex 01 - (Массив: " + Arrays.toString(myArray) + ")");
         boolean isSortMassive = true;
-        for (int i = 0; i > myArray.length - 1; i++) {
-            if (myArray[i] < myArray[i + 1]) {
+        for (int i = 0; i < myArray.length - 1; i++) {
+            if (myArray[i] > myArray[i + 1]) {
                 isSortMassive = false;
                 break;
             }
         }
-        System.out.print("Этот массив отсортирован? ");
+        System.out.print(" Этот массив отсортирован? ");
         if (!isSortMassive) {
             System.out.println("Please, try again");
         } else {
@@ -121,14 +121,14 @@ public class Lab03 {
         long resalt;
         long temp1 = 1, temp2= 1;
         String str = "1";
-        for (int i = 1; i <=value; i++) {
+        for (int i = 0; i <=value; i++) {
             resalt = temp1 + temp2;
             str += ", " + resalt;
 
             temp1 = temp2;
             temp2 = resalt;
         }
-        System.out.println("Число Фибаначи в " + value + " последовательности равно: "+ str);
+        System.out.println("Ex 05 - Число Фибаначи в " + value + " последовательности равно: "+ str);
     }
 
     public static void sortMerge() {
