@@ -13,15 +13,16 @@ public class Lab03 {
 
         //Задание 02: Метод для ручного заполнения массива
         //System.out.print("Задание 02: Создание массива через ручной ввод");
-        int[] array = createMassive();
-        System.out.println("Ex 02 - (Введен массив: " + Arrays.toString(array) + ")");
+        //int[] array = createMassive();
+       // System.out.println("Ex 02 - (Введен массив: " + Arrays.toString(array) + ")");
 
         //Задание 03: Поменять местами крайние значения массива
-        reversEgeValueMassive();
+        reversEgeValueMassive(createMassive(4, 1, 9));
+        reversEgeValueMassive(new int[] {1,2,3,4,5});
 
         //Задание 04: Найти первое уникальное число в массиве
-        findUniqueValue();
-
+        findUniqueValue(createMassive(8, 1, 5));
+        findUniqueValue(new int[] {7,2,3,4,3});
         //Задача 05: Число Фибоначчи
         fibonacciNumber(9);
 
@@ -74,9 +75,8 @@ public class Lab03 {
         }
     }
 
-    public static void reversEgeValueMassive() {
+    public static void reversEgeValueMassive(int[] myArray) {
         // Задание 03: Реверс крайних значений
-        int[] myArray = createMassive(4, 1, 9);
         System.out.println("Ex 03 - (Массив: " + Arrays.toString(myArray) + ")");
 
         int temp = myArray[0];
@@ -87,9 +87,8 @@ public class Lab03 {
         System.out.println("Новый Массив: " + Arrays.toString(myArray) + "");
     }
 
-    public static void findUniqueValue() {
+    public static void findUniqueValue(int[] myArray) {
         // Задача 04: Поиск уникальных значений
-        int[] myArray = createMassive(8, 1, 5);
         System.out.println("Ex 04 - (Массив: " + Arrays.toString(myArray) + ")");
 
         //Проверка уникальности
@@ -138,8 +137,8 @@ public class Lab03 {
         System.out.println("Ex 06 - (Массив: " + Arrays.toString(array) + ")");
 
         //В папке с алгоритмами!
-
-
+        int[] newArray = Algorithms.SortMerge.sortArray(array);
+        System.out.println("Массив после сортировки слиянием: " + Arrays.toString(newArray) + ")");
     }
 
     public static void firstMeetsManyNumber() {
@@ -161,11 +160,9 @@ public class Lab03 {
             if(countFindNumber <countTempFindNumber){
                 findNumber = array[i];
                 countFindNumber = countTempFindNumber;
-                System.out.println("    Первое самое встречающееся число "+ findNumber +
-                        " встречает " + countFindNumber + " раз.");
             }
         }
-        System.out.println("Первое самое встречающееся число "+ findNumber +
+        System.out.println("\tПервое самое встречающееся число "+ findNumber +
                 " встречает " + countFindNumber + " раз.");
     }
 }
