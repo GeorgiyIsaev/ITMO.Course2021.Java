@@ -17,6 +17,10 @@ public class lesson06 {
         //Вложенные классы
         nestedClass();
 
+        //Локальный внутренний класс
+        nestedLocalClass();
+
+
 
     }
     public static void enumWork(){
@@ -66,6 +70,12 @@ public class lesson06 {
         Paint.setLight(10);
         Paint.setWidth(7);
         sketch.drawSketch();
+    }
+
+    private static void  nestedLocalClass(){
+        //Локальный внутренний класс
+        Outer outer = new Outer();
+        outer.someMethod();
 
     }
 }
