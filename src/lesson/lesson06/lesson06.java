@@ -14,6 +14,9 @@ public class lesson06 {
         //Работа с перечислением enum
         enumWork();
 
+        //Вложенные классы
+        nestedClass();
+
 
     }
     public static void enumWork(){
@@ -48,5 +51,24 @@ public class lesson06 {
             System.out.println(status);
         }
     }
+
+    private static void nestedClass() {
+        //Вложенные классы
+        Cat cat = new Cat("Mila");
+        Cat.Bow bow = cat.new Bow("red");
+        bow.printColour();
+        bow.putBow();
+
+        //Класс содержит статический класс
+        Paint.Sketch sketch = new Paint.Sketch(0);
+        sketch.drawSketch();
+
+        Paint.setLight(10);
+        Paint.setWidth(7);
+        sketch.drawSketch();
+
+    }
 }
+
+
 
