@@ -44,7 +44,7 @@ public class Box extends Shape{
                 "Заполнение " +getCurrFilling() + " из " + this.getVolume();
         for (int i = 0; i < shapes.length; i++) {
             str += "\n\t"+ i + ")";
-            str += shapes;
+            str += shapes[i];
         }
         return str;
     }

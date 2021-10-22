@@ -12,7 +12,7 @@ public class Pyramid extends Shape{
 
     @Override
     public String toString() {
-        return " Пирамида{" +
+        return "Пирамида{" +
                 "s=" + s +
                 ", h=" + h +
                 ", объем=" + volume +
