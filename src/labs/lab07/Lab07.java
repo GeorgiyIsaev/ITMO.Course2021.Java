@@ -20,16 +20,23 @@ public class Lab07 {
         System.out.println(truck);
 
         //Задание 02: Реализовать иерархию классов в соответствии со схемой
-
+        System.out.println("\nBOX");
         Box box = new Box(200);
         System.out.println(box);
         box.add(new Pyramid(45,12,5));
         box.add(new Ball(12,9));
-        box.add(new Cylinder(62,9,12));
-        box.add(new Pyramid(45,12,5));
-        box.add(new Ball(12,9));
-        box.add(new Cylinder(62,9,12));
+        box.add(new Cylinder(172,29,42));
+        box.add(new Pyramid(38,12,5));
+        box.add(new Ball(24,9));
+        box.add(new Cylinder(71,9,12));
         System.out.println(box);
+
+        if(box.add(new Cylinder(83,12,22))){
+            System.out.println("Фигура успешно добавлена");
+        }
+        else{
+            System.out.println("Добавление фигуры ну удалось!");
+        }
 
     }
 }

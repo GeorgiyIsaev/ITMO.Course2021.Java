@@ -12,7 +12,9 @@ public class Box extends Shape{
     }
 
     private boolean isCanAdd(Shape shape){
-        if(getCurrFilling() + shape.getVolume()<this.getVolume()) return true;
+        double newCurFilling = getCurrFilling() + shape.getVolume();
+        if(newCurFilling < this.getVolume())
+            return true;
         else return false;
     }
     private double getCurrFilling(){
