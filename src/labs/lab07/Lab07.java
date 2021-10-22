@@ -15,5 +15,7 @@ public class Lab07 {
         truck.newWheels(8);
         System.out.println(truck);
 
+        //Задание 02: Реализовать иерархию классов в соответствии со схемой
+
     }
 }
