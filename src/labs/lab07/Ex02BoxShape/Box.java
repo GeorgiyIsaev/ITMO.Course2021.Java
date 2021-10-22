@@ -12,7 +12,7 @@ public class Box extends Shape{
     }
 
     private boolean isCanAdd(Shape shape){
-        if(getCurrFilling()<this.getVolume()) return true;
+        if(getCurrFilling() + shape.getVolume()<this.getVolume()) return true;
         else return false;
     }
     private double getCurrFilling(){
@@ -29,9 +29,13 @@ public class Box extends Shape{
                 newShapes[i] = shapes[i];
             }
             newShapes[shapes.length] = shape;
+            shapes = newShapes;
             return true;
         }
-        else return false;
+        else {
+            System.out.println("Не достаточно места для Фигуры " + shape);
+            return false;
+        }
     }
 
     @Override
@@ -42,5 +46,6 @@ public class Box extends Shape{
             str += "\n\t"+ i + ")";
             str += shapes;
         }
+        return str;
     }
 }
