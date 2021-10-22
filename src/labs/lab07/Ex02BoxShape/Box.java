@@ -1,5 +1,7 @@
 package labs.lab07.Ex02BoxShape;
 
+import java.util.Arrays;
+
 public class Box extends Shape{
 
     private Shape[] shapes;
@@ -10,12 +12,14 @@ public class Box extends Shape{
     }
 
     private boolean isCanAdd(Shape shape){
-        double newVolume = 0;
-        for (int i = 0; i < shapes.length; i++) {
-            newVolume += shapes[i].getVolume();
-        }
-        if(newVolume<this.getVolume()) return true;
+        if(getCurrFilling()<this.getVolume()) return true;
         else return false;
+    }
+    private double getCurrFilling(){
+        double currVolume = 0;
+        for (int i = 0; i < shapes.length; i++)
+            currVolume += shapes[i].getVolume();
+        return currVolume;
     }
 
     public boolean add(Shape shape){
@@ -28,5 +32,15 @@ public class Box extends Shape{
             return true;
         }
         else return false;
+    }
+
+    @Override
+    public String toString() {
+        String str = "Коробка с фигурами " +
+                "Заполнение " +getCurrFilling() + " из " + this.getVolume();
+        for (int i = 0; i < shapes.length; i++) {
+            str += "\n\t"+ i + ")";
+            str += shapes;
+        }
     }
 }

@@ -9,4 +9,13 @@ public class Pyramid extends Shape{
         this.s = s;
         this.h = h;
     }
+
+    @Override
+    public String toString() {
+        return " Пирамида{" +
+                "s=" + s +
+                ", h=" + h +
+                ", объем=" + volume +
+                '}';
+    }
 }

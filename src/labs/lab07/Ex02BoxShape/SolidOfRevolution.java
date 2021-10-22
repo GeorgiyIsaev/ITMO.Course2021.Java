@@ -1,6 +1,6 @@
 package labs.lab07.Ex02BoxShape;
 
-public class SolidOfRevolution extends Shape {
+public abstract class SolidOfRevolution extends Shape {
     protected double radius;
 
     public double getRadius() {
