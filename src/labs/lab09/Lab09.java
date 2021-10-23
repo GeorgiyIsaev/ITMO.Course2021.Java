@@ -196,6 +196,7 @@ public class Lab09 {
 
 
             int value = findRandomArrayInArray(numbers,weight);
+            System.out.println("Случайное числа " + value) ;
         }
         catch (Exception ex){
             System.out.println("ERROR! " + ex);
@@ -210,43 +211,34 @@ public class Lab09 {
         newArray[array.length] = value;
         return newArray;
     }
-    public static int findRandomArrayInArray(int[] numbers,int[] weight){
+    public static int findRandomArrayInArray(int[] numbers,int[] weight) throws Exception{
+        if(numbers.length !=weight.length)
+            throw new Exception("Сбой. По условию задачи массивы должны быть одной длины");
         System.out.println(Arrays.toString(numbers));
         System.out.println(Arrays.toString(weight));
 
         Arrays.sort(numbers);
         Arrays.sort(weight);
-        System.out.println(Arrays.toString(numbers));
-        System.out.println(Arrays.toString(weight));
         int[] newArray = new int[0];
-        int curIndex =0;
+
 
         for (int i = 0; i < numbers.length; i++) {
             for (int j = 0; j < numbers.length; j++) {
                 if (numbers[i] == weight[j]) {
-                    if (curIndex == 0) {
+                    if (newArray.length == 0) {
                         newArray = addValueArray(newArray, numbers[i]);
-                        break;
                     }
-                    if (numbers[i] == newArray[newArray.length-1]) {
-                        break;
+                    else if (numbers[i] != newArray[newArray.length-1]) {
+                        newArray = addValueArray(newArray, numbers[i]);
                     }
-                    newArray = addValueArray(newArray, numbers[i]);
-                    curIndex++;
                     break;
                 }
             }
         }
-        System.out.println(Arrays.toString(newArray));
-        for (int i = 0; i < 10 ; i++) {
+        if(newArray.length==0)
+            throw new Exception("Сбой. В представленных массивах нет одинаковых чисел!");
 
-            int a = ((int) (Math.random() * (newArray.length-1)) + 0);
-            System.out.println(a);
-        }
-
-
-
-        return 0;
+        return newArray[((int) (Math.random() * (newArray.length)) + 0)];
     }
 
 
