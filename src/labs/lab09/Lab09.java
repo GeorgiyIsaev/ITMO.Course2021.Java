@@ -1,5 +1,7 @@
 package labs.lab09;
 
+import labs.lab03.Lab03;
+
 import java.util.Arrays;
 
 public class Lab09 {
@@ -24,6 +26,7 @@ public class Lab09 {
         //ЗАДАНИЕ 05. * Дан массив чисел numbers, и дан массив weight такой же длины.
         // Задача: написать метод, который бы случайно выбирал число из первого массива,
         // которое есть во втором массиве.
+        findRandomArrayInArrayTest();
     }
 
     public static int[][] generateTwoArray(int line,int column, int min, int max) throws Exception {
@@ -183,8 +186,70 @@ public class Lab09 {
         catch (Exception ex){
             System.out.println("ERROR! " + ex);
         }
-
     }
+
+    public static void findRandomArrayInArrayTest(){
+        System.out.println("ЗАДАНИЕ 05: Рандомный выбор числа существующие в двух массивах ");
+        try {
+            int[] numbers = Lab03.createMassive(12,0,3);
+            int[] weight = Lab03.createMassive(12,0,3);
+
+
+            int value = findRandomArrayInArray(numbers,weight);
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+    }
+
+    public static int[] addValueArray(int[] array, int value){
+        int[] newArray = new int[array.length+1];
+        for (int i = 0; i < array.length ; i++) {
+            newArray[i] = array[i];
+        }
+        newArray[array.length] = value;
+        return newArray;
+    }
+    public static int findRandomArrayInArray(int[] numbers,int[] weight){
+        System.out.println(Arrays.toString(numbers));
+        System.out.println(Arrays.toString(weight));
+
+        Arrays.sort(numbers);
+        Arrays.sort(weight);
+        System.out.println(Arrays.toString(numbers));
+        System.out.println(Arrays.toString(weight));
+        int[] newArray = new int[0];
+        int curIndex =0;
+
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = 0; j < numbers.length; j++) {
+                if (numbers[i] == weight[j]) {
+                    if (curIndex == 0) {
+                        newArray = addValueArray(newArray, numbers[i]);
+                        break;
+                    }
+                    if (numbers[i] == newArray[newArray.length-1]) {
+                        break;
+                    }
+                    newArray = addValueArray(newArray, numbers[i]);
+                    curIndex++;
+                    break;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(newArray));
+        for (int i = 0; i < 10 ; i++) {
+
+            int a = ((int) (Math.random() * (newArray.length-1)) + 0);
+            System.out.println(a);
+        }
+
+
+
+        return 0;
+    }
+
+
 
 
 }
