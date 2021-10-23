@@ -19,6 +19,7 @@ public class Lab09 {
         findMaxSumLineTest();
 
         //ЗАДАНИЕ 04. Двумерный массив MxN заполнить случайными символами алфавита
+        generateTwoArrayCharTest();
 
         //ЗАДАНИЕ 05. * Дан массив чисел numbers, и дан массив weight такой же длины.
         // Задача: написать метод, который бы случайно выбирал число из первого массива,
@@ -153,7 +154,37 @@ public class Lab09 {
             System.out.println("ERROR! " + ex);
         }
     }
+    public static char[][] generateTwoArrayChar(int line,int column) throws Exception {
+        //Метод для генерации двумерного массива
+        if(line<=1) throw new Exception("Сбой при генерации массива, параметр line не должен быть меньше 2");
+        if(column<=0) throw new Exception("Сбой при генерации массива, параметр column не должен быть меньше 1");
 
+        char[][] arrayTwo = new char[line][column];
+        for (int i = 0; i <arrayTwo.length ; i++) {
+            for (int j = 0; j < arrayTwo[i].length; j++) {
+                arrayTwo[i][j] = (char) ((Math.random() * 33) + 94);//94+33
+            }
+        }
+        return arrayTwo;
+    }
+    public static void generateTwoArrayCharTest(){
+        System.out.println("ЗАДАНИЕ 04: Генерированный массив символов");
+        try {
+            char[][] arrayTwo = generateTwoArrayChar(0,6);
+            System.out.println(Arrays.deepToString(arrayTwo)); // для отображения двумерного массива метод deepToString()
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+        try {
+            char[][] arrayTwo = generateTwoArrayChar(3,6);
+            System.out.println(Arrays.deepToString(arrayTwo)); // для отображения двумерного массива метод deepToString()
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+
+    }
 
 
 }
