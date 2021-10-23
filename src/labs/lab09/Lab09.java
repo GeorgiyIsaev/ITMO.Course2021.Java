@@ -10,7 +10,9 @@ public class Lab09 {
 
         //ЗАДАНИЕ 01. Написать метод для поиска наибольшего элемента в двумерном массиве.
         findMaxElementTest();
+
         //ЗАДАНИЕ 02. Написать метод, который проверяет, является ли двумерный массив квадратным.
+        isTwoArraySquareTest();
 
         //ЗАДАНИЕ 03. Написать метод, который, в двумерном массиве (матрице) ищет строку, сумма
         //элементов которой является максимальной среди всех строк матрицы.
@@ -42,9 +44,7 @@ public class Lab09 {
 
     public static void findMaxElement(int[][] arrayTwo) throws Exception{
         //ЗАДАНИЕ 01. Написать метод для поиска наибольшего элемента в двумерном массиве.
-
         System.out.println(Arrays.deepToString(arrayTwo)); // для отображения двумерного массива метод deepToString()
-
         int maxValue = arrayTwo[0][0];
         for (int i = 0; i <arrayTwo.length ; i++) {
             for (int j = 0; j < arrayTwo[i].length; j++) {
@@ -65,8 +65,42 @@ public class Lab09 {
         catch (Exception ex){
             System.out.println("ERROR! " + ex);
         }
+
         try {
             findMaxElement(generateTwoArray(2,5,-1,-20));
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+    }
+
+
+    public static void isTwoArraySquareTest() {
+        System.out.println("ЗАДАНИЕ 02: Проверка на квадратность массива");
+        try {
+            if(isTwoArraySquare(generateTwoArray(2,0)))
+                System.out.println("Массив квадратичный!");
+            else
+                System.out.println("Массив НЕ квадратичный!");
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+
+        try {
+            if(isTwoArraySquare(generateTwoArray(4,4)))
+                System.out.println("Массив квадратичный!");
+            else
+                System.out.println("Массив НЕ квадратичный!");
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+        try {
+            if(isTwoArraySquare(generateTwoArray(12,12)))
+                System.out.println("Массив квадратичный!");
+            else
+                System.out.println("Массив НЕ квадратичный!");
         }
         catch (Exception ex){
             System.out.println("ERROR! " + ex);
@@ -74,7 +108,12 @@ public class Lab09 {
 
     }
 
-
+    public static boolean isTwoArraySquare(int[][] arrayTwo) throws Exception {
+        if(arrayTwo[0].length >=10 ||  arrayTwo.length>=10)
+            throw new Exception("Сбой при проверки на квадратность, размерность массива слишком большая!");
+        System.out.println("Проверяемый массив! " + Arrays.deepToString(arrayTwo));
+        return arrayTwo[0].length == arrayTwo.length;
+    }
 
 
 
