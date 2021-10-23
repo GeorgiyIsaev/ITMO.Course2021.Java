@@ -189,12 +189,28 @@ public class Lab09 {
     }
 
     public static void findRandomArrayInArrayTest(){
-        System.out.println("ЗАДАНИЕ 05: Рандомный выбор числа существующие в двух массивах ");
+        System.out.println("ЗАДАНИЕ 05: Рандомный выбор числа существующего в двух массивах ");
         try {
-            int[] numbers = Lab03.createMassive(12,0,3);
-            int[] weight = Lab03.createMassive(12,0,3);
-
-
+            int[] numbers = Lab03.createMassive(10,0,10);
+            int[] weight = Lab03.createMassive(10,0,10);
+            int value = findRandomArrayInArray(numbers,weight);
+            System.out.println("Случайное числа " + value) ;
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+        try {
+            int[] numbers = Lab03.createMassive(2,0,3);
+            int[] weight = Lab03.createMassive(6,0,3);
+            int value = findRandomArrayInArray(numbers,weight);
+            System.out.println("Случайное числа " + value) ;
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+        try {
+            int[] numbers = Lab03.createMassive(10,19,30);
+            int[] weight = Lab03.createMassive(10,0,21);
             int value = findRandomArrayInArray(numbers,weight);
             System.out.println("Случайное числа " + value) ;
         }
@@ -204,6 +220,7 @@ public class Lab09 {
     }
 
     public static int[] addValueArray(int[] array, int value){
+        //Метод для добавления числа в массив
         int[] newArray = new int[array.length+1];
         for (int i = 0; i < array.length ; i++) {
             newArray[i] = array[i];
@@ -212,6 +229,7 @@ public class Lab09 {
         return newArray;
     }
     public static int findRandomArrayInArray(int[] numbers,int[] weight) throws Exception{
+        //Метод для рандомного поиска числа
         if(numbers.length !=weight.length)
             throw new Exception("Сбой. По условию задачи массивы должны быть одной длины");
         System.out.println(Arrays.toString(numbers));
