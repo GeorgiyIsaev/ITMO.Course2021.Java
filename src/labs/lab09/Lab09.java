@@ -16,6 +16,7 @@ public class Lab09 {
 
         //ЗАДАНИЕ 03. Написать метод, который, в двумерном массиве (матрице) ищет строку, сумма
         //элементов которой является максимальной среди всех строк матрицы.
+        findMaxSumLineTest();
 
         //ЗАДАНИЕ 04. Двумерный массив MxN заполнить случайными символами алфавита
 
@@ -113,6 +114,44 @@ public class Lab09 {
             throw new Exception("Сбой при проверки на квадратность, размерность массива слишком большая!");
         System.out.println("Проверяемый массив! " + Arrays.deepToString(arrayTwo));
         return arrayTwo[0].length == arrayTwo.length;
+    }
+
+
+    public static void findMaxSumLine(int[][] arrayTwo) throws Exception{
+        //ЗАДАНИЕ 03. Поиск строки с максимальной суммой эл-тов
+        System.out.println(Arrays.deepToString(arrayTwo)); // для отображения двумерного массива метод deepToString()
+
+        int sumLintMax = -999999999;
+        int indexFind = 0;
+        for (int i = 0; i <arrayTwo.length ; i++) {
+            int sumLine = 0;
+            for (int j = 0; j < arrayTwo[i].length; j++) {
+                sumLine+=arrayTwo[i][j];
+            }
+            if(sumLintMax<sumLine){
+                sumLintMax = sumLine;
+                indexFind = i;
+            }
+        }
+        if(sumLintMax<0) throw new Exception("Сбой при поиске строки с максимальной суммой, сумма в каждой строке меньше 0");
+        System.out.println("Найдено строка с наибольшей суммой " + Arrays.toString(arrayTwo[indexFind])); //
+        System.out.println("Сумма в строке равна " + sumLintMax); //
+    }
+
+    public static void findMaxSumLineTest(){
+        System.out.println("ЗАДАНИЕ 03: Поиск строки с максимальной суммой");
+        try {
+            findMaxSumLine(generateTwoArray(5,5));
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
+        try {
+            findMaxSumLine(generateTwoArray(5,5,3,-10));
+        }
+        catch (Exception ex){
+            System.out.println("ERROR! " + ex);
+        }
     }
 
 
