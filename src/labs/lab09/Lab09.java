@@ -40,11 +40,18 @@ public class Lab09 {
     public static void findMaxElement(){
         System.out.println("ЗАДАНИЕ 01: Поиск наибольшего элемента");
         //ЗАДАНИЕ 01. Написать метод для поиска наибольшего элемента в двумерном массиве.
-        int[][] arrayTwo = generateTwoArray(2,3);
+        int[][] arrayTwo = generateTwoArray(2,5);
         System.out.println(Arrays.deepToString(arrayTwo)); // для отображения двумерного массива метод deepToString()
 
-
-
+        int maxValue = arrayTwo[0][0];
+        for (int i = 0; i <arrayTwo.length ; i++) {
+            for (int j = 0; j < arrayTwo[i].length; j++) {
+                if(maxValue<arrayTwo[i][j]){
+                    maxValue = arrayTwo[i][j];
+                }
+            }
+        }
+        System.out.println("Наибольшее число" + maxValue); //
     }
 
 
