@@ -36,7 +36,7 @@ public class Lab10 {
 
     public static void executionTimerAdded(){
         System.out.println("ЗАДАНИЕ 02: Таймер выполнения!");
-        System.out.print("01) Добавление в ArrayList:");
+        System.out.print("01) Добавление в ArrayList: ");
         long start = System.currentTimeMillis();
         List<Integer> listInt = new ArrayList<Integer>();
         for (int i = 0; i < 1_000_000 ; i++) {
@@ -44,17 +44,37 @@ public class Lab10 {
         }
         long finish = System.currentTimeMillis();
         long elapsed = finish - start;
-        System.out.println("Прошло времени: " + elapsed + "мс.");
+        System.out.println("Время выполнения: " + elapsed + "мс.");
 
-        System.out.print("01) Добавление в LinkedList:");
+        System.out.print("02) Добавление в LinkedList: ");
         start = System.currentTimeMillis();
         LinkedList<Integer> listLinkedInt = new LinkedList<Integer>();
         for (int i = 0; i < 1_000_000 ; i++) {
-            listInt.add((int) (Math.random() * 10) + 1);
+            listLinkedInt.add((int) (Math.random() * 10) + 1);
         }
         finish = System.currentTimeMillis();
         elapsed = finish - start;
-        System.out.println("Прошло времени: " + elapsed + "мс.");
+        System.out.println("Время выполнения: " + elapsed + "мс.");
+
+        System.out.print("03) Поиск в ArrayList: ");
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 10_000 ; i++) {
+            int val = listInt.get((int) (Math.random() * 10_000-1) + 1);
+        }
+        finish = System.currentTimeMillis();
+        elapsed = finish - start;
+        System.out.println("Время выполнения: " + elapsed + "мс.");
+
+
+        System.out.print("04) Поиск в LinkedList: ");
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 10_000 ; i++) {
+            int val =listLinkedInt.get((int) (Math.random() * 10_000-1) + 1);
+        }
+        finish = System.currentTimeMillis();
+        elapsed = finish - start;
+        System.out.println("Время выполнения: " + elapsed + "мс.");
+
     }
 
 
