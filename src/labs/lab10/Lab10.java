@@ -13,6 +13,11 @@ public class Lab10 {
         //Замерьте время, которое потрачено на это.
         executionTimerAdded();
 
+        //ЗАДАНИЕ 03: Создать Map<User, Integer>
+        //Считать имя с консоли найти количество очков
+        findMarkToName();
+
+
 
     }
 
@@ -77,6 +82,23 @@ public class Lab10 {
 
     }
 
+    public static void findMarkToName(){
+        System.out.println("ЗАДАНИЕ 03: Поиск оценок по имени в Мап");
+        String[] names = {"Витя", "Петя", "Катя", "Маша", "Ира", "Коля", "Юля", "Даня"};
+        Map<User, Integer> markToUsers = new HashMap<User, Integer>();
+        for (int i = 0; i <names.length ; i++) {
+            markToUsers.put(new User(names[i]),
+                    ((int)  (Math.random() * 10) + 1));
+        }
+        for(Map.Entry<User, Integer>  item : markToUsers.entrySet()) {
+            System.out.println(item.getKey().getName() + " - " + item.getValue());
+        }
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите имя : ");
+        String findName = scanner.next();
+        int markFind = markToUsers.get(new User("findName"));
+        System.out.print("Оценка " + findName + ": " + markFind);
+    }
 
 
 }
