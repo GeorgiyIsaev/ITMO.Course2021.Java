@@ -4,6 +4,12 @@ public class Client extends Person {
     protected String number;
     protected boolean gold;
 
+    public Client(String name, int year, String address, String number, boolean gold) {
+        super(name, year, address);
+        this.number = number;
+        this.gold = gold;
+    }
+
     public String getNumber() {
         return number;
     }

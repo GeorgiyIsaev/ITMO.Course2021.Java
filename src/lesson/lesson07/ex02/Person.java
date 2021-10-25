@@ -5,6 +5,12 @@ public class Person {
     protected int year;
     protected String address;
 
+    public Person(String name, int year, String address) {
+        this.name = name;
+        this.year = year;
+        this.address = address;
+    }
+
     public String getName() {
         return name;
     }

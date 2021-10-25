@@ -6,6 +6,12 @@ public class Employee extends Person {
     protected Date start;
     protected Long salary;
 
+    public Employee(String name, int year, String address, Date start, Long salary) {
+        super(name, year, address);
+        this.start = start;
+        this.salary = salary;
+    }
+
     public Date getStart() {
         return start;
     }
