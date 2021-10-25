@@ -1,5 +1,7 @@
 package labs.lab10;
 
+import labs.lab03.Lab03;
+
 import java.util.*;
 
 public class Lab10 {
@@ -15,13 +17,13 @@ public class Lab10 {
 
         //ЗАДАНИЕ 03: Создать Map<User, Integer>
         //Считать имя с консоли найти количество очков
-        findMarkToName();
+        //findMarkToName();
 
         //ЗАДАНИЕ 04: Метод получает на вход массив элементов
         //типа К. Вернуть нужно объект Map<K, Integer>,
         // где K — Значение из массива, а Integer
         //количество вхождений в массив:
-
+        toMapFromArrayTest();
 
 
     }
@@ -112,6 +114,23 @@ public class Lab10 {
     }
     public static void toMapFromArrayTest(){
         System.out.println("ЗАДАНИЕ 04: Преобразовать массив в Маp");
+        int[] array = Lab03.createMassive(15,0,10);
+        System.out.println(Arrays.toString(array));
+
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < array.length; i++) {
+            if (map.containsKey(array[i])) {
+                int temp = map.get(array[i]) +1;
+                map.put(array[i], temp);
+            }
+            else {
+                map.put(array[i], 1);
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> item : map.entrySet()) {
+            System.out.println(item.getKey() + " - " + item.getValue());
+        }
 
     }
 
