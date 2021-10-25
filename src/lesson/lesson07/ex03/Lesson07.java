@@ -1,5 +1,8 @@
 package lesson.lesson07.ex03;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 public class Lesson07 {
 
     public static void main(String[] args) {
@@ -7,6 +10,10 @@ public class Lesson07 {
         //Размещение наследуемых классов в объектах
         //Использование ссылки на супер класс
         classPersonTest();
+
+
+        //Списки массивы
+        arrayListTest();
 
     }
 
@@ -40,10 +47,36 @@ public class Lesson07 {
         file.printFileInfo();
 
     }
-
     public static void printName(Person[] people){
         for (Person person : people) {
             System.out.println(person.getName());
+        }
+    }
+
+
+    public static void arrayListTest(){
+        ArrayList<Integer> list = new ArrayList<>(50);
+        ArrayList<Integer> list2 = new ArrayList<Integer>(list);
+        System.out.println(list2.size()); //размер
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
+        list2.add(4);
+        System.out.println(list2.contains(2)); //первое вхождение 2 есть или нет true
+        System.out.println(list2.lastIndexOf(1)); //последнее вхождение 1 вернет индекс
+        System.out.println(list2.indexOf(2)); //вернет первый индекс для 2
+        System.out.println(list2.indexOf(5)); //вернет первый индекс для 5
+        System.out.println(list2.get(2)); //вернет эл-т по индексу 2
+
+        //Перебор эл-тов
+        ArrayList<Long> arrayList = new ArrayList<>();
+        int count =6;
+        for (int i = 0; i < count; i++) {
+            long pow = (long) Math.pow(5,i);
+            arrayList.add(pow);
+        }
+        for (Long value : arrayList){
+            System.out.println(value + " ");
         }
     }
 }
