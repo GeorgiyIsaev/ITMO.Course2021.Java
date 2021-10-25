@@ -114,10 +114,38 @@ public class Lab10 {
     }
     public static void toMapFromArrayTest(){
         System.out.println("ЗАДАНИЕ 04: Преобразовать массив в Маp");
+        //Генератор массивов
         int[] array = Lab03.createMassive(15,0,10);
-        System.out.println(Arrays.toString(array));
+        Integer[] arrInteger =new Integer[array.length];
+        String[] arrStr =new String[array.length];
+        for (int i = 0; i < array.length; i++) {
+            arrInteger[i] = array[i];
+            arrStr[i] = "Текст " +  array[i];
+        }
 
-        Map<Integer, Integer> map = new HashMap<>();
+        //Тест для Integer
+        System.out.println("Integer[]");
+        System.out.println(Arrays.toString(array));
+        Map<Integer, Integer> mapInteger = arrayToMap(arrInteger);
+        System.out.println("Результат");
+        printMap(mapInteger);
+
+        //Тест для String
+        System.out.println("String[]");
+        System.out.println(Arrays.toString(array));
+        Map<String, Integer> mapString = arrayToMap(arrStr);
+        System.out.println("Результат");
+        printMap(mapString);
+
+    }
+    public static<T1, T2> void printMap(Map<T1, T2> map){
+        for (Map.Entry<T1, T2> item : map.entrySet()) {
+            System.out.print(item.getKey() + " : " + item.getValue() + ", ");
+        } System.out.println("");
+    }
+
+    public static<T>  Map<T, Integer> arrayToMap(T[] array){
+        Map<T, Integer> map = new HashMap<>();
         for (int i = 0; i < array.length; i++) {
             if (map.containsKey(array[i])) {
                 int temp = map.get(array[i]) +1;
@@ -127,12 +155,7 @@ public class Lab10 {
                 map.put(array[i], 1);
             }
         }
-
-        for (Map.Entry<Integer, Integer> item : map.entrySet()) {
-            System.out.println(item.getKey() + " - " + item.getValue());
-        }
-
+        return map;
     }
-
 
 }
