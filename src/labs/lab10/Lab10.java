@@ -17,6 +17,11 @@ public class Lab10 {
         //Считать имя с консоли найти количество очков
         findMarkToName();
 
+        //ЗАДАНИЕ 04: Метод получает на вход массив элементов
+        //типа К. Вернуть нужно объект Map<K, Integer>,
+        // где K — Значение из массива, а Integer
+        //количество вхождений в массив:
+
 
 
     }
@@ -104,6 +109,10 @@ public class Lab10 {
         else{
             System.out.print("Ученик " + findName + " не найден! " );
         }
+    }
+    public static void toMapFromArrayTest(){
+        System.out.println("ЗАДАНИЕ 04: Преобразовать массив в Маp");
+
     }
 
 
