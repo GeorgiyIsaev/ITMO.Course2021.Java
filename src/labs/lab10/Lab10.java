@@ -17,7 +17,7 @@ public class Lab10 {
 
         //ЗАДАНИЕ 03: Создать Map<User, Integer>
         //Считать имя с консоли найти количество очков
-        //findMarkToName();
+        findMarkToName();
 
         //ЗАДАНИЕ 04: Метод получает на вход массив элементов
         //типа К. Вернуть нужно объект Map<K, Integer>,
@@ -132,7 +132,7 @@ public class Lab10 {
 
         //Тест для String
         System.out.println("String[]");
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(arrStr));
         Map<String, Integer> mapString = arrayToMap(arrStr);
         System.out.println("Результат");
         printMap(mapString);
@@ -140,7 +140,7 @@ public class Lab10 {
     }
     public static<T1, T2> void printMap(Map<T1, T2> map){
         for (Map.Entry<T1, T2> item : map.entrySet()) {
-            System.out.print(item.getKey() + " : " + item.getValue() + ", ");
+            System.out.print("["+ item.getKey() + ":" + item.getValue() + "], ");
         } System.out.println("");
     }
 
@@ -157,5 +157,4 @@ public class Lab10 {
         }
         return map;
     }
-
 }
