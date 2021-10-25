@@ -82,22 +82,28 @@ public class Lab10 {
 
     }
 
-    public static void findMarkToName(){
+    public static void findMarkToName() {
         System.out.println("ЗАДАНИЕ 03: Поиск оценок по имени в Мап");
         String[] names = {"Витя", "Петя", "Катя", "Маша", "Ира", "Коля", "Юля", "Даня"};
         Map<User, Integer> markToUsers = new HashMap<User, Integer>();
-        for (int i = 0; i <names.length ; i++) {
+        for (int i = 0; i < names.length; i++) {
             markToUsers.put(new User(names[i]),
-                    ((int)  (Math.random() * 10) + 1));
+                    ((int) (Math.random() * 10) + 1));
         }
-        for(Map.Entry<User, Integer>  item : markToUsers.entrySet()) {
+        for (Map.Entry<User, Integer> item : markToUsers.entrySet()) {
             System.out.println(item.getKey().getName() + " - " + item.getValue());
         }
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите имя : ");
         String findName = scanner.next();
-        int markFind = markToUsers.get(new User("findName"));
-        System.out.print("Оценка " + findName + ": " + markFind);
+
+        if (markToUsers.containsKey(new User(findName))) {
+            int markFind = markToUsers.get(new User(findName));
+            System.out.print(findName + " получил оценку " + markFind);
+        }
+        else{
+            System.out.print("Ученик " + findName + " не найден! " );
+        }
     }
 
 
