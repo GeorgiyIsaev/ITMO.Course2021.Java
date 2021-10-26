@@ -1,8 +1,6 @@
 package labs.lab11;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class Lab11 {
     public static void main(String[] args) {
@@ -15,7 +13,7 @@ public class Lab11 {
 
         //ЗАДАНИЕ 03. Используя решение 1 и 2, напишите метод, который склеивает
         // два текстовых файла один.
-
+        mergeTwoFilesTest();
         //ЗАДАНИЕ 04. Написать метод для копирования файла (побайтно, или массивами байт).
 
         //ЗАДАНИЕ 05. Написать метод, который в каталоге ищет файлы, в имени
@@ -30,35 +28,38 @@ public class Lab11 {
         //ЗАДАНИЕ 01. Написать метод, который читает текстовый файл и возвращает
         // его в виде списка строк.
         String readText = readFileStr("test.txt");
-
-
+        System.out.println("Прочитан текст\n"+ readText);
     }
 
     public static void writeFileTest(){
         //ЗАДАНИЕ 02. Написать метод, который записывает в файл строку,
         // переданную параметром.
-        writeFileStr("test.txt","Какой-то не понятный текст");
-
-    }
-    public static void writeFileStr(String nameFile,String text){
-        try(FileOutputStream fos=new FileOutputStream(nameFile))
-        {
-            byte[] buffer = text.getBytes(); //перевести в байты
-            fos.write(buffer, 0, buffer.length); //записать текст
+        if(writeFileStr("test.txt","Какой-то не понятный текст")){
             System.out.println("Файл успешно записан!");
+        }
+    }
+    public static boolean writeFileStr(String nameFile,String text){
+        //Запись текста в файл
+        try(FileWriter writer = new FileWriter(nameFile, false))
+        {
+            writer.write(text);   //записать строку в буфер
+            writer.flush(); //запись из буфера в файл
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
+            return false;
         }
+        return true;
     }
     public static String readFileStr(String nameFile){
+        //Чтение текста из файла
         String textRead = "";
-        try(FileInputStream fin=new FileInputStream(nameFile))
+        try(FileReader reader = new FileReader(nameFile))
         {
-            System.out.printf("File size: %d bytes \n", fin.available());
-            int i=-1;
-            while((i=fin.read())!=-1){
-                textRead +=(char)i;
+            // читаем посимвольно
+            int c;
+            while((c=reader.read())!=-1){ // посимвольное чтение
+                textRead += (char)c;
             }
         }
         catch(IOException ex){
@@ -66,7 +67,29 @@ public class Lab11 {
             System.out.println(ex.getMessage());
         }
         return textRead;
+    }
 
+    public static void mergeTwoFilesTest(){
+        //ЗАДАНИЕ 03. Используя решение 1 и 2, напишите метод, который склеивает
+        // два текстовых файла один.
+        mergeTwoFiles("mergeFile.txt",
+                "test.txt", "test2.txt");
+        String readText = readFileStr("mergeFile.txt");
+        System.out.println("Прочитан текст\n"+ readText);
+
+    }
+    public static boolean mergeTwoFiles(String nameNewFile,
+                                        String nameFile1,
+                                        String nameFile2){
+        String newText = readFileStr(nameFile1) + "\n"  + readFileStr(nameFile2);
+        if(writeFileStr(nameNewFile,
+                newText)){
+            System.out.println("Файл успешно записан!");
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }
