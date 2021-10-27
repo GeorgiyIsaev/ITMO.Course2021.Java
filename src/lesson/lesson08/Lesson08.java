@@ -13,12 +13,14 @@ public class Lesson08 {
         //Лекция 08: Абстрактный класс, Интерфейс, Паттерны
         //Тест паттерна Singleton
         singletonTest();
+
         // observer - Паттерн наблюдатель
         observerTest();
 
         //Паттерн Фабрика
         factoryTest();
 
+        //ДЗ: Прочитать (Карьера программиста) Гл.10 - ООП
     }
 
     public static void singletonTest(){
