@@ -27,14 +27,14 @@ public class Lab11 {
     public static void readFileTest(){
         //ЗАДАНИЕ 01. Написать метод, который читает текстовый файл и возвращает
         // его в виде списка строк.
-        String readText = readFileStr("test.txt");
+        String readText = readFileStr("files//test.txt");
         System.out.println("Прочитан текст\n"+ readText);
     }
 
     public static void writeFileTest(){
         //ЗАДАНИЕ 02. Написать метод, который записывает в файл строку,
         // переданную параметром.
-        if(writeFileStr("test.txt","Какой-то не понятный текст")){
+        if(writeFileStr("files//test.txt","Какой-то не понятный текст")){
             System.out.println("Файл успешно записан!");
         }
     }
@@ -72,9 +72,9 @@ public class Lab11 {
     public static void mergeTwoFilesTest(){
         //ЗАДАНИЕ 03. Используя решение 1 и 2, напишите метод, который склеивает
         // два текстовых файла один.
-        mergeTwoFiles("mergeFile.txt",
-                "test.txt", "test2.txt");
-        String readText = readFileStr("mergeFile.txt");
+        mergeTwoFiles("files//mergeFile.txt",
+                "files//test.txt", "files//test2.txt");
+        String readText = readFileStr("files//mergeFile.txt");
         System.out.println("Прочитан текст\n"+ readText);
 
     }
