@@ -30,13 +30,13 @@ public class Lab11 {
         // (FilenameFilter)
         findFileContainsText();
     }
+
     public static void readFileTest(){
         //ЗАДАНИЕ 01. Написать метод, который читает текстовый файл и возвращает
         // его в виде списка строк.
         String readText = readFileStr("files//test.txt");
         System.out.println("Прочитан текст\n"+ readText);
     }
-
     public static void writeFileTest(){
         //ЗАДАНИЕ 02. Написать метод, который записывает в файл строку,
         // переданную параметром.
@@ -69,7 +69,6 @@ public class Lab11 {
             }
         }
         catch(IOException ex){
-
             System.out.println(ex.getMessage());
         }
         return textRead;
@@ -98,13 +97,12 @@ public class Lab11 {
         }
     }
 
-    //ЗАДАНИЕ 04. Написать метод для копирования файла (побайтно, или массивами байт).
     public static void copyFileByteTest(){
+        //ЗАДАНИЕ 04. Написать метод для копирования файла (побайтно, или массивами байт).
         String nameOldFile = "files//test.txt";
         String nameNewFile = "files//newTest.txt";
         copyFileByte(nameOldFile,nameNewFile);
     }
-
     public static void copyFileByte(String nameOldFile, String nameNewFile){
         //ЗАДАНИЕ 04. Написать метод для копирования файла (побайтно, или массивами байт).
         try(FileInputStream fin=new FileInputStream(nameOldFile); // чтение из файла
@@ -133,8 +131,6 @@ public class Lab11 {
         for (String file : findFiles) {
             System.out.println("\t> "+ file + ";");
         }
-
-
     }
     public static List<String> findFileTemplateName(String nameCatalog,String nameFindFile){
         File dir = new File(nameCatalog); //заходим в каталог
@@ -166,7 +162,6 @@ public class Lab11 {
         }
 
     }
-
     public static List<String>  findFileContainsText(String nameCatalog, String findText){
         //ЗАДАНИЕ 06. Написать метод, который в каталоге ищет текстовые файлы,
         //содержавшие определенную строку. Возвращает список имен таких файлов.
