@@ -3,10 +3,13 @@ package lesson.lesson09;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Lesson09 {
     public static void main(String[] args) {
-        //Лекция 09: Исключения (Обработка ошибок)
+        /**Лекция 09: */
+        /** ИСКЛЮЧЕНИЯ (Обработка ошибок)*/
         //ArithmeticException - арифметические исключения (/на0)
         //NumberFormatExceptionDemo - исключение при преобразовании строки к другому тику
 
@@ -24,7 +27,7 @@ public class Lesson09 {
         //try{код} catch{//когда исключение} finally{после всех для закрытия}
         // throw Exception("Ошибка") // выбрасывает ошибку при запуске
 
-
+        /** ДАТА и ВРЕМЯ */
         // Класс LocalDate - для хранения только даты
         localDateTest();
         // Класс LocalTime - для хранения только времени
@@ -33,10 +36,21 @@ public class Lesson09 {
         localDateAndTimeTest();
 
 
-        // Коллекции
+        /** КОЛЛЕКЦИИ*/
         //Set, Map, List, Queue
         //Имеют одинаковые методы для удаления добавление и т.д.
         //различаются в логике
+        //List - наиболее близок к массивам. Но может изменять размер
+        //Неизменяемы списки (метод .of()) константный список
+        //LinkedList - хранит ссылки на конец и начало
+        // Коллекции принято хранить в абстрактной коллекции List
+        //List<Integer> list = new LinkedList<Integer>();
+        //set --> HashSet, TreeSet(отсортирован), LinkedHashSet
+        //Map<k,v> - карта хранит ключ и значение
+
+
+        /** МНОГОМЕРНЫЕ МАССИВЫ*/
+        gigaArray();
 
     }
 
@@ -97,6 +111,33 @@ public class Lesson09 {
         LocalDateTime dateTime1 = date.atTime(time); // 2017-11-25T21:30
         LocalDateTime dateTime2 = time.atDate(date); // 2017-11-25T21:30
     }
+    public static void gigaArray(){
+        //Многомерный массива
+        int[][] twoArray = {
+                {1,2,3,4,5},
+                {3,4,5,6,7},
+                {3,2,2,1,6}
+        };
+        int num =twoArray[0][2];
+        System.out.println(num);
 
+        int[][][] cub = new int[3][4][5];
+        int current =1;
+        //Заполнение вар 01
+        for (int i = 0; i < cub.length; i++) {
+            for (int j = 0; j < cub[i].length; j++) {
+                for (int k = 0; k < cub[i][j].length ; k++) {
+                    cub[i][j][k] = i + j +k;
+                }
+            }
+        }
+        //Заполнение вар 02
+        for (int[][] ints : cub) {
+            for (int[] vector : ints) {
+                Arrays.fill(vector, current);
+            }
+            current++;
+        }
+    }
 
 }
