@@ -14,11 +14,14 @@ public class Lab11 {
         //ЗАДАНИЕ 03. Используя решение 1 и 2, напишите метод, который склеивает
         // два текстовых файла один.
         mergeTwoFilesTest();
+
         //ЗАДАНИЕ 04. Написать метод для копирования файла (побайтно, или массивами байт).
+        copyFileByteTest();
 
         //ЗАДАНИЕ 05. Написать метод, который в каталоге ищет файлы, в имени
         // которых содержится определенная строка, и который возвращает список
         // имен таких файлов.
+        //findFiliTemplateNameTest();
 
         //ЗАДАНИЕ 06. Написать метод, который в каталоге ищет текстовые файлы,
         //содержавшие определенную строку. Возвращает список имен таких файлов.
@@ -91,5 +94,33 @@ public class Lab11 {
             return false;
         }
     }
+
+    //ЗАДАНИЕ 04. Написать метод для копирования файла (побайтно, или массивами байт).
+    public static void copyFileByteTest(){
+        String nameOldFile = "files//test.txt";
+        String nameNewFile = "files//newTest.txt";
+        copyFileByte(nameOldFile,nameNewFile);
+
+    }
+
+    public static void copyFileByte( String nameOldFile, String nameNewFile){
+        //ЗАДАНИЕ 04. Написать метод для копирования файла (побайтно, или массивами байт).
+        try(FileInputStream fin=new FileInputStream(nameOldFile); // чтение из файла
+            FileOutputStream fos=new FileOutputStream(nameNewFile)) // запись в файл
+        {
+            byte[] buffer = new byte[fin.available()];
+            // считываем буфер
+            fin.read(buffer, 0, buffer.length);
+            // записываем из буфера в файл
+            fos.write(buffer, 0, buffer.length);
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+//
+//    public static boolean findFiliTemplateNameTest(){
+//
+//    }
 
 }
