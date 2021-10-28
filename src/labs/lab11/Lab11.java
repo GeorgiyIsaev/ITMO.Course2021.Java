@@ -1,6 +1,8 @@
 package labs.lab11;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Lab11 {
     public static void main(String[] args) {
@@ -21,7 +23,7 @@ public class Lab11 {
         //ЗАДАНИЕ 05. Написать метод, который в каталоге ищет файлы, в имени
         // которых содержится определенная строка, и который возвращает список
         // имен таких файлов.
-        //findFiliTemplateNameTest();
+        findFileTemplateNameTest();
 
         //ЗАДАНИЕ 06. Написать метод, который в каталоге ищет текстовые файлы,
         //содержавшие определенную строку. Возвращает список имен таких файлов.
@@ -100,10 +102,9 @@ public class Lab11 {
         String nameOldFile = "files//test.txt";
         String nameNewFile = "files//newTest.txt";
         copyFileByte(nameOldFile,nameNewFile);
-
     }
 
-    public static void copyFileByte( String nameOldFile, String nameNewFile){
+    public static void copyFileByte(String nameOldFile, String nameNewFile){
         //ЗАДАНИЕ 04. Написать метод для копирования файла (побайтно, или массивами байт).
         try(FileInputStream fin=new FileInputStream(nameOldFile); // чтение из файла
             FileOutputStream fos=new FileOutputStream(nameNewFile)) // запись в файл
@@ -118,9 +119,35 @@ public class Lab11 {
             System.out.println(ex.getMessage());
         }
     }
-//
-//    public static boolean findFiliTemplateNameTest(){
-//
-//    }
 
+    public static void findFileTemplateNameTest(){
+        //ЗАДАНИЕ 05. Написать метод, который в каталоге ищет файлы, в имени
+        // которых содержится определенная строка, и который возвращает список
+        // имен таких файлов.
+        String nameFind = "test";
+        String nameCatalog = "files";
+        List<String> findFiles= findFileTemplateName(nameCatalog, nameFind);
+
+        System.out.println("Файлы в папке " + nameCatalog + " содержащие " + "\""+nameFind+"\"");
+        for (String file : findFiles) {
+            System.out.println("\t> "+ file + ";");
+        }
+
+
+    }
+    public static List<String> findFileTemplateName(String nameCatalog,String nameFindFile){
+        File dir = new File(nameCatalog); //заходим в каталог
+        List<String> files = new ArrayList<>();
+        if(dir.isDirectory())
+        {
+            for(File item : dir.listFiles()){ // проход по файлам
+                if(!item.isDirectory()){
+                    if(item.getName().toLowerCase().contains(nameFindFile.toLowerCase())) {
+                        files.add(item.getName());
+                    }
+                }
+            }
+        }
+        return files;
+    }
 }
