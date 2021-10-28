@@ -28,6 +28,7 @@ public class Lab11 {
         //ЗАДАНИЕ 06. Написать метод, который в каталоге ищет текстовые файлы,
         //содержавшие определенную строку. Возвращает список имен таких файлов.
         // (FilenameFilter)
+        findFileContainsText();
     }
     public static void readFileTest(){
         //ЗАДАНИЕ 01. Написать метод, который читает текстовый файл и возвращает
@@ -149,5 +150,36 @@ public class Lab11 {
             }
         }
         return files;
+    }
+
+    public static void findFileContainsText(){
+        //ЗАДАНИЕ 06. Написать метод, который в каталоге ищет текстовые файлы,
+        //содержавшие определенную строку. Возвращает список имен таких файлов.
+        // (FilenameFilter)
+        String nameCatalog = "files";
+        String findText = "Какой-то не понятный текст";
+        List<String> findFiles = findFileContainsText(nameCatalog,findText);
+
+        System.out.println("Эти файлы сдержат текст: \"" + findText+"\"");
+        for (String file : findFiles) {
+            System.out.println("\t> "+ file + ";");
+        }
+
+    }
+
+    public static List<String>  findFileContainsText(String nameCatalog, String findText){
+        //ЗАДАНИЕ 06. Написать метод, который в каталоге ищет текстовые файлы,
+        //содержавшие определенную строку. Возвращает список имен таких файлов.
+        // (FilenameFilter)
+
+        List<String> files = findFileTemplateName(nameCatalog,""); //все файлы в каталоге
+        List<String> filesOnlyFind = new ArrayList<>();
+        for (int i = 0; i < files.size(); i++) {
+            String readText = readFileStr(nameCatalog + "//" + files.get(i));
+            if(readText.toLowerCase().contains(findText.toLowerCase())) {
+                filesOnlyFind.add(files.get(i));
+            }
+        }
+        return filesOnlyFind;
     }
 }
