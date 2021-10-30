@@ -3,19 +3,24 @@ package labs.lab08.Ex01BoxShape;
 public class Box implements IShape {
 
     private IShape[] shapes;
+    private double maxVolume;
+
+    public double getMaxVolume() {
+        return maxVolume;
+    }
 
     public Box(double maxVolume) {
-        super(maxVolume);
+        this.maxVolume = maxVolume;
         shapes = new IShape[0];
     }
 
     private boolean isCanAdd(IShape shape){
-        double newCurFilling = getCurrFilling() + shape.getVolume();
-        if(newCurFilling < this.getVolume())
+        double newCurFilling = getVolume() + shape.getVolume();
+        if(newCurFilling < this.getMaxVolume())
             return true;
         else return false;
     }
-    private double getCurrFilling(){
+    public double getVolume(){
         double currVolume = 0;
         for (int i = 0; i < shapes.length; i++)
             currVolume += shapes[i].getVolume();
@@ -24,7 +29,7 @@ public class Box implements IShape {
 
     public boolean add(IShape shape){
         if(isCanAdd( shape)){
-            IShape[] newShapes = new Shape[shapes.length +1];
+            IShape[] newShapes = new IShape[shapes.length +1];
             for (int i = 0; i < shapes.length; i++) {
                 newShapes[i] = shapes[i];
             }
@@ -41,7 +46,7 @@ public class Box implements IShape {
     @Override
     public String toString() {
         String str = "Коробка с фигурами " +
-                "Заполнение " +getCurrFilling() + " из " + this.getVolume();
+                "Заполнение " + getVolume() + " из " + this.getMaxVolume();
         for (int i = 0; i < shapes.length; i++) {
             str += "\n\t"+ i + ")";
             str += shapes[i];
