@@ -1,9 +1,8 @@
 package labs.lab08;
 
-import labs.lab07.Ex02BoxShape.Ball;
-import labs.lab07.Ex02BoxShape.Box;
-import labs.lab07.Ex02BoxShape.Cylinder;
-import labs.lab07.Ex02BoxShape.Pyramid;
+
+import labs.lab08.Ex01BoxShape.Box;
+import labs.lab08.Ex01BoxShape.*;
 
 public class Lab08 {
     public static void main(String[] args) {
@@ -27,13 +26,19 @@ public class Lab08 {
        System.out.println("\nBOX");
        Box box = new Box(200);
        System.out.println(box);
-       box.add(new Pyramid(45,12,5));
-       box.add(new Ball(12,9));
+       Pyramid pyramid1 = new Pyramid(45,12,5);
+       box.add(pyramid1);
+       pyramid1.print();
+       Ball ball = new Ball(12,9);
+       box.add(ball);
        box.add(new Cylinder(172,29,42));
        box.add(new Pyramid(38,12,5));
        box.add(new Ball(24,9));
        box.add(new Cylinder(71,9,12));
        System.out.println(box);
+       System.out.println(" -- - -");
+       box.print();
+
 
    }
 

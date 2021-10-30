@@ -48,7 +48,7 @@ public class Box implements IShape {
         String str = "Коробка с фигурами " +
                 "Заполнение " + getVolume() + " из " + this.getMaxVolume();
         for (int i = 0; i < shapes.length; i++) {
-            str += "\n\t"+ i + ")";
+            str += "\n\t"+ (i+1) + ")";
             str += shapes[i];
         }
         return str;
