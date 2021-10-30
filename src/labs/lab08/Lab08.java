@@ -36,7 +36,7 @@ public class Lab08 {
        box.add(new Ball(24,9));
        box.add(new Cylinder(71,9,12));
        System.out.println(box);
-       System.out.println(" -- - -");
+       System.out.println(" - - - - ");
        box.print();
    }
 
