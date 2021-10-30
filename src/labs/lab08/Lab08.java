@@ -29,7 +29,7 @@ public class Lab08 {
        Pyramid pyramid1 = new Pyramid(45,12,5);
        box.add(pyramid1);
        pyramid1.print();
-       Ball ball = new Ball(12,9);
+       IShape ball = new Ball(12,9);
        box.add(ball);
        box.add(new Cylinder(172,29,42));
        box.add(new Pyramid(38,12,5));
@@ -38,8 +38,6 @@ public class Lab08 {
        System.out.println(box);
        System.out.println(" -- - -");
        box.print();
-
-
    }
 
 
