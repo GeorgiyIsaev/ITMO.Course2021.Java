@@ -1,4 +1,4 @@
-package labs.lab08.Ex01BoxShape;
+package labs.lab08.ex01BoxShape;
 
 public class Ball extends SolidOfRevolution implements IShape {
     public Ball(double volume, double radius) {

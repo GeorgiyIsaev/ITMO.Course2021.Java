@@ -1,4 +1,4 @@
-package labs.lab08.Ex01BoxShape;
+package labs.lab08.ex01BoxShape;
 
 public class Pyramid implements IShape{
     protected double s;

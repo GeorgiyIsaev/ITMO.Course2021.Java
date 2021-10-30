@@ -1,4 +1,4 @@
-package labs.lab08.Ex01BoxShape;
+package labs.lab08.ex01BoxShape;
 
 public interface IShape {
     void print(); //вывод фигуры
