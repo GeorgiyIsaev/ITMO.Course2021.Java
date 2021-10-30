@@ -8,8 +8,5 @@ public class Operator extends Employee{
         countOperator++;
     }
 
-    @Override
-    boolean isBusy() {
-        return false;
-    }
+
 }

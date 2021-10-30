@@ -7,8 +7,5 @@ public class Director extends Employee{
         super(name, "Директор Колл-центра");
     }
 
-    @Override
-    boolean isBusy() {
-        return false;
-    }
 }
+

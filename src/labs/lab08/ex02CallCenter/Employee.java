@@ -3,6 +3,7 @@ package labs.lab08.ex02CallCenter;
 abstract public class Employee {
     protected String name;
     protected String post;
+    protected boolean isBusyIt = false;
 
 
     public Employee(String name, String post) {
@@ -10,7 +11,15 @@ abstract public class Employee {
         this.post = post;
     }
 
-    abstract boolean isBusy();
+    boolean isBusy(){
+        return isBusyIt;
+    }
+    public void startCall(){
+        isBusyIt = true;
+    }
+    public void endCall(){
+        isBusyIt = false;
+    }
 
     @Override
     public String toString() {

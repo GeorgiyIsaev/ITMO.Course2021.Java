@@ -57,6 +57,10 @@ public class Lab08 {
         officeCallCenter.add(new Operator("Оля"));
         officeCallCenter.print();
 
+        for (int i = 0; i < 12; i++) {
+            officeCallCenter.dispatchCall();
+        }
+
     }
 
 }
