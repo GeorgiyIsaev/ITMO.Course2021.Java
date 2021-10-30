@@ -1,15 +1,15 @@
-package labs.lab08.ex01BoxShape;
+package labs.lab08.Ex01BoxShape;
 
-public class Box extends Shape {
+public class Box implements IShape {
 
-    private Shape[] shapes;
+    private IShape[] shapes;
 
     public Box(double maxVolume) {
         super(maxVolume);
-        shapes = new Shape[0];
+        shapes = new IShape[0];
     }
 
-    private boolean isCanAdd(Shape shape){
+    private boolean isCanAdd(IShape shape){
         double newCurFilling = getCurrFilling() + shape.getVolume();
         if(newCurFilling < this.getVolume())
             return true;
@@ -22,9 +22,9 @@ public class Box extends Shape {
         return currVolume;
     }
 
-    public boolean add(Shape shape){
+    public boolean add(IShape shape){
         if(isCanAdd( shape)){
-            Shape[] newShapes = new Shape[shapes.length +1];
+            IShape[] newShapes = new Shape[shapes.length +1];
             for (int i = 0; i < shapes.length; i++) {
                 newShapes[i] = shapes[i];
             }
@@ -47,5 +47,10 @@ public class Box extends Shape {
             str += shapes[i];
         }
         return str;
+    }
+
+    @Override
+    public void print() {
+        System.out.println(this);
     }
 }

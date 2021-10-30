@@ -1,6 +1,6 @@
-package labs.lab08.ex01BoxShape;
+package labs.lab08.Ex01BoxShape;
 
-public class Cylinder extends SolidOfRevolution {
+public class Cylinder extends SolidOfRevolution implements  IShape {
     protected double height;
 
     public Cylinder(double volume, double radius, double height) {
@@ -14,7 +14,11 @@ public class Cylinder extends SolidOfRevolution {
                 "height=" + height +
                 ", radius=" + radius +
                 ", объем=" + volume +
-
                 '}';
+    }
+
+    @Override
+    public void print() {
+        System.out.println(this);
     }
 }

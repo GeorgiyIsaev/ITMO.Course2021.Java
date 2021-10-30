@@ -1,11 +1,12 @@
-package labs.lab08.ex01BoxShape;
+package labs.lab08.Ex01BoxShape;
 
-public class Pyramid extends Shape {
+public class Pyramid implements IShape{
     protected double s;
     protected double h;
+    protected double volume;
 
     public Pyramid(double volume, double s, double h) {
-        super(volume);
+        this.volume = volume;
         this.s = s;
         this.h = h;
     }
@@ -17,5 +18,15 @@ public class Pyramid extends Shape {
                 ", h=" + h +
                 ", объем=" + volume +
                 '}';
+    }
+
+    @Override
+    public void print() {
+        System.out.println(this);
+    }
+
+    @Override
+    public double getVolume() {
+        return volume;
     }
 }
