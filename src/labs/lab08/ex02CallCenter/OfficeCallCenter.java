@@ -20,11 +20,10 @@ public class OfficeCallCenter {
     }
     public void add(Employee employee){
         if(isExistsDirector() && (employee instanceof Director)){
-            System.out.println("Добавление " + employee + "не выполнено!");
+            System.out.println("Добавление " + employee + " - не выполнено!");
             System.out.println("У фирму уже есть директор!");
+            return;
         }
-
-
         employees.add(employee);
     }
     public void print(){

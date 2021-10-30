@@ -47,8 +47,8 @@ public class Lab08 {
         officeCallCenter.add(new Director("Петрович"));
         officeCallCenter.add(new Director("Петя"));
         officeCallCenter.add(new Manager("Василий", "по продажам"));
-        officeCallCenter.add(new Manager("Василий", "по контролю качества"));
-        officeCallCenter.add(new Manager("Василий", "по тех обеспечению"));
+        officeCallCenter.add(new Manager("Алисия", "по контролю качества"));
+        officeCallCenter.add(new Manager("Евдотий", "по тех обеспечению"));
         officeCallCenter.add(new Operator("Петя"));
         officeCallCenter.add(new Operator("Катя"));
         officeCallCenter.add(new Operator("Даша"));
@@ -56,8 +56,6 @@ public class Lab08 {
         officeCallCenter.add(new Operator("Миша"));
         officeCallCenter.add(new Operator("Оля"));
         officeCallCenter.print();
-
-
 
     }
 
