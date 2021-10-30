@@ -2,12 +2,15 @@ package labs.lab08;
 
 import labs.lab08.ex01BoxShape.Box;
 import labs.lab08.ex01BoxShape.*;
+import labs.lab08.ex02CallCenter.*;
+
 
 public class Lab08 {
     public static void main(String[] args) {
         //ЗАДАНИЕ 01: Изменить иерархию shapes (использовать абстрактные и
         // интерфейсы классы, где это возможно)
-        shapeInterface();
+        //shapeInterface();
+
         //ЗАДАНИЕ 02: (Из книги "Карьера программиста" стр 122, задача 7.2)
         //Имеется центр обработки звонков с тремя уровнями сотрудников: оператор,
         //менеджер и директор. Входящий телефонный звонок адресуется свободному
@@ -16,6 +19,7 @@ public class Lab08 {
         //директору. Разработайте классы и структуры данных для этой задачи.
         //Реализуйте метод dispatchCall(), который перенаправляет звонок первому
         //свободному сотруднику.
+        callCenter();
 
         //ЗАДАНИЕ 03:(Из книги "Карьера программиста" стр 122, задача 7.4)
         // Разработайте модель автостоянки, используя принципы ООП.
@@ -38,5 +42,23 @@ public class Lab08 {
        box.print();
    }
 
+    public static void callCenter(){
+        OfficeCallCenter officeCallCenter = new OfficeCallCenter();
+        officeCallCenter.add(new Director("Петрович"));
+        officeCallCenter.add(new Director("Петя"));
+        officeCallCenter.add(new Manager("Василий", "по продажам"));
+        officeCallCenter.add(new Manager("Василий", "по контролю качества"));
+        officeCallCenter.add(new Manager("Василий", "по тех обеспечению"));
+        officeCallCenter.add(new Operator("Петя"));
+        officeCallCenter.add(new Operator("Катя"));
+        officeCallCenter.add(new Operator("Даша"));
+        officeCallCenter.add(new Operator("Дима"));
+        officeCallCenter.add(new Operator("Миша"));
+        officeCallCenter.add(new Operator("Оля"));
+        officeCallCenter.print();
+
+
+
+    }
 
 }

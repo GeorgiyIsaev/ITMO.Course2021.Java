@@ -27,6 +27,12 @@ public class OfficeCallCenter {
 
         employees.add(employee);
     }
+    public void print(){
+        int count = 1;
+        for(Employee employee : employees){
+           System.out.println((count++) + ") "  + employee);
+        }
+    }
 
 
 
