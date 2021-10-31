@@ -4,6 +4,8 @@ import labs.lab08.ex01BoxShape.Box;
 import labs.lab08.ex01BoxShape.*;
 import labs.lab08.ex02CallCenter.*;
 import labs.lab08.ex03Рarking.Car;
+import labs.lab08.ex03Рarking.Minibus;
+import labs.lab08.ex03Рarking.Motorbike;
 import labs.lab08.ex03Рarking.Parking;
 
 
@@ -11,6 +13,7 @@ public class Lab08 {
     public static void main(String[] args) {
         //ЗАДАНИЕ 01: Изменить иерархию shapes (использовать абстрактные и
         // интерфейсы классы, где это возможно)
+        System.out.println("\nЗАДАЧА 01: Фигуры через Интерфейсы");
         //shapeInterface();
 
         //ЗАДАНИЕ 02: (Из книги "Карьера программиста" стр 122, задача 7.2)
@@ -21,10 +24,13 @@ public class Lab08 {
         //директору. Разработайте классы и структуры данных для этой задачи.
         //Реализуйте метод dispatchCall(), который перенаправляет звонок первому
         //свободному сотруднику.
+        System.out.println("\nЗАДАЧА 02: Кол-центр");
         callCenter();
 
         //ЗАДАНИЕ 03:(Из книги "Карьера программиста" стр 122, задача 7.4)
         // Разработайте модель автостоянки, используя принципы ООП.
+        System.out.println("\nЗАДАЧА 03: ПАРКОВКА");
+        parkingLots();
    }
    public static void shapeInterface(){
        System.out.println("\nBOX");
@@ -66,7 +72,17 @@ public class Lab08 {
 
     public static void parkingLots(){
         Parking parking = new Parking(8);
+        parking.addCar(new Car("Ваз", 90));
+        parking.addCar(new Car("Нисан", 180));
+        parking.addCar(new Car("Опель", 45));
+        parking.addCar(new Motorbike("Ява", 30));
+        parking.addCar(new Motorbike("Урал", 190));
+        parking.addCar(new Motorbike("Восход", 45));
+        parking.addCar(new Minibus("Газель", 120));
+        parking.addCar(new Minibus("Опель", 210));
+        parking.addCar(new Minibus("Буханка", 75));
 
+        parking.printParkingCar();
 
     }
 

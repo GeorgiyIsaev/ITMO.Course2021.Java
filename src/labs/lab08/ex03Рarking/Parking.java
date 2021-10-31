@@ -18,8 +18,10 @@ public class Parking {
         transports.add(transport);
     }
     public void printParkingCar(){
+        System.out.println("На парковке находятся " + transports.size() + " из " +
+                countLots +  " автомобиле");
         for(Transport transport : transports){
-            System.out.println(transport);
+            System.out.println("\t--> " + transport);
         }
     }
 
