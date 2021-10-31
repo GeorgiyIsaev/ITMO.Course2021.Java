@@ -3,6 +3,8 @@ package labs.lab08;
 import labs.lab08.ex01BoxShape.Box;
 import labs.lab08.ex01BoxShape.*;
 import labs.lab08.ex02CallCenter.*;
+import labs.lab08.ex03Рarking.Car;
+import labs.lab08.ex03Рarking.Parking;
 
 
 public class Lab08 {
@@ -60,6 +62,11 @@ public class Lab08 {
         for (int i = 0; i < 12; i++) {
             officeCallCenter.dispatchCall();
         }
+    }
+
+    public static void parkingLots(){
+        Parking parking = new Parking(8);
+
 
     }
 
