@@ -1,5 +1,7 @@
 package lesson.lesson10;
 
+import java.util.List;
+import java.util.ListIterator;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -35,7 +37,8 @@ public class Lesson10 {
 
         //Итератор
         //Iterator & Iterable
-
+        //позволяют проходить по списку
+        iteratorTest();
 
 
 
@@ -111,7 +114,23 @@ public class Lesson10 {
         BiFunction<String,Integer,Person> personFunction2 = Person::new;
         Person anna2 = personFunction2.apply("Anna",22);
     }
+    public static void iteratorTest(){
+        List<Integer> list = List.of(1, 2, 3, 4);
+        ListIterator<Integer> iterator = list.listIterator();
 
+        // последний элемент
+        while (iterator.hasNext()) {
+            iterator.next();
+        }
+
+        // печатает в обратном порядке
+        while (iterator.hasPrevious()) {
+            int previousIndex = iterator.previousIndex();
+            int element = iterator.previous();
+            System.out.println(element + " on " + previousIndex);
+        }
+
+    }
 }
 class Person{
     String name;
