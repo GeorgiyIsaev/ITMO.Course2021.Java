@@ -1,5 +1,7 @@
 package lesson.lesson10;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.function.BiFunction;
@@ -40,7 +42,10 @@ public class Lesson10 {
         //позволяют проходить по списку
         iteratorTest();
 
-
+        //Компоратор
+        // используются для сравнения объектов
+        comparatorTest();
+        comparatorTopTest();
 
 
 
@@ -115,6 +120,7 @@ public class Lesson10 {
         Person anna2 = personFunction2.apply("Anna",22);
     }
     public static void iteratorTest(){
+        //Тест итераторов
         List<Integer> list = List.of(1, 2, 3, 4);
         ListIterator<Integer> iterator = list.listIterator();
 
@@ -129,8 +135,59 @@ public class Lesson10 {
             int element = iterator.previous();
             System.out.println(element + " on " + previousIndex);
         }
+    }
+
+    private static void comparatorTest(){
+        List<Message> messages = new ArrayList<>();
+
+        messages.add(new Message("first"));
+        messages.add(new Message("second"));
+        messages.add(new Message("five"));
+        messages.add(new Message("one"));
+        messages.add(new Message("two"));
+        messages.add(new Message("long number"));
+
+        messages.sort(new MessageContentComparator()); //передадим компаратор для сортировки
+        messages.forEach(System.out::println); // выедим на печать через лямбда выражение
+    }
+    private static void comparatorTopTest(){
+        List<MassageTop> messages = new ArrayList<>();
+
+        messages.add(new MassageTop("Anna", "Buuu",
+                32, "2018-03-25"));
+        messages.add(new MassageTop("Ivan", "Hi!",
+                -6, "2019-01-05"));
+        messages.add(new MassageTop("Anon", "Kill them all",
+                1, "2020-02-17"));
+        messages.add(new MassageTop("Unknown", "<Spam>",
+                -18, "2021-01-14"));
+
+        System.out.println("--> Не отсортирован");
+        messages.forEach(System.out::println);
+        messages.sort(new MessageDateComparator());
+        System.out.println("--> Отсортирован по дате");
+        messages.forEach(System.out::println);
+        messages.sort(new MessageAuthorComparator());
+        System.out.println("--> Отсортирован по автору");
+        messages.forEach(System.out::println);
+
+
+        Comparator<MassageTop> date = (m1,m2) ->
+                m1.getCreated().compareTo(m2.getCreated());
+        messages.sort(date); //сортировка принимает компаратор
+        System.out.println("--> Отсортирован по дате2");
+        messages.forEach(System.out::println);
+
+
+        messages.sort(Comparator.comparing(MassageTop::getLikes)
+                .reversed()
+                .thenComparing(MassageTop::getFrom));
+        System.out.println("--> Отсортирован по лайкам а затем по From");
+        messages.forEach(System.out::println);
 
     }
+
+
 }
 class Person{
     String name;
