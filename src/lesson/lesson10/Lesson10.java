@@ -9,48 +9,38 @@ import java.util.function.Function;
 
 public class Lesson10 {
     public static void main(String[] args) {
-        //Лекция 10: Обобщение
+        /**ЛЕКЦИЯ 10: ОБОБЩЕНИЯ. ЛЯМБДА */
         //Все классы наследуются от Object
-        //Этот класс содержит:
+        //Класс Object содержит:
         //синхронизация потоков: wait, notify, notifyAll;
         //идентификатор объекта: hashCode, equals;
         //управление объектами: finalize, clone, getClass;
         //удобно-читаемое представление: toString;
 
         //Обобщенные коллекции - позволяют собирать коллекции одного типа
-        //Можно сделать обобщённей класс
-        //class Gen<T>{}
-        //Можно параметризовать метод
-        // public <T> void process(List<T> list) {}
+        //Можно сделать обобщённей класс: class Gen<T>{}
+        //Можно параметризовать метод: public <T> void process(List<T> list) {}
 
-        //Лямбда
-        //* Анонимный классы
-        // объявление и создание одновременно (единоразово) */
+        /** ЛЯМБДА*/
+        // Анонимный классы - объявление и создание одновременно (единоразово)
 
-        //Лямбда-выражение
-        // (parameters) -> { body };
-        //BiFunction -- принимает два значения, возвращает 1
-        //Function -- одно принимает, одно возвращает
+        //Лямбда-выражение: (parameters) -> { body };
+        //BiFunction<T,U,F> -- принимает два значения, возвращает 1
+        //Function<T,U> -- одно принимает, одно возвращает
         lambdaExpressions();
 
         //Ссылки на методы
         referencesTo();
 
 
-        //Итератор
-        //Iterator & Iterable
-        //позволяют проходить по списку
+        /** ИТЕРАТОР - Iterator & Iterable*/
+        //позволяют проходить по списку (поиск, удаление)
         iteratorTest();
 
-        //Компоратор
+        /**КОМПАРАТОР */
         // используются для сравнения объектов
         comparatorTest();
         comparatorTopTest();
-
-
-
-
-
 
     }
     public static void lambdaExpressions(){
@@ -63,8 +53,8 @@ public class Lesson10 {
         Function<Integer, Integer> adder1 = x -> x + 1;
         System.out.println(adder1.apply(3));
         // без вывода типа
-        Function<Integer, Integer> mult2 = (Integer x) -> x * 2;
-        System.out.println(mult2.apply(3));
+        Function<Integer, Integer> multi2 = (Integer x) -> x * 2;
+        System.out.println(multi2.apply(3));
         // с несколькими операторами
         Function<Integer, Integer> adder5 = (x) -> {
             x += 2;
@@ -119,6 +109,7 @@ public class Lesson10 {
         BiFunction<String,Integer,Person> personFunction2 = Person::new;
         Person anna2 = personFunction2.apply("Anna",22);
     }
+
     public static void iteratorTest(){
         //Тест итераторов
         List<Integer> list = List.of(1, 2, 3, 4);
@@ -186,9 +177,9 @@ public class Lesson10 {
         messages.forEach(System.out::println);
 
     }
-
-
 }
+
+
 class Person{
     String name;
     int age;
