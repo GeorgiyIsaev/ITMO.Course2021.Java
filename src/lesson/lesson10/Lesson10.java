@@ -29,6 +29,12 @@ public class Lesson10 {
         //Function -- одно принимает, одно возвращает
         lambdaExpressions();
 
+        //Ссылки на методы
+        referencesTo();
+
+
+        //Итератор
+        //Iterator & Iterable
 
 
 
@@ -76,7 +82,7 @@ public class Lesson10 {
 
 
         //Можно передать переименую из вне
-        final String hello = "Hello ";
+        final String hello = "Hello "; //(Захватываются только final)
         Function<String, String> printHello = (str) -> {
             return hello + str;
         };
@@ -90,4 +96,31 @@ public class Lesson10 {
     }
 
 
+    public static void referencesTo(){
+        //ссылки на метод
+        printFunc(String::length);
+
+        BiFunction<Integer,Integer,Integer> max = Integer::max; //копируем ссылку на метод
+        System.out.println(max.apply(50,70));
+        BiFunction<Integer,Integer,Integer> max1 = (x,y) ->Integer.max(x,y);
+        System.out.println(max1.apply(50,70));
+
+
+        Function<String,Person> personFunction = Person::new;
+        Person anna = personFunction.apply("Anna");
+        BiFunction<String,Integer,Person> personFunction2 = Person::new;
+        Person anna2 = personFunction2.apply("Anna",22);
+    }
+
+}
+class Person{
+    String name;
+    int age;
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    public Person(String name) {
+        this.name = name;
+    }
 }
