@@ -8,22 +8,14 @@ public class Lab12 {
 
         //ЗАДАЧА 02: Выведете состояние потока перед его запуском, после запуска и во время
         //выполнения.
-        testStatusThread();
+       // testStatusThread();
 
         //ЗАДАЧА 03: Дан класс Counter:
         //Напишите программу, в которой запускается 100 потоков, каждый из которых
         //вызывает метод increment() 1000 раз.
         //После того, как потоки завершат работу, проверьте, чему равен count .
         //Если обнаружилась проблема, предложите ее решение.
-        //class Counter {
-        //int count = 0 ;
-        //public void increment() {
-        //count = count + 1 ;
-        //}
-        //public int getCount() {
-        //return count ;
-        //}
-        //}
+        testCountIncrement();
 
 
         //ЗАДАЧА 04: Напишите программу, в которой создаются два потока. Каждый
@@ -51,5 +43,20 @@ public class Lab12 {
         for (int i = 1; i <= 10; i++) {
             new StatusThread("Поток " + i, 150 - i*10).start();
         }
+    }
+    static  Counter counter = new Counter();
+    public static void testCountIncrement(){
+        //ЗАДАЧА 03: Дан класс Counter:
+        //Напишите программу, в которой запускается 100 потоков, каждый из которых
+        //вызывает метод increment() 1000 раз.
+        //После того, как потоки завершат работу, проверьте, чему равен count .
+        //Если обнаружилась проблема, предложите ее решение.
+
+        System.out.println(counter.getCount());
+
+        for (int i = 1; i <= 10; i++) {
+            new CountIncrementThread("Поток " + i, counter).start();
+        }
+        System.out.println(counter.getCount());
     }
 }
