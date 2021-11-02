@@ -4,6 +4,7 @@ public class Lab12 {
     public static void main(String[] args) {
         //ЗАДАЧА 01: Напишите программу, в которой запускается 10 потоков и каждый из них выводит
         //числа от 0 до 100.
+        testCountThread();
 
         //ЗАДАЧА 02: Выведете состояние потока перед его запуском , после запуска и во время
         //выполнения.
@@ -29,5 +30,14 @@ public class Lab12 {
         //Начать можно с написания своего класс-потока, который выводит в бесконечном
         //цикле свое имя. Потом придется добавить синхронизацию с помощью wait() и
         //notify().
+    }
+
+
+    public static void testCountThread(){
+        CountThread countThread = new CountThread("Поток 1" , 10);
+        CountThread countThread2 = new CountThread("Поток 2" , 20);
+        countThread.start();
+        countThread2.start();
+
     }
 }
