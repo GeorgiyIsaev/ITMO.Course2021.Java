@@ -34,10 +34,15 @@ public class Lab12 {
 
 
     public static void testCountThread(){
-        CountThread countThread = new CountThread("Поток 1" , 10);
-        CountThread countThread2 = new CountThread("Поток 2" , 20);
-        countThread.start();
-        countThread2.start();
+        //ЗАДАЧА 01: Напишите программу, в которой запускается 10 потоков и каждый из них выводит
+        //числа от 0 до 100.
+        //CountThread countThread = new CountThread("Поток 1" , 20);
+        //countThread.start();
+        //new CountThread("Поток 2" , 10).start();
+
+        for (int i = 1; i <= 10; i++) {
+            new CountThread("Поток " + i, 150 - i*10).start();
+        }
 
     }
 }
