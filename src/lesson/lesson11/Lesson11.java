@@ -12,8 +12,11 @@ public class Lesson11 {
         // testFile();
         // testFileCreateRenameDelete();
 
-        testFileWriter();
-        testFileReader();
+       // testFileWriter();
+        //testFileReader();
+
+
+        testBufferReader();
     }
 
     public static void testFile(){
@@ -111,5 +114,39 @@ public class Lesson11 {
     public static String readMe(String fileName) throws IOException{
         return new String(Files.readAllBytes(Paths.get(fileName)));
     }
+
+
+    public static void testBufferReader() {
+        BufferedReader bufferedReader = null;
+        try {
+            File file = new File("files/testBuff.txt");
+            //Если файла нет создать его
+            if (!file.exists())
+                file.createNewFile();
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.println("str");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //Чтение
+            bufferedReader = new BufferedReader(new FileReader("files/testBuff.txt"));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                assert bufferedReader != null;
+                bufferedReader.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
 
 }
