@@ -44,7 +44,8 @@ public class Lab12 {
             new StatusThread("Поток " + i, 150 - i*10).start();
         }
     }
-    static  Counter counter = new Counter();
+
+
     public static void testCountIncrement(){
         //ЗАДАЧА 03: Дан класс Counter:
         //Напишите программу, в которой запускается 100 потоков, каждый из которых
@@ -52,30 +53,32 @@ public class Lab12 {
         //После того, как потоки завершат работу, проверьте, чему равен count .
         //Если обнаружилась проблема, предложите ее решение.
 
-//        System.out.println(counter.getCount());
-//
-//        for (int i = 1; i <= 10; i++) {
-//            new CountIncrementThread("Поток " + i, counter).start();
-//        }
-//        System.out.println(counter.getCount());
         System.out.println("Главный поток - Начало");
         Counter counter = new Counter();
         System.out.println("Состояние для Counter: " + counter.getCount());
 
         Runnable r = ()->{
             System.out.println("Поток " + Thread.currentThread().getName() + " запущен!");
-            for (int i = 1; i <= 1000 ; i++) {
-                counter.increment();
+            synchronized(counter) {
+                for (int i = 1; i <= 1000; i++) {
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    counter.increment();
+                }
+                //System.out.println(counter.getCount());
+                System.out.println("Состояние для Counter: " + counter.getCount());
+                System.out.println("Поток " + Thread.currentThread().getName() + " завершен!");
             }
-            //System.out.println(counter.getCount());
-            System.out.println("Состояние для Counter: " + counter.getCount());
-            System.out.println("Поток " + Thread.currentThread().getName() + " завершен!");
         };
 
         //Массив с потоками
         Thread[]counterIncThread = new Thread[100];
         for (int i = 0; i < counterIncThread.length; i++) {
-            counterIncThread[i] = new Thread(r,"Поток с инкрементом № " + i);
+            counterIncThread[i] = new Thread(r,"Поток с инкрементом № " + (i +1));
             counterIncThread[i].start();
         }
 
@@ -87,6 +90,8 @@ public class Lab12 {
             e.printStackTrace();
         }
         System.out.println("Состояние для Counter: " + counter.getCount());
+        System.out.println("Должно быть: " + 1000*100);
+        //Иногда поток завершается не с тем числом. ПОЧЕМУ?
         System.out.println("Главный поток - Конец");
 
 
