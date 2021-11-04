@@ -79,16 +79,13 @@ public class Lab12 {
             counterIncThread[i].start();
         }
 
-//        try {
-//            for (int i = 0; i < counterIncThread.length; i++) {
-//                counterIncThread[i].join();//ожидать завершение каждого из массива потоков
-//            }
-//            for (int i = 0; i < counterIncThread.length; i++) {
-//                counterIncThread[i].join();//ожидать завершение каждого из массива потоков
-//            }
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            for (int i = 0; i < counterIncThread.length; i++) {
+                counterIncThread[i].join();//ожидать завершение каждого из массива потоков
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("Состояние для Counter: " + counter.getCount());
         System.out.println("Главный поток - Конец");
 
