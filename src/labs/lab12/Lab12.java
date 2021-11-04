@@ -52,11 +52,46 @@ public class Lab12 {
         //После того, как потоки завершат работу, проверьте, чему равен count .
         //Если обнаружилась проблема, предложите ее решение.
 
-        System.out.println(counter.getCount());
+//        System.out.println(counter.getCount());
+//
+//        for (int i = 1; i <= 10; i++) {
+//            new CountIncrementThread("Поток " + i, counter).start();
+//        }
+//        System.out.println(counter.getCount());
+        System.out.println("Главный поток - Начало");
+        Counter counter = new Counter();
+        System.out.println("Состояние для Counter: " + counter.getCount());
 
-        for (int i = 1; i <= 10; i++) {
-            new CountIncrementThread("Поток " + i, counter).start();
+        Runnable r = ()->{
+            System.out.println("Поток " + Thread.currentThread().getName() + " запущен!");
+            for (int i = 1; i <= 1000 ; i++) {
+                counter.increment();
+            }
+            //System.out.println(counter.getCount());
+            System.out.println("Состояние для Counter: " + counter.getCount());
+            System.out.println("Поток " + Thread.currentThread().getName() + " завершен!");
+        };
+
+        //Массив с потоками
+        Thread[]counterIncThread = new Thread[100];
+        for (int i = 0; i < counterIncThread.length; i++) {
+            counterIncThread[i] = new Thread(r,"Поток с инкрементом № " + i);
+            counterIncThread[i].start();
         }
-        System.out.println(counter.getCount());
+
+//        try {
+//            for (int i = 0; i < counterIncThread.length; i++) {
+//                counterIncThread[i].join();//ожидать завершение каждого из массива потоков
+//            }
+//            for (int i = 0; i < counterIncThread.length; i++) {
+//                counterIncThread[i].join();//ожидать завершение каждого из массива потоков
+//            }
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println("Состояние для Counter: " + counter.getCount());
+        System.out.println("Главный поток - Конец");
+
+
     }
 }
