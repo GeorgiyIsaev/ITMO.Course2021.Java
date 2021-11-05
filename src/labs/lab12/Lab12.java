@@ -15,7 +15,7 @@ public class Lab12 {
         //вызывает метод increment() 1000 раз.
         //После того, как потоки завершат работу, проверьте, чему равен count .
         //Если обнаружилась проблема, предложите ее решение.
-        testCountIncrementNoSynchro();
+        //testCountIncrementNoSynchro();
         //testCountIncrementSynchro();
 
         //ЗАДАЧА 04: Напишите программу, в которой создаются два потока. Каждый
@@ -23,6 +23,8 @@ public class Lab12 {
         //Начать можно с написания своего класс-потока, который выводит в бесконечном
         //цикле свое имя. Потом придется добавить синхронизацию с помощью wait() и
         //notify().
+        testPrintNameThread();
+
     }
 
 
@@ -132,6 +134,21 @@ public class Lab12 {
         System.out.println("ИТОГОВОЕ Состояние для Counter: " + counter.getCount());
         System.out.println("Должно быть: " + 1000*100);
         //Иногда поток завершается не с тем числом. ПОЧЕМУ?
+        //Из-за того что, несколько потоков обращаются к одному объекту?
         System.out.println("Главный поток - Конец");
+    }
+
+    public static void testPrintNameThread(){
+        //ЗАДАЧА 04: Напишите программу, в которой создаются два потока. Каждый
+        // из потоков выводит по очереди на консоль своё имя.
+        //Начать можно с написания своего класс-потока, который выводит в бесконечном
+        //цикле свое имя. Потом придется добавить синхронизацию с помощью wait() и
+        //notify().
+
+        PrintNameThread printNameThread1 = new PrintNameThread();
+        printNameThread1.run();
+        PrintNameThread printNameThread2 = new PrintNameThread();
+        printNameThread2.run();
+
     }
 }
