@@ -4,19 +4,19 @@ public class Lab12 {
     public static void main(String[] args) {
         //ЗАДАЧА 01: Напишите программу, в которой запускается 10 потоков и каждый из них выводит
         //числа от 0 до 100.
-       // testCountThread();
+        //testCountThread();
 
         //ЗАДАЧА 02: Выведете состояние потока перед его запуском, после запуска и во время
         //выполнения.
-       // testStatusThread();
+        //testStatusThread();
 
         //ЗАДАЧА 03: Дан класс Counter:
         //Напишите программу, в которой запускается 100 потоков, каждый из которых
         //вызывает метод increment() 1000 раз.
         //После того, как потоки завершат работу, проверьте, чему равен count .
         //Если обнаружилась проблема, предложите ее решение.
-        testCountIncrement();
-
+        testCountIncrementNoSynchro();
+        //testCountIncrementSynchro();
 
         //ЗАДАЧА 04: Напишите программу, в которой создаются два потока. Каждый
         // из потоков выводит по очереди на консоль своё имя.
@@ -46,7 +46,7 @@ public class Lab12 {
     }
 
 
-    public static void testCountIncrement(){
+    public static void testCountIncrementSynchro(){
         //ЗАДАЧА 03: Дан класс Counter:
         //Напишите программу, в которой запускается 100 потоков, каждый из которых
         //вызывает метод increment() 1000 раз.
@@ -58,21 +58,17 @@ public class Lab12 {
         System.out.println("Состояние для Counter: " + counter.getCount());
 
         Runnable r = ()->{
-            System.out.println("Поток " + Thread.currentThread().getName() + " запущен!");
-            synchronized(counter) {
+            //synchronized(counter) {
+                System.out.println("Поток " + Thread.currentThread().getName() + " запущен!");
                 for (int i = 1; i <= 1000; i++) {
-                    try {
-                        Thread.sleep(1);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    synchronized(counter) {
+                        counter.increment();
                     }
-
-                    counter.increment();
                 }
-                //System.out.println(counter.getCount());
-                System.out.println("Состояние для Counter: " + counter.getCount());
-                System.out.println("Поток " + Thread.currentThread().getName() + " завершен!");
-            }
+                synchronized(counter) {
+                    System.out.println("Состояние для Counter: " + counter.getCount());
+                    System.out.println("Поток " + Thread.currentThread().getName() + " завершен!");
+                }
         };
 
         //Массив с потоками
@@ -91,9 +87,51 @@ public class Lab12 {
         }
         System.out.println("Состояние для Counter: " + counter.getCount());
         System.out.println("Должно быть: " + 1000*100);
+        System.out.println("Главный поток - Конец");
+    }
+    public static void testCountIncrementNoSynchro(){
+        //ЗАДАЧА 03: Дан класс Counter:
+        //Напишите программу, в которой запускается 100 потоков, каждый из которых
+        //вызывает метод increment() 1000 раз.
+        //После того, как потоки завершат работу, проверьте, чему равен count .
+        //Если обнаружилась проблема, предложите ее решение.
+
+        System.out.println("Главный поток - Начало");
+        Counter counter = new Counter();
+        System.out.println("Состояние для Counter: " + counter.getCount());
+
+        Runnable r = ()->{
+            //synchronized(counter) {
+            System.out.println("Поток " + Thread.currentThread().getName() + " запущен!");
+            for (int i = 1; i <= 1000; i++) {
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    counter.increment();
+            }
+            System.out.println("Состояние для Counter: " + counter.getCount());
+            System.out.println("Поток " + Thread.currentThread().getName() + " завершен!");
+        };
+
+        //Массив с потоками
+        Thread[]counterIncThread = new Thread[100];
+        for (int i = 0; i < counterIncThread.length; i++) {
+            counterIncThread[i] = new Thread(r,"Поток с инкрементом № " + (i +1));
+            counterIncThread[i].start();
+        }
+
+        try {
+            for (int i = 0; i < counterIncThread.length; i++) {
+                counterIncThread[i].join();//ожидать завершение каждого из массива потоков
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("ИТОГОВОЕ Состояние для Counter: " + counter.getCount());
+        System.out.println("Должно быть: " + 1000*100);
         //Иногда поток завершается не с тем числом. ПОЧЕМУ?
         System.out.println("Главный поток - Конец");
-
-
     }
 }
