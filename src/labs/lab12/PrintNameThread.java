@@ -15,7 +15,12 @@ public class PrintNameThread  extends Thread {
                 e.printStackTrace();
             }
             System.out.println("Выполняется: " + getName());
-            System.out.println("\t Поток вызван из: " + Thread.currentThread().getName());
+//            try {
+//                wait();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+          //  notify();
         }
         //System.out.println(Thread.currentThread().getName() + " завершен!");
     }

@@ -148,8 +148,9 @@ public class Lab12 {
         PrintNameThread printNameThread1 = new PrintNameThread();
         PrintNameThread printNameThread2 = new PrintNameThread();
 
-        printNameThread2.start();
-        printNameThread1.start();
+        new Thread(printNameThread1).start();
+        new Thread(printNameThread2).start();
+
 
 
     }
