@@ -6,7 +6,6 @@ public class PrintNameThread  extends Thread {
         super("Поток для вывода № " + counter);
         counter++;
     }
-
     public void run(){
         System.out.println(getName() + " запущен!");
         while (true){

@@ -146,9 +146,11 @@ public class Lab12 {
         //notify().
 
         PrintNameThread printNameThread1 = new PrintNameThread();
-        printNameThread1.run();
         PrintNameThread printNameThread2 = new PrintNameThread();
-        printNameThread2.run();
+
+        printNameThread2.start();
+        printNameThread1.start();
+
 
     }
 }
