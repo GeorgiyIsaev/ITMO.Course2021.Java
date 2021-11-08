@@ -1,6 +1,8 @@
 package lesson.lesson12;
 
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Lesson12 {
@@ -51,7 +53,14 @@ public class Lesson12 {
         //Прерывание потока
         //testInteract();
 
-        test();
+        //10 потоков
+        //testRun10Thread();
+
+        //Theatre и Runnable - Для создания задач
+        //MassageQueue - Стена задач
+        //Looper - Выполнение перед задачей
+        //Handler - переключает задачу
+        testExecutorService();
 
     }
     public static void testCurrentThread(){
@@ -143,14 +152,36 @@ public class Lesson12 {
         System.out.println("Конец выполнения программы");
     }
 
-    public static void test(){
+    public static void testRun10Thread(){
         PrintNumbers printNumbers = new PrintNumbers();
         printNumbers.start();
         SimpleString simpleString = new SimpleString();
         simpleString.start();
+
+        //10 потоков в лямбде выражении
+        run10Thread();
+
+           }
+    public static void run10Thread(){
+        for (int i = 0; i < 10; i++) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i < 10; i++){
+                        System.out.println(i);
+                    }
+                }
+            });
+        }
+    }
+    public static void testExecutorService(){
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+        executorService.submit(()->System.out.println("java print"));
+
     }
 
     // public static void
+
 
 
 }
