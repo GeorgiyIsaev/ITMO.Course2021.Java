@@ -1,5 +1,7 @@
 package lesson.lesson12;
 
+import java.util.Scanner;
+
 public class Lesson12 {
     public static void main(String[] args) {
         /**ЛЕКЦИЯ 12: ПОТОКИ*/
@@ -31,7 +33,117 @@ public class Lesson12 {
         //Ожидание потоков
         //wait(); // ждать пока другой поток не разрешить продолжить
         //natify(); // разрешает случайному остановленному потоку запустится
+        //Всегда должны вызваться в блоке synchronized
+
+        //Все о текущем потоке
+        //testCurrentThread();
+
+        //Текст поток наследника и интерфейса ран
+        //testThread();
+
+        //Тест пользовательского потока счетчика
+        //testCountThread();
+
+        //Усыпление класса
+        testThreadSleep();
+    }
+    public static void testCurrentThread(){
+        Thread thread = Thread.currentThread(); //получаем текущи поток
+        System.out.println("Имя потока: \t" + thread.getName()); // имя потока
+        System.out.println("статус: \t\t" +thread.getState()); // статус
+        System.out.println("идентификатор: \t" +thread.getId()); // идентификатор
+        System.out.println("живой ли: \t\t" +thread.isAlive()); // живой ли поток
+        System.out.println("приоритет: \t\t" +thread.getPriority()); // приоритет
+        System.out.println("С низким приоритетом?: \t" +thread.isDaemon()); // С низким приоритетом?
+        thread.setName("Новое имя для этого потока");
+        System.out.println("Имя потока: \t" + thread.getName()); // имя потока
+    }
+    public static void testThread(){
+        Thread thread = new FirstThread();
+        thread.start();
+
+        Thread ratable = new Thread(new ByRunnable());
+        ratable.start();
+
+        //Можно передать имя
+        Thread ratable1 = new Thread(new ByRunnable(), "Новое имя потока");
+        ratable1.start();
+
+        //Помещение лямбда-выражения
+        Thread lambdaTread = new Thread(() ->{
+            System.out.printf("My name is 3 %s%n", Thread.currentThread().getName());
+        });        lambdaTread.start();
 
 
+
+    }
+    public static void  testCountThread(){
+        CountThread countThread = new CountThread("Счетчик");
+        countThread.start();
+        //Позволяет ввести число
+
+        //Главный поток продолжает поток на вывод
+        for(long i =0; i<555_555_555_535L; i++){
+            if(i% 1_000_000_000L == 0){
+                System.out.println("done!");
+            }
+        }
+
+    }
+    public static void  testThreadSleep(){
+        Thread t1 = new FirstThread();
+        t1.start();
+        System.out.println("Старт");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Конец");
+    }
+
+
+    // public static void
+
+
+}
+class FirstThread extends Thread {
+
+    @Override
+    public void run() {
+        String threadMsg = String.format("My name is 1 %s", getName());
+        System.out.println(threadMsg);
+    }
+}
+
+
+class ByRunnable implements Runnable {
+
+    @Override
+    public void run() {
+        String threadName = Thread.currentThread().getName();
+        String threadMsg = String.format("My name is 2 %s", threadName);
+        System.out.println(threadMsg);
+    }
+}
+
+
+class CountThread extends Thread{
+    public final Scanner scanner = new Scanner(System.in);
+    public String name;
+    public CountThread(String name){
+        super(name);
+    }
+
+    @Override
+    public void run() {
+        while(true){
+            int number = scanner.nextInt();
+            if(number == 0){
+                break;
+            }
+            System.out.println(number * number);
+        }
+        System.out.println(getName() + " finished");
     }
 }
