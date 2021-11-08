@@ -25,7 +25,7 @@ public class Lesson12 {
         //getName(): возвращает имя потока
         //setName(String name): устанавливает имя потока
         //getPriority(): возвращает приоритет потока
-        //setPriority(int proirity): устанавливает приоритет потока.
+        //setPriority(int propriety): устанавливает приоритет потока.
         //isAlive(): возвращает true, если поток активен
         //isInterrupted(): возвращает true, если поток был прерван
         //join(): ожидает завершение потока
@@ -35,35 +35,40 @@ public class Lesson12 {
 
         //Ожидание потоков
         //wait(); // ждать пока другой поток не разрешить продолжить
-        //natify(); // разрешает случайному остановленному потоку запустится
+        //notify(); // разрешает случайному остановленному потоку запустится
+        //notifyAll(); // запускает все остановленные потоки
         //Всегда должны вызваться в блоке synchronized
 
+
+        /**ПОТОКИ - Пример работы:*/
         //Все о текущем потоке
-        //testCurrentThread();
+        testCurrentThread();
 
         //Текст поток наследника и интерфейса ран
-        //testThread();
+        testThread();
 
         //Тест пользовательского потока счетчика
-        //testCountThread();
+        testCountThread();
 
         //Усыпление класса
-        // testThreadSleep();
+        testThreadSleep();
 
         //Прерывание потока
-        //testInteract();
+        testInteract();
 
         //10 потоков
-        //testRun10Thread();
+        testRun10Thread();
 
         //Theatre и Runnable - Для создания задач
-        //MassageQueue - Стена задач
-        //Looper - Выполнение перед задачей
-        //Handler - переключает задачу
+        //MassageQueue - Очередь сообщений из задач
+        //Looper - перемещается по очереди MassageQueue и отправляет
+        // сообщения в соответствующие обработчики для выполнения
+        //Handler - помещают задачи в очередь MassageQueue
         testExecutorService();
 
     }
     public static void testCurrentThread(){
+        //Отображение информации о текущем потоке
         Thread thread = Thread.currentThread(); //получаем текущи поток
         System.out.println("Имя потока: \t" + thread.getName()); // имя потока
         System.out.println("статус: \t\t" +thread.getState()); // статус
@@ -75,6 +80,7 @@ public class Lesson12 {
         System.out.println("Имя потока: \t" + thread.getName()); // имя потока
     }
     public static void testThread(){
+        //Создание потока
         Thread thread = new FirstThread();
         thread.start();
 
@@ -105,6 +111,7 @@ public class Lesson12 {
 
     }
     public static void  testThreadSleep(){
+        //Усыпление потока
         Thread t1 = new FirstThread();
         t1.start();
         //Слип
@@ -154,6 +161,7 @@ public class Lesson12 {
     }
 
     public static void testRun10Thread(){
+        //Вызов потоков из класса PrintNumbers и SimpleString
         PrintNumbers printNumbers = new PrintNumbers();
         printNumbers.start();
         SimpleString simpleString = new SimpleString();
@@ -161,9 +169,9 @@ public class Lesson12 {
 
         //10 потоков в лямбде выражении
         run10Thread();
-
-           }
+    }
     public static void run10Thread(){
+        //Вызов 10 потоков с действием в лямбда-выражении
         for (int i = 0; i < 10; i++) {
             new Thread(new Runnable() {
                 @Override
@@ -176,15 +184,11 @@ public class Lesson12 {
         }
     }
     public static void testExecutorService(){
+        //Поток Экзекютор
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         executorService.submit(()->System.out.println("java print"));
 
     }
-
-    // public static void
-
-
-
 }
 
 class PrintNumbers extends Thread{
