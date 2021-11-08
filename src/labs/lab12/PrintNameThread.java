@@ -3,13 +3,13 @@ package labs.lab12;
 import labs.lab08.ex02CallCenter.Operator;
 
 public class PrintNameThread  extends Thread {
-   // static private int counter = 1;
+    static private int counter = 1;
 
     private Object log;
 
     PrintNameThread(Object log){
-       // super("Поток для вывода № " + counter);
-       // counter++;
+        super("Поток для вывода № " + counter);
+        counter++;
         this.log = log;
     }
     public void run(){
