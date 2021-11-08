@@ -16,14 +16,14 @@ public class Lab12 {
         //После того, как потоки завершат работу, проверьте, чему равен count .
         //Если обнаружилась проблема, предложите ее решение.
         //testCountIncrementNoSynchro();
-        //testCountIncrementSynchro();
+        testCountIncrementSynchro();
 
         //ЗАДАЧА 04: Напишите программу, в которой создаются два потока. Каждый
         // из потоков выводит по очереди на консоль своё имя.
         //Начать можно с написания своего класс-потока, который выводит в бесконечном
         //цикле свое имя. Потом придется добавить синхронизацию с помощью wait() и
         //notify().
-        testPrintNameThread();
+        //testPrintNameThread();
 
     }
 
@@ -67,10 +67,10 @@ public class Lab12 {
                         counter.increment();
                     }
                 }
-                synchronized(counter) {
+                //synchronized(counter) {
                     System.out.println("Состояние для Counter: " + counter.getCount());
                     System.out.println("Поток " + Thread.currentThread().getName() + " завершен!");
-                }
+              //  }
         };
 
         //Массив с потоками
@@ -145,13 +145,8 @@ public class Lab12 {
         //цикле свое имя. Потом придется добавить синхронизацию с помощью wait() и
         //notify().
 
-        PrintNameThread printNameThread1 = new PrintNameThread();
-        PrintNameThread printNameThread2 = new PrintNameThread();
-
-        new Thread(printNameThread1).start();
-        new Thread(printNameThread2).start();
-
-
-
+        Object object = new Object();
+        new PrintNameThread(object).start();
+        new PrintNameThread(object).start();
     }
 }
