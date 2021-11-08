@@ -1,6 +1,7 @@
 package lesson.lesson12;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Lesson12 {
     public static void main(String[] args) {
@@ -45,7 +46,13 @@ public class Lesson12 {
         //testCountThread();
 
         //Усыпление класса
-        testThreadSleep();
+        // testThreadSleep();
+
+        //Прерывание потока
+        //testInteract();
+
+        test();
+
     }
     public static void testCurrentThread(){
         Thread thread = Thread.currentThread(); //получаем текущи поток
@@ -72,10 +79,8 @@ public class Lesson12 {
         //Помещение лямбда-выражения
         Thread lambdaTread = new Thread(() ->{
             System.out.printf("My name is 3 %s%n", Thread.currentThread().getName());
-        });        lambdaTread.start();
-
-
-
+        });
+        lambdaTread.start();
     }
     public static void  testCountThread(){
         CountThread countThread = new CountThread("Счетчик");
@@ -93,26 +98,118 @@ public class Lesson12 {
     public static void  testThreadSleep(){
         Thread t1 = new FirstThread();
         t1.start();
+        //Слип
         System.out.println("Старт");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Конец");
+
+        //TimeUnit позволяет выбрать интервал остановки
+        System.out.println("Старт");
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Конец");
+
+        //Главный поток будит ждать завершение запущенного потока,
+        //но не больше указанного количества мс
+        //Время можно не указывать, тогда будит ждать до конца
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Конец выполнения программы");
+    }
+    public static void testInteract(){
+        //Прерывание потока
+        //Работает только если у потока установлено
+        // условие с проверкой на прерывание потока
+        Thread t1 = new Thread(new CountNun());
+        t1.start();
+        System.out.println("isAlive: " + t1.isAlive());
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Конец");
+        t1.interrupt(); //прервать работу потока
+        System.out.println("isAlive: " + t1.isAlive());
+        System.out.println("Конец выполнения программы");
     }
 
+    public static void test(){
+        PrintNumbers printNumbers = new PrintNumbers();
+        printNumbers.start();
+        SimpleString simpleString = new SimpleString();
+        simpleString.start();
+    }
 
     // public static void
 
 
 }
+
+class PrintNumbers extends Thread{
+    @Override
+    public void run() {
+        for (int i = 100; i > 90 ; i--) {
+            System.out.println("number - " + i);
+        }
+    }
+}
+class SimpleString extends Thread{
+    @Override
+    public void run() {
+            System.out.println("SimpleString");
+
+    }
+}
+
+
+
+
+
+class CountNun implements Runnable{
+    @Override
+    public void run() {
+        System.out.println("start count");
+        int i = 1;
+        try {
+            while(!Thread.interrupted()){
+                System.out.println(i++);
+                Thread.sleep(1000);
+            }
+        }
+        catch (InterruptedException ex){
+            ex.printStackTrace();
+            System.out.println("sleep iterator");
+        }
+        System.out.println("end count");
+    }
+}
+
+
+
 class FirstThread extends Thread {
 
     @Override
     public void run() {
         String threadMsg = String.format("My name is 1 %s", getName());
         System.out.println(threadMsg);
+
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Конец выполнения потока");
     }
 }
 
