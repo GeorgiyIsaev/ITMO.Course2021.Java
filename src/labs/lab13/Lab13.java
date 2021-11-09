@@ -20,7 +20,7 @@ public class Lab13 {
     }
 
     public static void startConnect() {
-        String urlAddress = "http://en.wikipedia.org/wiki/Java";
+        String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\"Java\"";
         try {
             URL url = new URL(urlAddress);
 
