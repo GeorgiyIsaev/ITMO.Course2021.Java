@@ -22,16 +22,19 @@ public class Lab13 {
     public static void startConnect() {
         String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\"Java\"";
         try {
+            //Установим соединение
             URL url = new URL(urlAddress);
             URLConnection urlConnection = url.openConnection();
 
             //Прочитаем полученный JSON
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    urlConnection.getInputStream()));
-            String inputLine;
-            while ((inputLine = in.readLine()) != null)
-                System.out.println(inputLine);
-            in.close();
+            String inputLine ="";
+            try (BufferedReader in =
+                         new BufferedReader(new InputStreamReader
+                         (urlConnection.getInputStream()))){
+                while ((inputLine = in.readLine()) != null)
+                    System.out.println(inputLine);
+            }
+            catch(Exception ex){ex.printStackTrace();}
             System.out.println("\nПолучен JSON:");
             System.out.println(inputLine);
 
