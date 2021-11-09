@@ -41,7 +41,9 @@ public class Lab13 {
             catch(Exception ex){ex.printStackTrace();}
             System.out.println("\nПолучен JSON:");
             System.out.println(textJSON);
-            WikiJSON wikiJSON = new WikiJSON();
+            Root root = new Root();
+
+
 
 
 
