@@ -20,23 +20,29 @@ public class Lab13 {
     }
 
     public static void startConnect() {
-        String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\"Java\"";
+
+
+        String findPage = "Java";
+        String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\""+ findPage + "\"";
         try {
             //Установим соединение
             URL url = new URL(urlAddress);
             URLConnection urlConnection = url.openConnection();
 
             //Прочитаем полученный JSON
-            String inputLine ="";
+            String textJSON ="";
             try (BufferedReader in =
                          new BufferedReader(new InputStreamReader
                          (urlConnection.getInputStream()))){
+                String inputLine ="";
                 while ((inputLine = in.readLine()) != null)
-                    System.out.println(inputLine);
+                    textJSON = inputLine;
             }
             catch(Exception ex){ex.printStackTrace();}
             System.out.println("\nПолучен JSON:");
-            System.out.println(inputLine);
+            System.out.println(textJSON);
+            WikiJSON wikiJSON = new WikiJSON();
+
 
 
 
