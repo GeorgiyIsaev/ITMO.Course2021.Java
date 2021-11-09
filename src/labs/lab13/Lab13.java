@@ -1,10 +1,10 @@
 package labs.lab13;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
 public class Lab13 {
     public static void main(String[] args) {
@@ -23,23 +23,19 @@ public class Lab13 {
         String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\"Java\"";
         try {
             URL url = new URL(urlAddress);
-
-            System.out.println(url.getHost());
-            System.out.println(url.getPath());
-            System.out.println(url.getProtocol());
-
             URLConnection urlConnection = url.openConnection();
-            var mapFields = urlConnection.getHeaderFields();
-            for(var val : mapFields.entrySet()){
-                System.out.println(val.getKey() + " - " + val.getValue());
-            }
 
-            System.out.println("\nСчитываем данные:");
-            InputStream inputStream = urlConnection.getInputStream();
-            int c;
-            while((c = inputStream.read()) != -1){
-                System.out.print((char)c);
-            }
+            //Прочитаем полученный JSON
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    urlConnection.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null)
+                System.out.println(inputLine);
+            in.close();
+            System.out.println("\nПолучен JSON:");
+            System.out.println(inputLine);
+
+
 
 
 
