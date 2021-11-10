@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ITMO_Course2021_Java_jar</output-path>
     <root id="archive" name="ITMO.Course2021.Java.jar">
       <element id="module-output" name="ITMO.Course2021.Java" />
-      <element id="extracted-dir" path="D:/Downloads/jar_files (1)/gson-2.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../JAR/gson-2.8.2.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

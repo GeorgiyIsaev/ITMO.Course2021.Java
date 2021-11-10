@@ -16,6 +16,8 @@ public class Lesson13 {
         //Программа, которая с консоли считывает адрес (в пределах Петербурга),
         //и выводит список всех мест, которые находятся по этому адресу
         //(кафе, магазины и так далее).
-        Utility.main(new String[]{"http://nominatim.openstreetmap.org/search?street=%s&format=json&city=СПб","1"});
+        String text = "nominatim.openstreetmap.org/search?street=Невский+проспект%2C+100&format=json&city=СПб";
+        Utility.main(new String[]{"Невский"});
+        //Utility.main(new String[]{" -q Невский 12"});
     }
 }
