@@ -33,13 +33,20 @@ public class Lab13 {
     public static void startConnectWiki(String findPage ) {
         String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\""+ findPage + "\"";
         try {
+            //Обычное извлечение:
             String jsonFromURL = jsonToFindFromURLConnection(urlAddress);
-
             Gson gson = new Gson();
-            Root root = gson.fromJson(textJSON,Root.class);
-
-            System.out.println("\nИзвлекаем верный ответ");
+            Root root = gson.fromJson(jsonFromURL,Root.class);
+            System.out.println("\nИзвлекаем верный ответ из jsonFromURL:");
             System.out.println(root.fomatStringText());
+
+            //Извлечение из HttpURLConnection
+            String jsonFromHTTPURL = jsonToFindFromHttpURLConnection(urlAddress);
+            Gson gsonHttp = new Gson();
+            Root rootHttp = gsonHttp.fromJson(jsonFromHTTPURL,Root.class);
+            System.out.println("\nИзвлекаем верный ответ из jsonFromHTTPURL:");
+            System.out.println(rootHttp.fomatStringText());
+
 
 
 
@@ -75,24 +82,15 @@ public class Lab13 {
         connection.setConnectTimeout(5000);
         connection.setReadTimeout(5000);
 
-        //Проверка статуса соединения
-        int status = connection.getResponseCode();
-        System.out.println("Response Code: " + status);
+        //Считываем JSON
         StringBuffer responseContent = new StringBuffer();
         String line;
-        if (status > 299) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-            while ((line = reader.readLine()) != null) {
-                responseContent.append(line);
-            }
-            reader.close();
-        } else {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            while ((line = reader.readLine()) != null) {
-                responseContent.append(line);
-            }
-            reader.close();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        while ((line = reader.readLine()) != null) {
+            responseContent.append(line);
         }
+        reader.close();
+
         return responseContent.toString();
     }
 
