@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.Scanner;
 
 public class Lab13 {
     public static void main(String[] args) {
@@ -18,13 +19,20 @@ public class Lab13 {
         //2. Сделать запрос к серверу.
         //3. Распарсить ответ.
         //4. Вывести результат.
-        startConnect();
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("\nВведите слово для поиска: ");
+            String findText = scanner.next();
+            try {
+                startConnectWiki(findText);
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
     }
 
-    public static void startConnect() {
-
-
-        String findPage = "Kotlin";
+    public static void startConnectWiki(String findPage ) {
         String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\""+ findPage + "\"";
         try {
             //Установим соединение
@@ -49,15 +57,9 @@ public class Lab13 {
 
             Gson gson = new Gson();
             Root root = gson.fromJson(textJSON,Root.class);
-//            System.out.println("\nОбъект Root");
-//            System.out.println(root);
 
             System.out.println("\nИзвлекаем верный ответ");
             System.out.println(root.fomatStringText());
-
-
-
-
 
 
 
@@ -66,10 +68,5 @@ public class Lab13 {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
     }
-
-
 }

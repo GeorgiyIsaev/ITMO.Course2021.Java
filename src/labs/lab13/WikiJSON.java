@@ -82,14 +82,13 @@ import java.util.List;
         public String fomatStringText(){
             String myText="";
             for (Search search : query.search){
-                myText +=  search.snippet;
+                myText +=  search.snippet + " ";
             }
 
             myText = myText.replace ("<span class=\"searchmatch\">", "");
             myText = myText.replace ("</span>", "");
 
             StringBuffer strBuffer = new StringBuffer(myText);
-            System.out.println(strBuffer);
             for (int i = 80; i < myText.length(); i++) {
                 if(i % 80 == 0)
                     for (int j = i; j <myText.length(); j++) {
