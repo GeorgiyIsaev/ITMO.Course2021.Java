@@ -3,10 +3,7 @@ package labs.lab13;
 import com.google.gson.Gson;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
+import java.net.*;
 import java.util.Scanner;
 
 public class Lab13 {
@@ -25,6 +22,7 @@ public class Lab13 {
             String findText = scanner.next();
             try {
                 startConnectWiki(findText);
+
             }
             catch (Exception ex){
                 ex.printStackTrace();
@@ -35,25 +33,7 @@ public class Lab13 {
     public static void startConnectWiki(String findPage ) {
         String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\""+ findPage + "\"";
         try {
-            //Установим соединение
-            URL url = new URL(urlAddress);
-            URLConnection urlConnection = url.openConnection();
-
-            //Прочитаем полученный JSON
-
-            String textJSON ="";
-            try (BufferedReader in =
-                         new BufferedReader(new InputStreamReader
-                         (urlConnection.getInputStream()))){
-                String inputLine ="";
-                while ((inputLine = in.readLine()) != null)
-                    textJSON = inputLine;
-
-
-            }
-            catch(Exception ex){ex.printStackTrace();}
-            System.out.println("\nПолучен JSON:");
-            System.out.println(textJSON);
+            String jsonFromURL = jsonToFindFromURLConnection(urlAddress);
 
             Gson gson = new Gson();
             Root root = gson.fromJson(textJSON,Root.class);
@@ -69,4 +49,52 @@ public class Lab13 {
             e.printStackTrace();
         }
     }
+    public static String jsonToFindFromURLConnection(String urlAddress) throws IOException {
+        URL url = new URL(urlAddress);
+        URLConnection urlConnection = url.openConnection();
+
+        //Копируем JSON файл
+        String textJSON ="";
+        try (BufferedReader in =
+                     new BufferedReader(new InputStreamReader
+                             (urlConnection.getInputStream()))){
+            String inputLine ="";
+            while ((inputLine = in.readLine()) != null)
+                textJSON = inputLine;
+        }
+        catch(Exception ex){ex.printStackTrace();}
+        return textJSON;
+    }
+
+    public static String jsonToFindFromHttpURLConnection(String urlAddress) throws IOException {
+        URL url = new URL(urlAddress);
+
+        //Соединение с HttpURLConnection
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setConnectTimeout(5000);
+        connection.setReadTimeout(5000);
+
+        //Проверка статуса соединения
+        int status = connection.getResponseCode();
+        System.out.println("Response Code: " + status);
+        StringBuffer responseContent = new StringBuffer();
+        String line;
+        if (status > 299) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+            while ((line = reader.readLine()) != null) {
+                responseContent.append(line);
+            }
+            reader.close();
+        } else {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            while ((line = reader.readLine()) != null) {
+                responseContent.append(line);
+            }
+            reader.close();
+        }
+        return responseContent.toString();
+    }
+
+
 }
