@@ -1,5 +1,7 @@
 package labs.lab13;
 
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,7 +24,7 @@ public class Lab13 {
     public static void startConnect() {
 
 
-        String findPage = "Java";
+        String findPage = "Kotlin";
         String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\""+ findPage + "\"";
         try {
             //Установим соединение
@@ -30,6 +32,7 @@ public class Lab13 {
             URLConnection urlConnection = url.openConnection();
 
             //Прочитаем полученный JSON
+
             String textJSON ="";
             try (BufferedReader in =
                          new BufferedReader(new InputStreamReader
@@ -37,13 +40,20 @@ public class Lab13 {
                 String inputLine ="";
                 while ((inputLine = in.readLine()) != null)
                     textJSON = inputLine;
+
+
             }
             catch(Exception ex){ex.printStackTrace();}
             System.out.println("\nПолучен JSON:");
             System.out.println(textJSON);
-            Root root = new Root();
 
+            Gson gson = new Gson();
+            Root root = gson.fromJson(textJSON,Root.class);
+//            System.out.println("\nОбъект Root");
+//            System.out.println(root);
 
+            System.out.println("\nИзвлекаем верный ответ");
+            System.out.println(root.fomatStringText());
 
 
 
