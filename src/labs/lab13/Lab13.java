@@ -33,22 +33,21 @@ public class Lab13 {
     public static void startConnectWiki(String findPage ) {
         String urlAddress = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch=\""+ findPage + "\"";
         try {
-            //Обычное извлечение:
+            //Обычное извлечение URLConnection:
             String jsonFromURL = jsonToFindFromURLConnection(urlAddress);
+            System.out.println(jsonFromURL);
             Gson gson = new Gson();
             Root root = gson.fromJson(jsonFromURL,Root.class);
             System.out.println("\nИзвлекаем верный ответ из jsonFromURL:");
-            System.out.println(root.fomatStringText());
+            System.out.println(root.formatStringText());
 
-            //Извлечение из HttpURLConnection
+            //Извлечение из HttpURLConnection:
             String jsonFromHTTPURL = jsonToFindFromHttpURLConnection(urlAddress);
+            System.out.println(jsonFromHTTPURL);
             Gson gsonHttp = new Gson();
             Root rootHttp = gsonHttp.fromJson(jsonFromHTTPURL,Root.class);
             System.out.println("\nИзвлекаем верный ответ из jsonFromHTTPURL:");
-            System.out.println(rootHttp.fomatStringText());
-
-
-
+            System.out.println(rootHttp.formatStringText());
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -62,8 +61,7 @@ public class Lab13 {
 
         //Копируем JSON файл
         String textJSON ="";
-        try (BufferedReader in =
-                     new BufferedReader(new InputStreamReader
+        try (BufferedReader in = new BufferedReader(new InputStreamReader
                              (urlConnection.getInputStream()))){
             String inputLine ="";
             while ((inputLine = in.readLine()) != null)
@@ -90,7 +88,6 @@ public class Lab13 {
             responseContent.append(line);
         }
         reader.close();
-
         return responseContent.toString();
     }
 

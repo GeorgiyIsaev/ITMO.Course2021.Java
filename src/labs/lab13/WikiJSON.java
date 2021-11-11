@@ -79,7 +79,7 @@ import java.util.List;
                     '}';
         }
 
-        public String fomatStringText(){
+        public String formatStringText(){
             String myText="";
             for (Search search : query.search){
                 myText +=  search.snippet + " ";
