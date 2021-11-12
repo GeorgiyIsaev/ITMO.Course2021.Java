@@ -43,6 +43,13 @@ public class Lesson14 {
         //takeWhile и dropWhile - копируем эл-ты из потока пока не сработает условие
         //Срабатывание по условия и обрезает лист
         testTakeWhile();
+
+        //Map - промежуточные операции для потока
+        testMap();
+
+        //Параллельные потоки будут быстрее если значений много
+        //Но тратят больше памяти - разбивает метод на части выполняют разные ядра
+        testParallel();
     }
     public static void testListOrStream(){
         //Подсчет количества чисел в коллекции
@@ -55,8 +62,7 @@ public class Lesson14 {
         }
         System.out.println("Количество чисел больше 5: " + count);
 
-
-        //То же самое, но с помощью коллекции
+        //То же самое, но с помощью потоков
         long countStream = numbers.stream().filter(num -> num>5).count();
         System.out.println("Количество чисел больше 5: " + countStream);
 
@@ -141,8 +147,6 @@ public class Lesson14 {
         Optional<Integer> count2 = transactions.stream().
                 reduce((sum, transaction) -> sum + transaction);
         System.out.println(count2);
-
-
     }
     public static void  testTakeWhile(){
         //takeWhile и dropWhile - копируем эл-ты из потока пока не сработает условие
@@ -164,7 +168,8 @@ public class Lesson14 {
                 .sorted() //необходимо отсортировать
                 .takeWhile(w->w.startsWith("J")) //поиск только с перовой J
                 .forEach(System.out::println);
-
+    }
+    public static void testMap(){
         List<Double> num2 = List.of(2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0);
         List<Double> num3 = num2.stream()
                 .map(n->n/2)
@@ -175,23 +180,23 @@ public class Lesson14 {
                 .mapToObj(Planet::new)
                 .collect(Collectors.toList());
         System.out.println(planets);
+    }
 
-
+    public static void testParallel(){
         //Параллельные потоки будут быстрее если значений много
         //Но тратят больше памяти - разбивает метод на части выполняют разные ядра
+        Set<String> conf = Set.of("Joker", "JavaZone", "Kotlin");
         List conf2 = conf.parallelStream()
                 .map(String::toUpperCase)
                 .filter(s -> s.startsWith("JA"))
                 .collect(Collectors.toList());
-        System.out.println(conf2);
+        System.out.println(conf2); //[JAVAZONE]
 
         long sum3 = LongStream
                 .rangeClosed(1,1000)
                 .parallel()
                 .sum();
         System.out.println(sum3);
-
-
     }
 }
 
