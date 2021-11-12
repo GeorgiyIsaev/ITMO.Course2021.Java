@@ -3,6 +3,7 @@ package lesson.lesson14;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -34,6 +35,13 @@ public class Lesson14 {
             //collect -
             //toArray
         testStream();
+        testStreamFilter();
+
+        //Метод Reduction() - позволяет провести несколько
+        // терминальных операций в одно операции
+        testReduction();
+
+
     }
     public static void testListOrStream(){
         //Подсчет количества чисел в коллекции
@@ -111,8 +119,25 @@ public class Lesson14 {
         List<Integer> filter2 = num.stream()
                 .filter(pr)
                 .collect(Collectors.toList());
-        System.out.println("Коллекция после условия: " + filter);
+        System.out.println("Коллекция после условия: " + filter2);
 
+        List<String> companies = List.of("Google","","Amazon","Samsung","amazon","GOOGLE");
+        long count = companies.stream()
+                .filter(n -> n.length() > 0) //избегаем пустые строчки
+                .filter(n -> Character.isUpperCase(n.charAt(0))) //Ищем слова с большими символами
+                .count();
+        System.out.println("Количество слов с условием: " + count);
+    }
+
+    public static void testReduction(){
+        List<Integer> transactions = List.of(20, 40, -60, 5);
+        Optional<Integer> count = transactions.stream().
+                reduce((sum, transaction) -> sum + transaction);
+        System.out.println(count);
+
+        Optional<Integer> count2 = transactions.stream().
+                reduce((sum, transaction) -> sum + transaction);
+        System.out.println(count2);
 
     }
 }
