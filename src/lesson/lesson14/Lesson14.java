@@ -130,6 +130,8 @@ public class Lesson14 {
     }
 
     public static void testReduction(){
+        //Позволяет получить результат от нескольких
+        //терминальных потоков одновременно
         List<Integer> transactions = List.of(20, 40, -60, 5);
         Optional<Integer> count = transactions.stream().
                 reduce((sum, transaction) -> sum + transaction);
