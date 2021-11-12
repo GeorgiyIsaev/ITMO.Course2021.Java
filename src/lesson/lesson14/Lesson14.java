@@ -1,12 +1,11 @@
 package lesson.lesson14;
 
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 public class Lesson14 {
     public static void main(String[] args) {
@@ -41,7 +40,9 @@ public class Lesson14 {
         // терминальных операций в одно операции
         testReduction();
 
-
+        //takeWhile и dropWhile - копируем эл-ты из потока пока не сработает условие
+        //Срабатывание по условия и обрезает лист
+        testTakeWhile();
     }
     public static void testListOrStream(){
         //Подсчет количества чисел в коллекции
@@ -133,13 +134,80 @@ public class Lesson14 {
         //Позволяет получить результат от нескольких
         //терминальных потоков одновременно
         List<Integer> transactions = List.of(20, 40, -60, 5);
-        Optional<Integer> count = transactions.stream().
+        Optional<Integer> count1 = transactions.stream().
                 reduce((sum, transaction) -> sum + transaction);
-        System.out.println(count);
+        System.out.println(count1);
 
         Optional<Integer> count2 = transactions.stream().
                 reduce((sum, transaction) -> sum + transaction);
         System.out.println(count2);
 
+
+    }
+    public static void  testTakeWhile(){
+        //takeWhile и dropWhile - копируем эл-ты из потока пока не сработает условие
+        //Срабатывание по условия и обрезает лист
+
+        List<Integer> numbers1 = Stream.of(3,5,1,2,6,0,4)
+                .takeWhile(n -> n >0) //копирует все эл-ты до 0
+                .collect(Collectors.toList());
+        System.out.println(numbers1);
+
+        List<Integer> numbers2 = Stream.of(3,5,1,2,6,0,4)
+                .takeWhile(n -> n >0) //копирует все до эл-та меньше 0
+                .dropWhile(n->n>1) //удаляет все эл-ты до меньше единицей
+                .collect(Collectors.toList());
+        System.out.println(numbers2);
+
+        Set<String> conf = Set.of("Joker", "JavaZone", "Kotlin");
+        conf.stream()
+                .sorted() //необходимо отсортировать
+                .takeWhile(w->w.startsWith("J")) //поиск только с перовой J
+                .forEach(System.out::println);
+
+        List<Double> num2 = List.of(2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0);
+        List<Double> num3 = num2.stream()
+                .map(n->n/2)
+                .collect(Collectors.toList());
+        System.out.println(num3);
+
+        List<Planet> planets = IntStream.of(1,2,3,4,5,6,7,8,9)
+                .mapToObj(Planet::new)
+                .collect(Collectors.toList());
+        System.out.println(planets);
+
+
+        //Параллельные потоки будут быстрее если значений много
+        //Но тратят больше памяти - разбивает метод на части выполняют разные ядра
+        List conf2 = conf.parallelStream()
+                .map(String::toUpperCase)
+                .filter(s -> s.startsWith("JA"))
+                .collect(Collectors.toList());
+        System.out.println(conf2);
+
+        long sum3 = LongStream
+                .rangeClosed(1,1000)
+                .parallel()
+                .sum();
+        System.out.println(sum3);
+
+
+    }
+}
+
+class Planet{
+    private String name;
+    private  int order;
+
+    public Planet(int order) {
+        this.order = order;
+    }
+
+    @Override
+    public String toString() {
+        return "Planet{" +
+                "name='" + name + '\'' +
+                ", order=" + order +
+                '}';
     }
 }
