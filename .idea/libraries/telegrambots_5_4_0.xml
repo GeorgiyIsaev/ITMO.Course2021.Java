@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="gson-2.8.2">
+  <library name="telegrambots-5.4.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../JAR/gson-2.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/telegrambots-5.4.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
