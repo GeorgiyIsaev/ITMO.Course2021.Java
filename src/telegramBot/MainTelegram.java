@@ -6,7 +6,8 @@ public class MainTelegram {
     public static void main(String[] args) {
         WeatherBot wb = new WeatherBot(new DefaultBotOptions());
 
-        wb.execute(SendMessge.bulder().chatID.build());
+
+        wb.execute(Exec().chatID.build());
 
     }
 }
