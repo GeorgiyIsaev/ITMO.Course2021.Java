@@ -83,8 +83,7 @@ System.out.println("action " + action + " param: " + param.toString()           
             try {
                 execute(SendMessage.builder()
                         .chatId(message.getChatId().toString())
-                        .text(WeatherGetJson.currentWeather(59.8997451954109,30.36445362645357))
-                       // .text("Ты сказал " + message.getText())
+                        .text(ToWeatherAnswer.getWeatherStr(message.getText()))
                         .build());
             } catch (TelegramApiException e) {
                 e.printStackTrace();
@@ -139,15 +138,5 @@ System.out.println("action " + action + " param: " + param.toString()           
     @Override
     public void onUpdatesReceived(List<Update> updates) {
         super.onUpdatesReceived(updates);
-    }
-}
-
-enum DistrictEnum{
-    SPB(78),
-    MOSCOV(99);
-    private final int id;
-
-    DistrictEnum(int id) {
-        this.id = id;
     }
 }
