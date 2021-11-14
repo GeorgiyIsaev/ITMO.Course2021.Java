@@ -83,7 +83,8 @@ System.out.println("action " + action + " param: " + param.toString()           
             try {
                 execute(SendMessage.builder()
                         .chatId(message.getChatId().toString())
-                        .text("Ты сказал " + message.getText())
+                        .text(WeatherGetJson.currentWeather(59.8997451954109,30.36445362645357))
+                       // .text("Ты сказал " + message.getText())
                         .build());
             } catch (TelegramApiException e) {
                 e.printStackTrace();
@@ -100,6 +101,7 @@ System.out.println("action " + action + " param: " + param.toString()           
                         .filter(e -> "bot_command".equals(e.getType()))
                         .findFirst();
                 if(commandEntity.isPresent()){
+
                     String command =
                     message.getText().substring(commandEntity.get().getOffset()
                             , commandEntity.get().getLength());
