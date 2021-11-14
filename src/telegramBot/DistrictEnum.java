@@ -58,7 +58,7 @@ public enum DistrictEnum {
     FRUNZENSKII(new District(59.867485280680434,30.40138099535739,
             List.of("Фрунзенский","во Фрунзенском"))),
     CENTRALNII(new District(59.93746280057958,30.37178337843117,
-            List.of("Центральный","в Центральный")));
+            List.of("Центральный","в Центральном")));
 
 
     public final District district;
