@@ -25,7 +25,7 @@ public class ToWeatherAnswer {
 
 
         String text = "Погода в " + district.names.get(1) + " районе:";
-        String weather = WeatherGetJson.currentWeather(59.8997451954109,30.36445362645357);
+        String weather = WeatherGetJson.currentWeather(district.latitude,district.longitude);
         text= text + "\n" + weather;
         return text;
     }
