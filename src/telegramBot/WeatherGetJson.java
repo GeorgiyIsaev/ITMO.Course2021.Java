@@ -13,7 +13,7 @@ public class WeatherGetJson {
     public static String getUrlString(double latitude, double longitude) {
         return
             "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude +
-            "&exclude=minutely,hourly,daily&units=metric&appid=" + key;
+            "&exclude=minutely,hourly,daily&units=metric&appid=" + key + "&lang=ru";
     }
     //Широта, Долгота, и Ключ доступа к программе
     public static String currentWeather(double latitude, double longitude){

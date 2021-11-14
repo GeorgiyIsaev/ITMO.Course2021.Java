@@ -3,11 +3,11 @@ package telegramBot;
 import java.util.ArrayList;
 
 class ClassJsonWeather {
-    private float lat;
-    private float lon;
-    private String timezone;
-    private float timezone_offset;
-    Current CurrentObject;
+    public float lat;
+    public float lon;
+    public String timezone;
+    public float timezone_offset;
+    public Current current;
 
 
     // Getter Methods
@@ -29,7 +29,7 @@ class ClassJsonWeather {
     }
 
     public Current getCurrent() {
-        return CurrentObject;
+        return current;
     }
 
     // Setter Methods
@@ -50,25 +50,36 @@ class ClassJsonWeather {
         this.timezone_offset = timezone_offset;
     }
 
-    public void setCurrent(Current currentObject) {
-        this.CurrentObject = currentObject;
+    public void setCurrent(Current current) {
+        this.current = current;
+    }
+
+    @Override
+    public String toString() {
+        return "ClassJsonWeather{" +
+                "lat=" + lat +
+                ", lon=" + lon +
+                ", timezone='" + timezone + '\'' +
+                ", timezone_offset=" + timezone_offset +
+                ", CurrentObject=" + current +
+                '}';
     }
 }
 class Current {
-    private float dt;
-    private float sunrise;
-    private float sunset;
-    private float temp;
-    private float feels_like;
-    private float pressure;
-    private float humidity;
-    private float dew_point;
-    private float uvi;
-    private float clouds;
-    private float visibility;
-    private float wind_speed;
-    private float wind_deg;
-    ArrayList< Object > weather = new ArrayList < Object > ();
+    public float dt;
+    public float sunrise;
+    public float sunset;
+    public float temp;
+    public float feels_like;
+    public float pressure;
+    public float humidity;
+    public float dew_point;
+    public float uvi;
+    public float clouds;
+    public float visibility;
+    public float wind_speed;
+    public float wind_deg;
+    public ArrayList< Object > weather = new ArrayList < Object > ();
 
 
     // Getter Methods
@@ -177,5 +188,25 @@ class Current {
 
     public void setWind_deg(float wind_deg) {
         this.wind_deg = wind_deg;
+    }
+
+    @Override
+    public String toString() {
+        return "Current{" +
+                "dt=" + dt +
+                ", sunrise=" + sunrise +
+                ", sunset=" + sunset +
+                ", temp=" + temp +
+                ", feels_like=" + feels_like +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
+                ", dew_point=" + dew_point +
+                ", uvi=" + uvi +
+                ", clouds=" + clouds +
+                ", visibility=" + visibility +
+                ", wind_speed=" + wind_speed +
+                ", wind_deg=" + wind_deg +
+                ", weather=" + weather +
+                '}';
     }
 }
