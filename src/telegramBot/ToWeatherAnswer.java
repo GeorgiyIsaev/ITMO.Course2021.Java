@@ -1,5 +1,8 @@
 package telegramBot;
 
+import com.google.gson.Gson;
+import labs.lab13.Root;
+
 public class ToWeatherAnswer {
 
     private static District jsonDistrict(String nameReg){
@@ -22,11 +25,12 @@ public class ToWeatherAnswer {
         if (district == null){
             return "Наименование района не найдено!";
         }
-
+        String weatherJson = WeatherGetJson.currentWeather(district.latitude,district.longitude);
+        Gson gsonHttp = new Gson();
+        ClassJsonWeather classJsonWeather = gsonHttp.fromJson(weatherJson,ClassJsonWeather.class);
 
         String text = "Погода в " + district.names.get(1) + " районе:";
-        String weather = WeatherGetJson.currentWeather(district.latitude,district.longitude);
-        text= text + "\n" + weather;
+        text= text + "\n" + weatherJson;
         return text;
     }
 }
