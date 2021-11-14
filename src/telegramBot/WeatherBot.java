@@ -36,16 +36,28 @@ public class WeatherBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        //Обработчик событий
         try {
-            if (update.hasCallbackQuery()) {
-                //Обрабатываем нажатие кнопки
-                handleCallback(update.getCallbackQuery());
+
+            if(update.hasMessage() &&  // есть сообщение
+                    update.getMessage().hasText() &&  //содержит текст
+                    update.getMessage().hasEntities()){ //содержит сущность
+                //Обработка команды
+                sendTextToTelegram(update.getMessage(), "Запущен блок для команд!");
+                handleMessageCommand(update.getMessage());
             }
-            if (update.hasMessage()) {
-                //Обрабатываем получаемый текст
-                //handleMessageCommand(update.getMessage());
+            else if (update.hasMessage() &&  // есть сообщение
+                    update.getMessage().hasText()) {  //содержит текст
+                //Обработка входящего текст
                 handleMessageText(update.getMessage());
             }
+
+            if (update.hasCallbackQuery()) {
+                //Обрабатываем нажатие кнопки
+                //пока не работает
+                handleCallback(update.getCallbackQuery());
+            }
+
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
@@ -56,7 +68,7 @@ public class WeatherBot extends TelegramLongPollingBot {
         String[] param = callbackQuery.getData().split(":");
         String action = param[0];
         DistrictEnum newDistrictEnum = DistrictEnum.valueOf(param[1]);
-System.out.println("action " + action + " param: " + param.toString()                    );
+        System.out.println("action " + action + " param: " + param.toString()                    );
         try {
             execute(SendMessage.builder()
                     .chatId("902459907") //902459907  message.getChatId().toString()
@@ -79,63 +91,71 @@ System.out.println("action " + action + " param: " + param.toString()           
         //Возвращаем ответ обратно
         // метод, который реагирует на апдейты
         //Будет возвращать отправленный текст
-        if (message.hasText()) {
-            try {
+         execute(SendMessage.builder()
+            .chatId(message.getChatId().toString())
+            .text(ToWeatherAnswer.getWeatherStr(message.getText()))
+            .build());
+    }
+    public void sendTextToTelegram(Message message, String answerStr) throws TelegramApiException {
+        //Метод для отправки сообщение при изменении
+        execute(SendMessage.builder()
+                .chatId(message.getChatId().toString())
+                .text(answerStr)
+                .build());
+    }
 
-                execute(SendMessage.builder()
-                        .chatId(message.getChatId().toString())
-                        .text(ToWeatherAnswer.getWeatherStr(message.getText()))
-                        .build());
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
+
+    public void handleMessageCommand(Message message) throws TelegramApiException {
+        //Обработка команды
+        Optional<MessageEntity> commandEntity = message.getEntities().stream()
+                .filter(e -> "bot_command".equals(e.getType()))
+                .findFirst();
+        //Проверка, что команда есть в списке доступных команд
+        if (commandEntity.isPresent()) {
+            String command =
+                    message.getText().substring(commandEntity.get().getOffset()
+                            , commandEntity.get().getLength());
+            //Обработчик команд
+            switch (command) {
+                case "/help":
+                    sendTextToTelegram(message, "Команда help!");
+                    break;
+                case "/districts ":
+                    sendTextToTelegram(message, "Команда help!");
+                    break;
+                case "/districts_button ":
+                    sendTextToTelegram(message, "Команда help!");
+                    break;
+                case "/bot_on ":
+                    sendTextToTelegram(message, "Команда help!");
+                    break;
+                case "/bot_off ":
+
+                    //Создадим лист с командами
+                    List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
+                    for (DistrictEnum districtEnum : DistrictEnum.values()) {
+                        buttons.add(
+                                Arrays.asList(
+                                        InlineKeyboardButton.builder()
+                                                .text(districtEnum.name())
+                                                .callbackData("Original " + districtEnum)
+                                                .build(),
+                                        InlineKeyboardButton.builder()
+                                                .text(districtEnum.name())
+                                                .callbackData("Target: " + districtEnum)
+                                                .build()));
+                    }
+                    execute(SendMessage.builder()
+                            .chatId(message.getChatId().toString())
+                            .text("Введите город для поиска погоды:")
+                            .replyMarkup(InlineKeyboardMarkup.builder()
+                                    .keyboard(buttons).build())
+                            .build());
             }
         }
 
+
     }
-//    public void handleMessageCommand(Message message) throws TelegramApiException {
-//        //Обработка команды
-//        //Команда есть, когда есть текст и Ентити (сущность)
-//        if(message.hasText() && message.hasEntities()){
-//
-//                Optional<MessageEntity> commandEntity = message.getEntities().stream()
-//                        .filter(e -> "bot_command".equals(e.getType()))
-//                        .findFirst();
-//                if(commandEntity.isPresent()){
-//
-//                    String command =
-//                    message.getText().substring(commandEntity.get().getOffset()
-//                            , commandEntity.get().getLength());
-//                    switch (command){
-//                        case "/set_text":
-//                            //Создадим лист с командами
-//                            List<List<InlineKeyboardButton>>buttons = new ArrayList<>();
-//                            for(DistrictEnum districtEnum : DistrictEnum.values()){
-//                                buttons.add(
-//                                    Arrays.asList(
-//                                        InlineKeyboardButton.builder()
-//                                                .text(districtEnum.name())
-//                                                .callbackData("Original " + districtEnum)
-//                                                .build(),
-//                                        InlineKeyboardButton.builder()
-//                                                .text(districtEnum.name())
-//                                                .callbackData("Target: " + districtEnum)
-//                                                .build()));
-//                            }
-//
-//
-//
-//                            execute(SendMessage.builder()
-//                                    .chatId(message.getChatId().toString())
-//                                    .text("Введите город для поиска погоды:")
-//                                    .replyMarkup(InlineKeyboardMarkup.builder()
-//                                            .keyboard(buttons).build())
-//                                    .build());
-//                    }
-//                }
-//
-//
-//        }
-//    }
     @Override
     public void onUpdatesReceived(List<Update> updates) {
         super.onUpdatesReceived(updates);
