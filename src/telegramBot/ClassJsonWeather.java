@@ -61,7 +61,7 @@ class ClassJsonWeather {
         info.append("Ощущается как: " + getCurrent().getFeels_like() + " °С\n"); //°
         info.append("Влажность: " + getCurrent().getHumidity() + "%\n");
         info.append("Облачность: " + getCurrent().getClouds() + "%\n");
-        info.append("Скорость ветра: " + getCurrent().getWind_speed() + " метр/сек)";
+        info.append("Скорость ветра: " + getCurrent().getWind_speed() + " метр/сек");
         return info.toString();
     }
 }

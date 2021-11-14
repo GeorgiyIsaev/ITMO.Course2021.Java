@@ -2,13 +2,15 @@ package telegramBot;
 
 import com.google.gson.Gson;
 
+import java.util.Locale;
+
 
 public class ToWeatherAnswer {
 
     private static District jsonDistrict(String nameReg){
         for(DistrictEnum districtEnum : DistrictEnum.values()) {
             for(String districtName :  districtEnum.district.names){
-                if (districtName.equals(nameReg)){
+                if (districtName.toLowerCase(Locale.ROOT).equals(nameReg.toLowerCase(Locale.ROOT))){
                     return districtEnum.district;
                 }
             }
