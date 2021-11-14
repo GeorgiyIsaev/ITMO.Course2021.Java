@@ -31,21 +31,9 @@ public class ToWeatherAnswer {
 
         String weatherJson = WeatherGetJson.currentWeather(district.latitude,district.longitude);
         Gson gsonHttp = new Gson();
-        System.out.println("Gson");
         ClassJsonWeather classJsonWeather = gsonHttp.fromJson(weatherJson,ClassJsonWeather.class);
 
-        System.out.println("classJsonWeather" + classJsonWeather);
-
-        String info = "";
-        info += "Температура: " + classJsonWeather.getCurrent().getTemp() + " С\n";
-        info += "Ощущается как: " + classJsonWeather.getCurrent().getFeels_like() + " С\n"; //°
-        info += "Влажность: " + classJsonWeather.getCurrent().getHumidity() + "%\n";
-        info += "Облачность: " + classJsonWeather.getCurrent().getClouds() + "%\n";
-        info += "Скорость ветра: " + classJsonWeather.getCurrent().getWind_speed() + " метр/сек\n";
-
-        System.out.println("info");
-        String text = "Погода " + district.names.get(1) + " районе:\n";
-        text = text + "\n" + info;
-        return text;
+        String intro = "Погода " + district.names.get(1) + " районе:\n";
+        return intro + classJsonWeather;
     }
 }
