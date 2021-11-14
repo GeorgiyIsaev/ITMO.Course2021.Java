@@ -11,6 +11,15 @@ public class District {
         this.latitude = latitude;
         this.longitude = longitude;
         this.names = names;
-        List<String> namese = List.of("ew",wfq);
+    }
+
+
+    public static String fullDistrict(){
+        StringBuffer text = new StringBuffer();
+        int count = 1;
+        for(DistrictEnum districtEnum : DistrictEnum.values()) {
+            text.append((count++) + ". " + districtEnum.district.names.get(0) + " район\n");
+        }
+        return text.toString();
     }
 }

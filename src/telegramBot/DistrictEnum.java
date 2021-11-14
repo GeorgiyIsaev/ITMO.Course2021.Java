@@ -1,6 +1,5 @@
 package telegramBot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public enum DistrictEnum {
@@ -44,10 +43,11 @@ public enum DistrictEnum {
     CENTRALNII(new District(0,0,  List.of("Центральный")));
 
 
-    private final District district;
+    public final District district;
 
     DistrictEnum(District district) {
         this.district = district;
     }
+
 
 }

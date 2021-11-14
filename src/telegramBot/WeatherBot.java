@@ -43,7 +43,7 @@ public class WeatherBot extends TelegramLongPollingBot {
             }
             if (update.hasMessage()) {
                 //Обрабатываем получаемый текст
-                handleMessageCommand(update.getMessage());
+                //handleMessageCommand(update.getMessage());
                 handleMessageText(update.getMessage());
             }
         } catch (TelegramApiException e) {
@@ -81,6 +81,7 @@ System.out.println("action " + action + " param: " + param.toString()           
         //Будет возвращать отправленный текст
         if (message.hasText()) {
             try {
+
                 execute(SendMessage.builder()
                         .chatId(message.getChatId().toString())
                         .text(ToWeatherAnswer.getWeatherStr(message.getText()))
@@ -91,50 +92,50 @@ System.out.println("action " + action + " param: " + param.toString()           
         }
 
     }
-    public void handleMessageCommand(Message message) throws TelegramApiException {
-        //Обработка команды
-        //Команда есть, когда есть текст и Ентити (сущность)
-        if(message.hasText() && message.hasEntities()){
-
-                Optional<MessageEntity> commandEntity = message.getEntities().stream()
-                        .filter(e -> "bot_command".equals(e.getType()))
-                        .findFirst();
-                if(commandEntity.isPresent()){
-
-                    String command =
-                    message.getText().substring(commandEntity.get().getOffset()
-                            , commandEntity.get().getLength());
-                    switch (command){
-                        case "/set_text":
-                            //Создадим лист с командами
-                            List<List<InlineKeyboardButton>>buttons = new ArrayList<>();
-                            for(DistrictEnum districtEnum : DistrictEnum.values()){
-                                buttons.add(
-                                    Arrays.asList(
-                                        InlineKeyboardButton.builder()
-                                                .text(districtEnum.name())
-                                                .callbackData("Original " + districtEnum)
-                                                .build(),
-                                        InlineKeyboardButton.builder()
-                                                .text(districtEnum.name())
-                                                .callbackData("Target: " + districtEnum)
-                                                .build()));
-                            }
-                                
-                        
-                         
-                            execute(SendMessage.builder()
-                                    .chatId(message.getChatId().toString())
-                                    .text("Введите город для поиска погоды:")
-                                    .replyMarkup(InlineKeyboardMarkup.builder()
-                                            .keyboard(buttons).build())
-                                    .build());
-                    }
-                }
-
-
-        }
-    }
+//    public void handleMessageCommand(Message message) throws TelegramApiException {
+//        //Обработка команды
+//        //Команда есть, когда есть текст и Ентити (сущность)
+//        if(message.hasText() && message.hasEntities()){
+//
+//                Optional<MessageEntity> commandEntity = message.getEntities().stream()
+//                        .filter(e -> "bot_command".equals(e.getType()))
+//                        .findFirst();
+//                if(commandEntity.isPresent()){
+//
+//                    String command =
+//                    message.getText().substring(commandEntity.get().getOffset()
+//                            , commandEntity.get().getLength());
+//                    switch (command){
+//                        case "/set_text":
+//                            //Создадим лист с командами
+//                            List<List<InlineKeyboardButton>>buttons = new ArrayList<>();
+//                            for(DistrictEnum districtEnum : DistrictEnum.values()){
+//                                buttons.add(
+//                                    Arrays.asList(
+//                                        InlineKeyboardButton.builder()
+//                                                .text(districtEnum.name())
+//                                                .callbackData("Original " + districtEnum)
+//                                                .build(),
+//                                        InlineKeyboardButton.builder()
+//                                                .text(districtEnum.name())
+//                                                .callbackData("Target: " + districtEnum)
+//                                                .build()));
+//                            }
+//
+//
+//
+//                            execute(SendMessage.builder()
+//                                    .chatId(message.getChatId().toString())
+//                                    .text("Введите город для поиска погоды:")
+//                                    .replyMarkup(InlineKeyboardMarkup.builder()
+//                                            .keyboard(buttons).build())
+//                                    .build());
+//                    }
+//                }
+//
+//
+//        }
+//    }
     @Override
     public void onUpdatesReceived(List<Update> updates) {
         super.onUpdatesReceived(updates);
