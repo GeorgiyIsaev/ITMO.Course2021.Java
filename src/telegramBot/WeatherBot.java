@@ -14,6 +14,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.*;
 
 public class WeatherBot extends TelegramLongPollingBot {
+
     protected WeatherBot(DefaultBotOptions options) {
         super(options);
     }
@@ -51,6 +52,24 @@ public class WeatherBot extends TelegramLongPollingBot {
     }
 
     public void handleCallback(CallbackQuery callbackQuery){
+        Message message = callbackQuery.getMessage();
+        String[] param = callbackQuery.getData().split(":");
+        String action = param[0];
+        DistrictEnum newDistrictEnum = DistrictEnum.valueOf(param[1]);
+System.out.println("action " + action + " param: " + param.toString()                    );
+        try {
+            execute(SendMessage.builder()
+                    .chatId("902459907") //902459907  message.getChatId().toString()
+                    .text("action " + action + " param: " + param.toString())
+                    .build());
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        switch (action){
+            case "Original":
+
+            case "Target":
+        }
 
 
 
