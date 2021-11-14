@@ -2,9 +2,15 @@ package telegramBot;
 
 public class ToWeatherAnswer {
 
-    private static String jsonDistrict(String nameReg){
-
-return null;
+    private static District jsonDistrict(String nameReg){
+        for(DistrictEnum districtEnum : DistrictEnum.values()) {
+            for(String districtName :  districtEnum.district.names){
+                if (districtName.equals(nameReg)){
+                    return districtEnum.district;
+                }
+            }
+        }
+        return null;
     }
 
 
@@ -12,9 +18,13 @@ return null;
         if (nameReg.equals("0")){
             return District.fullDistrict();
         }
+        District district = jsonDistrict(nameReg);
+        if (district == null){
+            return "Наименование района не найдено!";
+        }
 
 
-        String text = "Погода в " + nameReg;
+        String text = "Погода в " + district.names.get(1) + " районе:";
         String weather = WeatherGetJson.currentWeather(59.8997451954109,30.36445362645357);
         text= text + "\n" + weather;
         return text;
