@@ -42,13 +42,8 @@ public class WeatherBot extends TelegramLongPollingBot {
                 + " Name: " + update.getMessage().getFrom().getFirstName()
                 + "\nText: " + update.getMessage().getText());
         try {
-            if (update.hasCallbackQuery()) {
-                //Обрабатываем нажатие кнопки
-                //пока не работает
-                sendTextToTelegram(update.getMessage(), "КНОПКА");
-                handleCallback(update.getCallbackQuery());
-            }
-            else if(update.hasMessage() &&  // есть сообщение
+
+            if(update.hasMessage() &&  // есть сообщение
                     update.getMessage().hasText() &&  //содержит текст
                     update.getMessage().hasEntities()){ //содержит сущность
                 //Обработка команды
@@ -174,11 +169,11 @@ public class WeatherBot extends TelegramLongPollingBot {
                     Arrays.asList(
                             InlineKeyboardButton.builder()
                                     .text(districtEnum.name())
-                                    .callbackData("Original " + districtEnum)
+                                    .callbackData(districtEnum.district.names.get(0))
                                     .build(),
                             InlineKeyboardButton.builder()
                                     .text(districtEnum.district.names.get(0) + " район")
-                                    .callbackData("Target: " + districtEnum.district.names.get(0) + " район")
+                                    .callbackData(districtEnum.district.names.get(0))
                                     .build()));
         }
         //Отправляем кнопки в чат
