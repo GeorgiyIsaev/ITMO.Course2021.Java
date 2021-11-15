@@ -193,6 +193,8 @@ public class WeatherBot extends TelegramLongPollingBot {
     }
     @Override
     public void onUpdatesReceived(List<Update> updates) {
+        System.out.println(updates.get(0).getCallbackQuery().getData());
+
         super.onUpdatesReceived(updates);
     }
 }
