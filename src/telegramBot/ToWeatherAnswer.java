@@ -6,6 +6,7 @@ import java.util.Locale;
 
 
 public class ToWeatherAnswer {
+    public static boolean isFonWrite = false;
 
     private static District jsonDistrict(String nameReg){
         String[] splitAnswer = nameReg.split(" ");
@@ -15,17 +16,14 @@ public class ToWeatherAnswer {
                 if (districtName.toLowerCase(Locale.ROOT).equals(nameReg.toLowerCase(Locale.ROOT))){
                     return districtEnum.district;
                 }
-//                for (String str : splitAnswer ) {
-//                    if (districtName.toLowerCase(Locale.ROOT).substring(str.toLowerCase(Locale.ROOT)))
-//
-//                    String s = splitAnswer
-//                    if (districtName.toLowerCase(Locale.ROOT).substring(splitAnswer)
-//
-//                            .equals(nameReg.toLowerCase(Locale.ROOT))){
-//                        return districtEnum.district;
-//                    }
-//                }
-//
+                for (String str : splitAnswer ) {
+                    if(str.length() < 5) continue;
+                    if (districtName.toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT))){
+                        return districtEnum.district;
+
+                    }
+                }
+
             }
         }
         return null;
@@ -39,10 +37,11 @@ public class ToWeatherAnswer {
         }
 
         District district = jsonDistrict(nameReg);
-        if (district == null){
+        if (district == null && !isFonWrite){
             return  "Наименование района \""+ nameReg +"\" не найдено!\n" +
                     "Используйте /help - для получения информации\n" +
-                    "Или выключите анализатор чата /bot_off ";
+                    "Отключите уведомления от анализатора бота: /bot_on_fon\n" +
+                    "Или выключите анализатор чата: /bot_off ";
         }
 
         String weatherJson = WeatherGetJson.currentWeather(district.latitude,district.longitude);

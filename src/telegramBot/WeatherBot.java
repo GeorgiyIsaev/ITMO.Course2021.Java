@@ -125,6 +125,8 @@ public class WeatherBot extends TelegramLongPollingBot {
                             "/districts - Показать доступные районы\n" +
                             "/districts_button - вызвать кнопки с районам\n" +
                             "/bot_on - включить считывание чат ботом\n" +
+                            "/bot_on_fon - бот считывание чат в фоновом режиме, и реагирует только на ключевые " +
+                            "слова\n" +
                             "/bot_off - выключить считывание чат ботом\n" +
                             "\n" +
                             "Когда бот читает чат, при получении наименования района или его номера, он сообщит " +
@@ -150,12 +152,23 @@ public class WeatherBot extends TelegramLongPollingBot {
                             "Вы можете ввести название района или его номер " +
                             "для получения информации о погоде");
                     isReadChat = true;
+                    ToWeatherAnswer.isFonWrite = false;
+                    break;
+                case "/bot_on_fon":
+                case "/bot_on_fon@GIWeatherBot":
+                    sendTextToTelegram(message, "Бот читает чат\n" +
+                            "Вы можете ввести название района или его номер " +
+                            "для получения информации о погоде" +
+                            "(бот не уведомляет если сообщение не корректное)");
+                    ToWeatherAnswer.isFonWrite = true;
+                    isReadChat = true;
                     break;
                 case "/bot_off":
                 case "/bot_off@GIWeatherBot":
                     sendTextToTelegram(message, "Бот теперь не читает чат\n" +
                             "Для общения с ботом используйте команды!");
                     isReadChat = false;
+                    ToWeatherAnswer.isFonWrite = false;
                     break;
 
             }
