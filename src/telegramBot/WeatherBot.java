@@ -112,50 +112,57 @@ public class WeatherBot extends TelegramLongPollingBot {
                 .findFirst();
         //Проверка, что команда есть в списке доступных команд
         if (commandEntity.isPresent()) {
+
             String command =
                     message.getText().substring(commandEntity.get().getOffset()
                             , commandEntity.get().getLength());
+            sendTextToTelegram(message, command);
             //Обработчик команд
             switch (command) {
                 case "/help":
                     sendTextToTelegram(message, "Команда help!");
                     break;
-                case "/districts ":
-                    sendTextToTelegram(message, "Команда help!");
+                case "/districts":
+                    sendTextToTelegram(message, "Команда districts!");
                     break;
-                case "/districts_button ":
-                    sendTextToTelegram(message, "Команда help!");
+                case "/districts_button":
+                    sendTextToTelegram(message, "Команда districts_button!");
+                    districtsButton(message); //Создать меню с кнопками
                     break;
-                case "/bot_on ":
-                    sendTextToTelegram(message, "Команда help!");
+                case "/bot_on":
+                    sendTextToTelegram(message, "Команда bot_on!");
                     break;
-                case "/bot_off ":
+                case "/bot_off":
+                    sendTextToTelegram(message, "Команда bot_off!");
+                    break;
 
-                    //Создадим лист с командами
-                    List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
-                    for (DistrictEnum districtEnum : DistrictEnum.values()) {
-                        buttons.add(
-                                Arrays.asList(
-                                        InlineKeyboardButton.builder()
-                                                .text(districtEnum.name())
-                                                .callbackData("Original " + districtEnum)
-                                                .build(),
-                                        InlineKeyboardButton.builder()
-                                                .text(districtEnum.name())
-                                                .callbackData("Target: " + districtEnum)
-                                                .build()));
-                    }
-                    execute(SendMessage.builder()
-                            .chatId(message.getChatId().toString())
-                            .text("Введите город для поиска погоды:")
-                            .replyMarkup(InlineKeyboardMarkup.builder()
-                                    .keyboard(buttons).build())
-                            .build());
             }
         }
-
-
     }
+    public void districtsButton(Message message) throws TelegramApiException {
+        //Создадим лист с командами
+        List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
+        for (DistrictEnum districtEnum : DistrictEnum.values()) {
+            buttons.add(
+                    Arrays.asList(
+                            InlineKeyboardButton.builder()
+                                    .text(districtEnum.name())
+                                    .callbackData("Original " + districtEnum)
+                                    .build(),
+                            InlineKeyboardButton.builder()
+                                    .text(districtEnum.name())
+                                    .callbackData("Target: " + districtEnum)
+                                    .build()));
+        }
+        execute(SendMessage.builder()
+                .chatId(message.getChatId().toString())
+                .text("Введите город для поиска погоды:")
+                .replyMarkup(InlineKeyboardMarkup.builder()
+                        .keyboard(buttons).build())
+                .build());
+    }
+
+
     @Override
     public void onUpdatesReceived(List<Update> updates) {
         super.onUpdatesReceived(updates);
