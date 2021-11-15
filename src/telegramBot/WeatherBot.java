@@ -38,6 +38,9 @@ public class WeatherBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         //Обработчик событий
+        System.out.println("ЧатID: " + update.getMessage().getChatId()
+                + " Name: " + update.getMessage().getFrom().getFirstName()
+                + "\nText: " + update.getMessage().getText());
         try {
             if (update.hasCallbackQuery()) {
                 //Обрабатываем нажатие кнопки
@@ -176,14 +179,14 @@ public class WeatherBot extends TelegramLongPollingBot {
                                     .callbackData("Original " + districtEnum)
                                     .build(),
                             InlineKeyboardButton.builder()
-                                    .text(districtEnum.name())
-                                    .callbackData("Target: " + districtEnum)
+                                    .text(districtEnum.district.names.get(0) + " район")
+                                    .callbackData("Target: " + districtEnum.district.names.get(0) + " район")
                                     .build()));
         }
         //Отправляем кнопки в чат
         execute(SendMessage.builder()
                 .chatId(message.getChatId().toString())
-                .text("Введите город для поиска погоды:")
+                .text("Выберете район СПБ погода которого вам интересна:")
                 .replyMarkup(InlineKeyboardMarkup.builder()
                         .keyboard(buttons).build())
                 .build());
