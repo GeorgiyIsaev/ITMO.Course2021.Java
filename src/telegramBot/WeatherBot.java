@@ -14,6 +14,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.*;
 
 public class WeatherBot extends TelegramLongPollingBot {
+    private boolean isReadChat = false;
 
     protected WeatherBot(DefaultBotOptions options) {
         super(options);
@@ -46,7 +47,8 @@ public class WeatherBot extends TelegramLongPollingBot {
                 sendTextToTelegram(update.getMessage(), "Запущен блок для команд!");
                 handleMessageCommand(update.getMessage());
             }
-            else if (update.hasMessage() &&  // есть сообщение
+            else if (isReadChat && //разрешено/запрещено читать чат боту
+                    update.hasMessage() &&  // есть сообщение
                     update.getMessage().hasText()) {  //содержит текст
                 //Обработка входящего текст
                 handleMessageText(update.getMessage());
@@ -120,20 +122,35 @@ public class WeatherBot extends TelegramLongPollingBot {
             //Обработчик команд
             switch (command) {
                 case "/help":
-                    sendTextToTelegram(message, "Команда help!");
+                    sendTextToTelegram(message, "Команда:\n" +
+                            "/help - описание и подсказки\n" +
+                            "/districts - Показать доступные районы\n" +
+                            "/districts_button - вызвать кнопки с районам\n" +
+                            "/bot_on - включить считывание чат ботом\n" +
+                            "/bot_off - выключить считывание чат ботом");
+
                     break;
                 case "/districts":
-                    sendTextToTelegram(message, "Команда districts!");
+                    sendTextToTelegram(message, "Список доступных районов:\n");
+                    execute(SendMessage.builder()
+                            .chatId(message.getChatId().toString())
+                            .text(ToWeatherAnswer.getWeatherStr("0"))
+                            .build());
                     break;
                 case "/districts_button":
-                    sendTextToTelegram(message, "Команда districts_button!");
+                    sendTextToTelegram(message, "Меню с кнопками");
                     districtsButton(message); //Создать меню с кнопками
                     break;
                 case "/bot_on":
-                    sendTextToTelegram(message, "Команда bot_on!");
+                    sendTextToTelegram(message, "Бот читает чат\n" +
+                            "Вы можете ввести название района или его номер " +
+                            "для получения информации о погоде");
+                    isReadChat = true;
                     break;
                 case "/bot_off":
-                    sendTextToTelegram(message, "Команда bot_off!");
+                    sendTextToTelegram(message, "Бот теперь не читает чат\n" +
+                            "Для общения с ботом используйте команды!");
+                    isReadChat = false;
                     break;
 
             }

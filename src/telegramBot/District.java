@@ -17,6 +17,7 @@ public class District {
     public static String fullDistrict(){
         StringBuffer text = new StringBuffer();
         int count = 1;
+        text.append( "Список доступных районов:\n");
         for(DistrictEnum districtEnum : DistrictEnum.values()) {
             text.append((count++) + ". " + districtEnum.district.names.get(0) + " район\n");
         }
