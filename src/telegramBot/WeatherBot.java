@@ -58,11 +58,9 @@ public class WeatherBot extends TelegramLongPollingBot {
             else if (isReadChat && //разрешено/запрещено читать чат боту
                     update.hasMessage() &&  // есть сообщение
                     update.getMessage().hasText()) {  //содержит текст
-                //Обработка входящего текст
+                ///Обработка входящего текст
                 handleMessageText(update.getMessage());
             }
-
-
 
         } catch (TelegramApiException e) {
             e.printStackTrace();
@@ -193,18 +191,19 @@ public class WeatherBot extends TelegramLongPollingBot {
     }
     @Override
     public void onUpdatesReceived(List<Update> updates) {
-        System.out.println(updates.get(0).getCallbackQuery().getData());
-        System.out.println(updates.get(0).getCallbackQuery().getMessage().getChatId());
 
-        try {
-            execute(SendMessage.builder()
-                    .chatId(updates.get(0).getCallbackQuery().getMessage().getChatId().toString())
-                    .text(ToWeatherAnswer.getWeatherStr(updates.get(0).getCallbackQuery().getData()))
-                    .build());
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
+        if(updates.get(0).getCallbackQuery() != null) {
+            System.out.println("ДА");
+
+            try {
+                execute(SendMessage.builder()
+                        .chatId(updates.get(0).getCallbackQuery().getMessage().getChatId().toString())
+                        .text(ToWeatherAnswer.getWeatherStr(updates.get(0).getCallbackQuery().getData()))
+                        .build());
+            } catch (TelegramApiException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
         super.onUpdatesReceived(updates);
     }
 }
