@@ -8,11 +8,24 @@ import java.util.Locale;
 public class ToWeatherAnswer {
 
     private static District jsonDistrict(String nameReg){
+        String[] splitAnswer = nameReg.split(" ");
+
         for(DistrictEnum districtEnum : DistrictEnum.values()) {
             for(String districtName :  districtEnum.district.names){
                 if (districtName.toLowerCase(Locale.ROOT).equals(nameReg.toLowerCase(Locale.ROOT))){
                     return districtEnum.district;
                 }
+//                for (String str : splitAnswer ) {
+//                    if (districtName.toLowerCase(Locale.ROOT).substring(str.toLowerCase(Locale.ROOT)))
+//
+//                    String s = splitAnswer
+//                    if (districtName.toLowerCase(Locale.ROOT).substring(splitAnswer)
+//
+//                            .equals(nameReg.toLowerCase(Locale.ROOT))){
+//                        return districtEnum.district;
+//                    }
+//                }
+//
             }
         }
         return null;
@@ -21,7 +34,7 @@ public class ToWeatherAnswer {
 
     public static String getWeatherStr(String nameReg){
 
-        if (nameReg.equals("0")){
+        if (nameReg.equals("0") || nameReg.equals("districts")){
             return District.fullDistrict();
         }
 
