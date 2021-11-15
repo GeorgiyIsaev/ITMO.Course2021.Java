@@ -39,12 +39,17 @@ public class WeatherBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         //Обработчик событий
         try {
-
-            if(update.hasMessage() &&  // есть сообщение
+            if (update.hasCallbackQuery()) {
+                //Обрабатываем нажатие кнопки
+                //пока не работает
+                sendTextToTelegram(update.getMessage(), "КНОПКА");
+                handleCallback(update.getCallbackQuery());
+            }
+            else if(update.hasMessage() &&  // есть сообщение
                     update.getMessage().hasText() &&  //содержит текст
                     update.getMessage().hasEntities()){ //содержит сущность
                 //Обработка команды
-                //sendTextToTelegram(update.getMessage(), "Запущен блок для команд!");
+                // sendTextToTelegram(update.getMessage(), "Запущен блок для команд!");
                 handleMessageCommand(update.getMessage());
             }
             else if (isReadChat && //разрешено/запрещено читать чат боту
@@ -54,11 +59,7 @@ public class WeatherBot extends TelegramLongPollingBot {
                 handleMessageText(update.getMessage());
             }
 
-            if (update.hasCallbackQuery()) {
-                //Обрабатываем нажатие кнопки
-                //пока не работает
-                handleCallback(update.getCallbackQuery());
-            }
+
 
         } catch (TelegramApiException e) {
             e.printStackTrace();
@@ -122,6 +123,7 @@ public class WeatherBot extends TelegramLongPollingBot {
             //Обработчик команд
             switch (command) {
                 case "/help":
+                case "/help@GIWeatherBot":
                     sendTextToTelegram(message, "Команда:\n" +
                             "/help - описание и подсказки\n" +
                             "/districts - Показать доступные районы\n" +
@@ -135,22 +137,26 @@ public class WeatherBot extends TelegramLongPollingBot {
 
                     break;
                 case "/districts":
+                case "/districts@GIWeatherBot":
                     execute(SendMessage.builder()
                             .chatId(message.getChatId().toString())
                             .text(ToWeatherAnswer.getWeatherStr("0"))
                             .build());
                     break;
                 case "/districts_button":
+                case "/districts_button@GIWeatherBot":
                     sendTextToTelegram(message, "Меню с кнопками");
                     districtsButton(message); //Создать меню с кнопками
                     break;
                 case "/bot_on":
+                case "/bot_on@GIWeatherBot":
                     sendTextToTelegram(message, "Бот читает чат\n" +
                             "Вы можете ввести название района или его номер " +
                             "для получения информации о погоде");
                     isReadChat = true;
                     break;
                 case "/bot_off":
+                case "/bot_off@GIWeatherBot":
                     sendTextToTelegram(message, "Бот теперь не читает чат\n" +
                             "Для общения с ботом используйте команды!");
                     isReadChat = false;
@@ -174,7 +180,7 @@ public class WeatherBot extends TelegramLongPollingBot {
                                     .callbackData("Target: " + districtEnum)
                                     .build()));
         }
-
+        //Отправляем кнопки в чат
         execute(SendMessage.builder()
                 .chatId(message.getChatId().toString())
                 .text("Введите город для поиска погоды:")
@@ -182,8 +188,6 @@ public class WeatherBot extends TelegramLongPollingBot {
                         .keyboard(buttons).build())
                 .build());
     }
-
-
     @Override
     public void onUpdatesReceived(List<Update> updates) {
         super.onUpdatesReceived(updates);

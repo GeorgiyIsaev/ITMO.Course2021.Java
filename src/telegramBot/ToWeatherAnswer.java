@@ -28,7 +28,7 @@ public class ToWeatherAnswer {
         District district = jsonDistrict(nameReg);
         if (district == null){
 
-            return "Наименование района не найдено!";
+            return "Наименование района \""+ nameReg +"\" не найдено!";
         }
 
         String weatherJson = WeatherGetJson.currentWeather(district.latitude,district.longitude);
