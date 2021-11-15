@@ -170,6 +170,7 @@ public class WeatherBot extends TelegramLongPollingBot {
                                     .callbackData("Target: " + districtEnum)
                                     .build()));
         }
+
         execute(SendMessage.builder()
                 .chatId(message.getChatId().toString())
                 .text("Введите город для поиска погоды:")
