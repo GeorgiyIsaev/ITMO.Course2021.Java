@@ -44,7 +44,7 @@ public class WeatherBot extends TelegramLongPollingBot {
                     update.getMessage().hasText() &&  //содержит текст
                     update.getMessage().hasEntities()){ //содержит сущность
                 //Обработка команды
-                sendTextToTelegram(update.getMessage(), "Запущен блок для команд!");
+                //sendTextToTelegram(update.getMessage(), "Запущен блок для команд!");
                 handleMessageCommand(update.getMessage());
             }
             else if (isReadChat && //разрешено/запрещено читать чат боту
@@ -118,7 +118,7 @@ public class WeatherBot extends TelegramLongPollingBot {
             String command =
                     message.getText().substring(commandEntity.get().getOffset()
                             , commandEntity.get().getLength());
-            sendTextToTelegram(message, command);
+            //sendTextToTelegram(message, command);
             //Обработчик команд
             switch (command) {
                 case "/help":
@@ -131,7 +131,6 @@ public class WeatherBot extends TelegramLongPollingBot {
 
                     break;
                 case "/districts":
-                    sendTextToTelegram(message, "Список доступных районов:\n");
                     execute(SendMessage.builder()
                             .chatId(message.getChatId().toString())
                             .text(ToWeatherAnswer.getWeatherStr("0"))
