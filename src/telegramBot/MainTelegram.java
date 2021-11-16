@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainTelegram {
@@ -20,6 +21,14 @@ public class MainTelegram {
     }
 
     public static void testMyTelegram() throws TelegramApiException {
+        try {
+            StarterFile starterFile = new StarterFile();
+            starterFile.createJsonFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         WeatherBot wb = new WeatherBot(new DefaultBotOptions());
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         telegramBotsApi.registerBot(wb); //создает непрерывный поток с тригером на апдейты
