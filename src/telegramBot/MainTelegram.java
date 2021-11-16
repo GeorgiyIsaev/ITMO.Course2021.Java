@@ -31,9 +31,9 @@ public class MainTelegram {
                 Scanner scanner = new Scanner(System.in);
                 System.out.print("Ответ: ");
                 String str = scanner.nextLine();
-                wb.execute(SendMessage.builder().chatId("993363894").text(str).build()); //я
-                wb.execute(SendMessage.builder().chatId("550105390").text(str).build()); //Влад
-                wb.execute(SendMessage.builder().chatId("902459907").text(str).build()); //Михаил
+               // wb.execute(SendMessage.builder().chatId("993363894").text(str).build()); //я
+               // wb.execute(SendMessage.builder().chatId("550105390").text(str).build()); //Влад
+              //  wb.execute(SendMessage.builder().chatId("902459907").text(str).build()); //Михаил
             }
             catch (Exception e){
 

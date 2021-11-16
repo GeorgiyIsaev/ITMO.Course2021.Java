@@ -64,149 +64,131 @@ class ClassJsonWeather {
         info.append("Скорость ветра: " + getCurrent().getWind_speed() + " метр/сек");
         return info.toString();
     }
-}
-class Current {
-    public float dt;
-    public float sunrise;
-    public float sunset;
-    public float temp;
-    public float feels_like;
-    public float pressure;
-    public float humidity;
-    public float dew_point;
-    public float uvi;
-    public float clouds;
-    public float visibility;
-    public float wind_speed;
-    public float wind_deg;
-    public ArrayList< Object > weather = new ArrayList < Object > ();
 
 
-    // Getter Methods
+    class Current {
+        public float dt;
+        public float sunrise;
+        public float sunset;
+        public float temp;
+        public float feels_like;
+        public float pressure;
+        public float humidity;
+        public float dew_point;
+        public float uvi;
+        public float clouds;
+        public float visibility;
+        public float wind_speed;
+        public float wind_deg;
+        public ArrayList<Object> weather = new ArrayList<Object>();
 
-    public float getDt() {
-        return dt;
-    }
 
-    public float getSunrise() {
-        return sunrise;
-    }
+        // Getter Methods
 
-    public float getSunset() {
-        return sunset;
-    }
+        public float getDt() {
+            return dt;
+        }
 
-    public float getTemp() {
-        return temp;
-    }
+        public float getSunrise() {
+            return sunrise;
+        }
 
-    public float getFeels_like() {
-        return feels_like;
-    }
+        public float getSunset() {
+            return sunset;
+        }
 
-    public float getPressure() {
-        return pressure;
-    }
+        public float getTemp() {
+            return temp;
+        }
 
-    public float getHumidity() {
-        return humidity;
-    }
+        public float getFeels_like() {
+            return feels_like;
+        }
 
-    public float getDew_point() {
-        return dew_point;
-    }
+        public float getPressure() {
+            return pressure;
+        }
 
-    public float getUvi() {
-        return uvi;
-    }
+        public float getHumidity() {
+            return humidity;
+        }
 
-    public float getClouds() {
-        return clouds;
-    }
+        public float getDew_point() {
+            return dew_point;
+        }
 
-    public float getVisibility() {
-        return visibility;
-    }
+        public float getUvi() {
+            return uvi;
+        }
 
-    public float getWind_speed() {
-        return wind_speed;
-    }
+        public float getClouds() {
+            return clouds;
+        }
 
-    public float getWind_deg() {
-        return wind_deg;
-    }
+        public float getVisibility() {
+            return visibility;
+        }
 
-    // Setter Methods
+        public float getWind_speed() {
+            return wind_speed;
+        }
 
-    public void setDt(float dt) {
-        this.dt = dt;
-    }
+        public float getWind_deg() {
+            return wind_deg;
+        }
 
-    public void setSunrise(float sunrise) {
-        this.sunrise = sunrise;
-    }
+        // Setter Methods
 
-    public void setSunset(float sunset) {
-        this.sunset = sunset;
-    }
+        public void setDt(float dt) {
+            this.dt = dt;
+        }
 
-    public void setTemp(float temp) {
-        this.temp = temp;
-    }
+        public void setSunrise(float sunrise) {
+            this.sunrise = sunrise;
+        }
 
-    public void setFeels_like(float feels_like) {
-        this.feels_like = feels_like;
-    }
+        public void setSunset(float sunset) {
+            this.sunset = sunset;
+        }
 
-    public void setPressure(float pressure) {
-        this.pressure = pressure;
-    }
+        public void setTemp(float temp) {
+            this.temp = temp;
+        }
 
-    public void setHumidity(float humidity) {
-        this.humidity = humidity;
-    }
+        public void setFeels_like(float feels_like) {
+            this.feels_like = feels_like;
+        }
 
-    public void setDew_point(float dew_point) {
-        this.dew_point = dew_point;
-    }
+        public void setPressure(float pressure) {
+            this.pressure = pressure;
+        }
 
-    public void setUvi(float uvi) {
-        this.uvi = uvi;
-    }
+        public void setHumidity(float humidity) {
+            this.humidity = humidity;
+        }
 
-    public void setClouds(float clouds) {
-        this.clouds = clouds;
-    }
+        public void setDew_point(float dew_point) {
+            this.dew_point = dew_point;
+        }
 
-    public void setVisibility(float visibility) {
-        this.visibility = visibility;
-    }
+        public void setUvi(float uvi) {
+            this.uvi = uvi;
+        }
 
-    public void setWind_speed(float wind_speed) {
-        this.wind_speed = wind_speed;
-    }
+        public void setClouds(float clouds) {
+            this.clouds = clouds;
+        }
 
-    public void setWind_deg(float wind_deg) {
-        this.wind_deg = wind_deg;
-    }
+        public void setVisibility(float visibility) {
+            this.visibility = visibility;
+        }
 
-    @Override
-    public String toString() {
-        return "Current{" +
-                "dt=" + dt +
-                ", sunrise=" + sunrise +
-                ", sunset=" + sunset +
-                ", temp=" + temp +
-                ", feels_like=" + feels_like +
-                ", pressure=" + pressure +
-                ", humidity=" + humidity +
-                ", dew_point=" + dew_point +
-                ", uvi=" + uvi +
-                ", clouds=" + clouds +
-                ", visibility=" + visibility +
-                ", wind_speed=" + wind_speed +
-                ", wind_deg=" + wind_deg +
-                ", weather=" + weather +
-                '}';
+        public void setWind_speed(float wind_speed) {
+            this.wind_speed = wind_speed;
+        }
+
+        public void setWind_deg(float wind_deg) {
+            this.wind_deg = wind_deg;
+        }
     }
 }
