@@ -24,6 +24,7 @@ public class MainTelegram {
         try {
             StarterFile starterFile = new StarterFile();
             starterFile.createJsonFile();
+            starterFile.readJsonFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
