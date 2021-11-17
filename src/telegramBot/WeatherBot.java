@@ -49,9 +49,7 @@ public class WeatherBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         //Обработчик событий
-        System.out.println("ЧатID: " + update.getMessage().getChatId()
-                + " Name: " + update.getMessage().getFrom().getFirstName()
-                + "\nText: " + update.getMessage().getText());
+        Logger.writeLog(update);
         try {
 
             if(update.hasMessage() &&  // есть сообщение
@@ -214,8 +212,7 @@ public class WeatherBot extends TelegramLongPollingBot {
     public void onUpdatesReceived(List<Update> updates) {
 
         if(updates.get(0).getCallbackQuery() != null) {
-            System.out.println("ДА");
-
+            Logger.writeLogKey(updates.get(0));
             try {
                 execute(SendMessage.builder()
                         .chatId(updates.get(0).getCallbackQuery().getMessage().getChatId().toString())
