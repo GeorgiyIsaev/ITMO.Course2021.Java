@@ -69,6 +69,7 @@ public class WeatherBot extends TelegramLongPollingBot {
             }
 
         } catch (TelegramApiException e) {
+            System.out.println("Ошибка при чтении чата");
             e.printStackTrace();
         }
     }
@@ -85,6 +86,7 @@ public class WeatherBot extends TelegramLongPollingBot {
                     .text("action " + action + " param: " + param.toString())
                     .build());
         } catch (TelegramApiException e) {
+            System.out.println("Ошибка при тесте");
             e.printStackTrace();
         }
         switch (action){
@@ -220,6 +222,7 @@ public class WeatherBot extends TelegramLongPollingBot {
                         .text(ToWeatherAnswer.getWeatherStr(updates.get(0).getCallbackQuery().getData()))
                         .build());
             } catch (TelegramApiException e) {
+                System.out.println("Ошибка при чтении команды");
                 System.out.println(e.getMessage());
             }
         }
