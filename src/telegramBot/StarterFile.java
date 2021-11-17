@@ -4,11 +4,13 @@ package telegramBot;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.sun.source.tree.IfTree;
 
 import java.awt.*;
 import java.io.File;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 //Класс для получения данных о боте из файла
 
@@ -73,6 +75,30 @@ public class StarterFile {
         }desktop.open(new File(fileName));
     }
 
+    public void startReadFile() {
+        try {
+            //Если файла нет, то пересоздать и открыть для заполнения
+            if(!fileChecker()){
+                createJsonFile();
+                if(!fileChecker()){
+                    openFile();
+                }
+                System.out.println("Не обнаружен стартовый файл:\n" +
+                        "Введите токен бота и ключ с сайта OpenWeather.org!");
+                System.out.print("Нажмите Enter для продолжения: ");
+                Scanner scanner = new Scanner(System.in);
+                String str = scanner.nextLine();
+            }
+            //Прочитать настройки если файл есть
+            if(fileChecker()) {
+                readJsonFile();
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
 }
 

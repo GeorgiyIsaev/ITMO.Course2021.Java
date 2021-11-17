@@ -21,14 +21,9 @@ public class MainTelegram {
     }
 
     public static void testMyTelegram() throws TelegramApiException {
-        try {
-            StarterFile starterFile = new StarterFile();
-            starterFile.openFile();
-            //starterFile.createJsonFile();
-          //  starterFile.readJsonFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        StarterFile starterFile = new StarterFile();
+        starterFile.startReadFile();
 
 
         WeatherBot wb = new WeatherBot(new DefaultBotOptions());
