@@ -4,7 +4,7 @@ package telegramBot;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.sun.source.tree.IfTree;
+
 
 import java.awt.*;
 import java.io.File;
@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 //Класс для получения данных о боте из файла
+//Читает токен бота и ключ с погодного сайта
 
 public class StarterFile {
     private String fileName = "starterFileForTelegramBot.json";
