@@ -23,8 +23,9 @@ public class MainTelegram {
     public static void testMyTelegram() throws TelegramApiException {
         try {
             StarterFile starterFile = new StarterFile();
-            starterFile.createJsonFile();
-            starterFile.readJsonFile();
+            starterFile.openFile();
+            //starterFile.createJsonFile();
+          //  starterFile.readJsonFile();
         } catch (IOException e) {
             e.printStackTrace();
         }

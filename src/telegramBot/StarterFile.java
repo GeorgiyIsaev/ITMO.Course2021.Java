@@ -1,20 +1,22 @@
 package telegramBot;
 
-import com.fasterxml.jackson.core.JsonFactory;
+
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.awt.*;
 import java.io.File;
-import java.io.FileWriter;
+
 import java.io.IOException;
 
 //Класс для получения данных о боте из файла
-//Читатат
+
 public class StarterFile {
+    private String fileName = "starterFileForTelegramBot.json";
 
     private String botName = "<botName>";
-    private String botToken= "<botToken>";
+    private String botToken = "<botToken>";
     private String keyOpenWeatherMapOrg = "<keyOpenWeather>";
 
     public void setBotName(String botName) {
@@ -32,21 +34,15 @@ public class StarterFile {
     public String getBotName() {
         return botName;
     }
+
     public String getBotToken() {
         return botToken;
     }
+
     public String getKeyOpenWeatherMapOrg() {
         return keyOpenWeatherMapOrg;
     }
 
-    @Override
-    public String toString() {
-        return "StarterFile{" +
-                "botName='" + botName + '\'' +
-                ", botToken='" + botToken + '\'' +
-                ", keyOpenWeatherMapOrg='" + keyOpenWeatherMapOrg + '\'' +
-                '}';
-    }
 
     public void createJsonFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -54,6 +50,7 @@ public class StarterFile {
         mapper.writeValue(new File("starterFileForTelegramBot.json"), this);
         System.out.println("json created!");
     }
+
     public void readJsonFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
@@ -61,8 +58,22 @@ public class StarterFile {
         this.botName = starterFile.botName;
         this.botToken = starterFile.botToken;
         this.keyOpenWeatherMapOrg = starterFile.keyOpenWeatherMapOrg;
-        System.out.println(this);
-
     }
 
+    public boolean fileChecker() {
+        String filename = "starterFileForTelegramBot.json";
+        final File file2 = new File(filename);
+        return file2.exists();
+    }
+
+    public void openFile() throws IOException {
+        Desktop desktop = null;
+        if (Desktop.isDesktopSupported()) {
+            desktop = Desktop.getDesktop();
+        }desktop.open(new File(fileName));
+    }
+
+
 }
+
+
