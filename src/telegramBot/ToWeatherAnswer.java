@@ -43,12 +43,11 @@ public class ToWeatherAnswer {
                     "Отключите уведомления от анализатора бота: /bot_on_fon\n" +
                     "Или выключите анализатор чата: /bot_off ";
         }
-
         String weatherJson = WeatherGetJson.currentWeather(district.latitude,district.longitude);
         Gson gsonHttp = new Gson();
         ClassJsonWeather classJsonWeather = gsonHttp.fromJson(weatherJson,ClassJsonWeather.class);
-
         String intro = "Погода " + district.names.get(1) + " районе:\n";
         return intro + classJsonWeather;
+
     }
 }

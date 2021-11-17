@@ -25,7 +25,6 @@ public class WeatherGetJson {
             URL url = new URL(getUrlString(latitude,longitude));
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod("GET");
-
             int status = connection.getResponseCode();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -36,21 +35,15 @@ public class WeatherGetJson {
             {
                 content.append(input);
             }
-
             in.close();
             connection.disconnect();
-
-            System.out.println("Json file with current forecast for city successfully loaded from server. Response code: " + status);
-
             return content.toString();
 
         }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
         catch (Exception e)
         {
+            System.out.println("Сбой на этапе полупения JSON от openweathermap.org");
+            System.out.println("Проверьте ключ доступа");
             e.printStackTrace();
         }
         return "Данных нет";

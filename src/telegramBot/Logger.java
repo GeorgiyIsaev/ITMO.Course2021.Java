@@ -42,6 +42,4 @@ public class Logger {
             System.out.println(ex.getMessage());
         }
     }
-
-
 }
