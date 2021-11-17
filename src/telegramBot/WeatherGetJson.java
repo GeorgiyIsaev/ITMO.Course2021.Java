@@ -9,11 +9,13 @@ import java.net.URL;
 public class WeatherGetJson {
     //мой ключ доступа с сайта
     //https://home.openweathermap.org/api_keys
-    private static String key = "53666c5fb00bbba04387990a39a39628";
+    private static String getKey() {
+        return WeatherBot.getStarterFile().getKeyOpenWeatherMapOrg();
+    }
     public static String getUrlString(double latitude, double longitude) {
         return
             "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude +
-            "&exclude=minutely,hourly,daily&units=metric&appid=" + key + "&lang=ru";
+            "&exclude=minutely,hourly,daily&units=metric&appid=" + getKey() + "&lang=ru";
     }
     //Широта, Долгота, и Ключ доступа к программе
     public static String currentWeather(double latitude, double longitude){

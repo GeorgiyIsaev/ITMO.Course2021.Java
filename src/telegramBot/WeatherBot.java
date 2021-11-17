@@ -14,20 +14,31 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.*;
 
 public class WeatherBot extends TelegramLongPollingBot {
+
+    private static StarterFile starterFile;
+    public static StarterFile getStarterFile() {
+        return starterFile;
+    }
+
+    public static void setStarterFile(StarterFile starterFile) {
+        WeatherBot.starterFile = starterFile;
+    }
+
     private boolean isReadChat = false;
 
-    protected WeatherBot(DefaultBotOptions options) {
+    protected WeatherBot(DefaultBotOptions options,StarterFile starterFile) {
         super(options);
+        this.starterFile = starterFile;
     }
 
     @Override
     public String getBotUsername() {
-        return "Погодный бот";
+        return starterFile.getBotName();
     }
 
     public String getBotToken(){
         //Токен моего бота
-        return "2123760952:AAG0NPXALnTqluyNuicNK_B3x1bKPMa6fN4";
+        return starterFile.getBotToken();
     }
 
     @Override

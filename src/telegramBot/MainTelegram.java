@@ -26,7 +26,7 @@ public class MainTelegram {
         starterFile.startReadFile();
 
 
-        WeatherBot wb = new WeatherBot(new DefaultBotOptions());
+        WeatherBot wb = new WeatherBot(new DefaultBotOptions(), starterFile);
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         telegramBotsApi.registerBot(wb); //создает непрерывный поток с тригером на апдейты
 
